@@ -7,7 +7,6 @@ require(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 <?php $title = 'Le blog de Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
-<h1>Jean Forteroche</h1>
 
 <?php
 
@@ -18,10 +17,13 @@ while ($post = $posts->fetch())
 {
 ?>
 
-    <h3><?= htmlspecialchars($post['title']); ?></h3>
-    <p>Le <?= $post['creation_date_fr']; ?> par Jean Forteroche</p>
+    <h3><a href="index.php?page=single&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
+    <p>Le <?= $post['creation_date_fr']; ?> par <?= $post['author']; ?></p>
 
-    <p><?= htmlspecialchars($post['content']); ?></p>
+    <p>
+        <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
+        <a href="index.php?page=single&id=<?= $post['id']; ?>">Voir la suite</a>
+    </p>
 
 <?php
 }
