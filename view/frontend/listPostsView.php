@@ -6,7 +6,6 @@ require(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 
 <?php $title = 'Le blog de Jean Forteroche'; ?>
 
-
 <?php ob_start(); ?>
 <h1>Jean Forteroche</h1>
 
@@ -20,6 +19,7 @@ while ($post = $posts->fetch())
 ?>
 
     <h3><?= htmlspecialchars($post['title']); ?></h3>
+    <p>Le <?= $post['creation_date_fr']; ?> par Jean Forteroche</p>
 
     <p><?= htmlspecialchars($post['content']); ?></p>
 
@@ -30,4 +30,4 @@ while ($post = $posts->fetch())
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require(dirname(__DIR__) . '/frontend/template.php'); ?>
+<?php require(dirname(__DIR__) . '/template.php'); ?>
