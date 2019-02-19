@@ -24,6 +24,12 @@ if (isset($_GET['page'])) {
             $updatePost = new PostManager();
             $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['author'], $_POST['content']);
         }
+
+        if (isset($_GET['delete'])) {
+            $deletePost = new PostManager();
+            $deletePost->deletePost($_GET['id']);
+        }
+
         require(__DIR__ . '/view/backend/adminView.php');
 
     } elseif ($_GET['page'] === 'single') {

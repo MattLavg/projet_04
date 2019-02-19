@@ -30,5 +30,9 @@ $(document).ready(function () {
     $('.close').click(function() {
         document.getElementById("overlayDeletePost").style.display = "none";
     });
+
+    $('.noDeletePost').click(function() {
+        document.getElementById("overlayDeletePost").style.display = "none";
+    });
 });
 

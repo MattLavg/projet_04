@@ -30,7 +30,19 @@ $title = $post['title'];
 <p><?= nl2br(htmlspecialchars($post['content'])); ?></p>
 
 <a href="index.php?page=updatePost&id=<?= $post['id']; ?>">Modifier</a><br>
-<a href="#">Supprimer</a>
+<a class="deleteBtn" href="#">Supprimer</a>
+
+
+<div id="overlayDeletePost" class="position-fixed">
+    
+    <div class="deleteQuestion position-relative">
+        <div class="crossArea"><a href="#" class="close"></a></div>
+        <p>Souhaitez-vous vraiment effacer l'article <?= htmlspecialchars($post['title']); ?> ?</p><br>
+        <a href="index.php?page=admin&id=<?= $post['id']; ?>&delete=true"><button type="button" class="btn btn-warning">Oui</button></a>
+        <button type="button" class="btn btn-primary noDeletePost">Non</button>
+    </div>
+
+</div>
 
 <?php $content = ob_get_clean(); ?>
 

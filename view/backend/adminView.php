@@ -61,7 +61,7 @@ while ($post = $posts->fetch())
         <p>
             <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
             <p>
-                <a href="index.php?page=single&id=<?= $post['id']; ?>">Voir la suite</a>&nbsp;-
+                <a href="index.php?page=adminPostView&id=<?= $post['id']; ?>">Voir la suite</a>&nbsp;-
                 <a href="index.php?page=updatePost&id=<?= $post['id']; ?>">Modifier</a>&nbsp;-
                 <a class="deleteBtn" href="#">Supprimer</a>
             </p>
@@ -69,18 +69,21 @@ while ($post = $posts->fetch())
 
     </div>
 
+    <div id="overlayDeletePost" class="position-fixed">
+    
+        <div class="deleteQuestion position-relative">
+            <div class="crossArea"><a href="#" class="close"></a></div>
+            <p>Souhaitez-vous vraiment effacer l'article <?= htmlspecialchars($post['title']); ?> ?</p><br>
+            <a href="index.php?page=admin&id=<?= $post['id']; ?>&delete=true"><button type="button" class="btn btn-warning">Oui</button></a>
+            <button type="button" class="btn btn-primary noDeletePost">Non</button>
+        </div>
+
+    </div>
+
 <?php
 }
 ?>
 
-<div id="overlayDeletePost" class="position-fixed">
-    
-    <div class="deleteQuestion position-relative">
-        <div class="test"><a href="#" class="close"></a></div>
-        <p>Souhaitez-vous vraiment effacer l'article <?= htmlspecialchars($post['title']); ?> ?</p><br>
-    </div>
-
-</div>
 
 
 <?php $content = ob_get_clean(); ?>
