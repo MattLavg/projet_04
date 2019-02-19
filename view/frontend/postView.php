@@ -1,7 +1,11 @@
 <?php 
-namespace Math\projet04\Model;
 
-require(dirname(dirname(__DIR__)) . '/model/PostManager.php'); 
+namespace Math\projet04;
+
+use Math\projet04\Model\PostManager;
+
+require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
+require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 ?>
 
 

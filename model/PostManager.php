@@ -2,7 +2,7 @@
 
 namespace Math\projet04\Model;
 
-require_once(__DIR__ . '/Manager.php');
+// require_once(__DIR__ . '/Manager.php');
 
 class PostManager extends Manager
 {
@@ -22,6 +22,26 @@ class PostManager extends Manager
         $req->execute(array($id));
 
         return $req;
+    }
+
+    public function addPost($title, $author, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('INSERT INTO posts (title, author, content, creationDate) VALUES(?, ?, ?, NOW())');
+
+        $content = strip_tags($content);
+
+        $req->execute(array($title, $author, $content));
+    }
+
+    public function updatePost($id, $title, $author, $content)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE posts SET title = ?, author = ?, content = ? WHERE id = ?');
+
+        $content = strip_tags($content);
+
+        $req->execute(array($title, $author, $content, $id));
     }
 
 }

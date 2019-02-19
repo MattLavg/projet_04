@@ -1,7 +1,11 @@
 <?php 
-namespace Math\projet04\Model;
 
-require(dirname(dirname(__DIR__)) . '/model/PostManager.php'); 
+namespace Math\projet04;
+
+use Math\projet04\Model\PostManager;
+
+require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
+require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php'); 
 ?>
 
 <?php $title = 'Le blog de Jean Forteroche'; ?>
@@ -17,13 +21,17 @@ while ($post = $posts->fetch())
 {
 ?>
 
-    <h3><a href="index.php?page=single&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
-    <p>Le <?= $post['creation_date_fr']; ?> par <?= $post['author']; ?></p>
+    <div class="listPosts">
 
-    <p>
-        <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
-        <a href="index.php?page=single&id=<?= $post['id']; ?>">Voir la suite</a>
-    </p>
+        <h3><a href="index.php?page=single&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
+        <p>Le <?= $post['creation_date_fr']; ?> par <?= $post['author']; ?></p>
+
+        <p>
+            <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
+            <a href="index.php?page=single&id=<?= $post['id']; ?>">Voir la suite</a>
+        </p>
+
+    </div>
 
 <?php
 }
