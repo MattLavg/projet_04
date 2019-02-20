@@ -22,7 +22,7 @@ if (isset($_GET['page'])) {
 
         if (isset($_POST['updatePost'])) {
             $updatePost = new PostManager();
-            $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['author'], $_POST['content']);
+            $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
         }
 
         if (isset($_GET['delete'])) {
@@ -32,7 +32,7 @@ if (isset($_GET['page'])) {
 
         require(__DIR__ . '/view/backend/adminView.php');
 
-    } elseif ($_GET['page'] === 'single') {
+    } elseif ($_GET['page'] === 'postView') {
         require(__DIR__ . '/view/frontend/postView.php');
     } elseif ($_GET['page'] === 'updatePost') {
         require(__DIR__ . '/view/backend/updatePostView.php');

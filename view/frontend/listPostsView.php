@@ -23,12 +23,12 @@ while ($post = $posts->fetch())
 
     <div class="listPosts">
 
-        <h3><a href="index.php?page=single&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
+        <h3><a href="index.php?page=postView&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
         <p>Le <?= $post['creation_date_fr']; ?> par <?= $post['author']; ?></p>
 
         <p>
             <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
-            <a href="index.php?page=single&id=<?= $post['id']; ?>">Voir la suite</a>
+            <a href="index.php?page=postView&id=<?= $post['id']; ?>">Voir la suite</a>
         </p>
 
     </div>
@@ -36,7 +36,6 @@ while ($post = $posts->fetch())
 <?php
 }
 ?>
-
 
 <?php $content = ob_get_clean(); ?>
 

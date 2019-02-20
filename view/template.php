@@ -60,7 +60,7 @@
 <script src="/projet_04/public/tinymce/js/tinymce.min.js"></script>
 <script type="text/javascript">
   tinymce.init({
-    selector: 'textarea',  // change this value according to your HTML
+    selector: '#tinymcetextarea',  // change this value according to your HTML
     plugins: [
       'advlist autolink autoresize link image lists charmap print preview hr anchor pagebreak spellchecker',
       'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',

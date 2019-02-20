@@ -30,12 +30,7 @@ $title = 'Modification |' . $post['title'];
     </div>
 
     <div class="form-group">
-        <label for="author">Auteur :&nbsp;</label>
-        <input type="text" id="author" name="author" value="<?= $post['author']; ?>" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <textarea id="mytextarea" name="content"><?= nl2br($post['content']); ?></textarea>
+        <textarea id="tinymcetextarea" name="content"><?= nl2br($post['content']); ?></textarea>
     </div>
 
     <div class="form-group">

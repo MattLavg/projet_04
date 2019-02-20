@@ -35,7 +35,7 @@ if (isset($_POST['newPost'])) {
     </div>
     
     <div class="form-group">
-        <textarea id="mytextarea" name="content">Hello, World!</textarea>
+        <textarea id="tinymcetextarea" name="content">Hello, World!</textarea>
     </div>
 
     <input type="submit" value="Envoyer" name="newPost" class="btn btn-primary" />
@@ -56,7 +56,13 @@ while ($post = $posts->fetch())
     <div class="listPosts">
 
         <h3><a href="index.php?page=adminPostView&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
-        <p>Le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?></p>
+        <p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
+        <?php
+            if ($post['updateDateFr'] !== NULL) {
+                echo '(Dernière modification le ' . $post['updateDateFr'] . ')';
+            }
+        ?>
+        </p>
 
         <p>
             <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
