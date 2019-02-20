@@ -1,12 +1,14 @@
 <?php
 
 use Math\projet04\model\PostManager;
+use Math\projet04\model\CommentManager;
 
 // require_once(__DIR__ . '/model/Autoloader.php');
 // Autoloader::register;
 
 require_once(__DIR__ . '/model/Manager.php');
 require_once(__DIR__ . '/model/PostManager.php');
+require_once(__DIR__ . '/model/CommentManager.php');
 
 
 if (isset($_GET['page'])) {
@@ -33,7 +35,16 @@ if (isset($_GET['page'])) {
         require(__DIR__ . '/view/backend/adminView.php');
 
     } elseif ($_GET['page'] === 'postView') {
+
+        if (isset($_POST['newComment'])) {
+            $newComment = new CommentManager();
+            $newComment->addComment($_POST['post_id'], $_POST['author'], $_POST['content']);
+
+            header('Location: index.php?page=postView&id=' . $_POST['post_id']);
+        } 
+        
         require(__DIR__ . '/view/frontend/postView.php');
+
     } elseif ($_GET['page'] === 'updatePost') {
         require(__DIR__ . '/view/backend/updatePostView.php');
     } elseif ($_GET['page'] === 'adminPostView') {
