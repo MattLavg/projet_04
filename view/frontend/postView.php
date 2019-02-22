@@ -26,7 +26,13 @@ $title = htmlspecialchars($post['title']);
 ?>
 
 <h1><?= htmlspecialchars($post['title']); ?></h1>
-<p>Par <?= $post['author']; ?> le <?= $post['creation_date_fr'] ?></p>
+<p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
+<?php
+    if ($post['updateDateFr'] !== NULL) {
+        echo '(Dernière modification le ' . $post['updateDateFr'] . ')';
+    }
+?>
+</p>
 <p><?= nl2br(htmlspecialchars($post['content'])); ?></p>
 
 <hr>
@@ -64,10 +70,14 @@ while ($comment = $comments->fetch())
 {
 ?>
 
-<div>
+<div class="comment container">
 
-    <p><?= htmlspecialchars($comment['author']); ?> (publié le<?= $comment['creation_date_fr']; ?>)</p>
-    <p><?= htmlspecialchars($comment['content']); ?></p>
+    <div class="row">
+    
+        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment['author']); ?></span> (publié le<?= $comment['creation_date_fr']; ?>)</p>
+        <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
+    
+    </div>
 
 </div>
 

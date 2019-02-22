@@ -55,7 +55,7 @@ while ($post = $posts->fetch())
 
     <div class="listPosts">
 
-        <h3><a href="index.php?page=adminPostView&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
+        <h3><a href="index.php?page=adminPostView&id=<?= $post['id']; ?>"><span id="postTitle<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></span></a></h3>
         <p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
         <?php
             if ($post['updateDateFr'] !== NULL) {
@@ -69,28 +69,17 @@ while ($post = $posts->fetch())
             <p>
                 <a href="index.php?page=adminPostView&id=<?= $post['id']; ?>">Voir la suite</a>&nbsp;-
                 <a href="index.php?page=updatePost&id=<?= $post['id']; ?>">Modifier</a>&nbsp;-
-                <a class="deleteBtn" href="#">Supprimer</a>
+                <a href="index.php?page=admin&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn">Supprimer</a>
             </p>
         </p>
 
     </div>
 
-    <div id="overlayDeletePost" class="position-fixed">
-    
-        <div class="deleteQuestion position-relative">
-            <div class="crossArea"><a href="#" class="close"></a></div>
-            <p>Souhaitez-vous vraiment effacer l'article <?= htmlspecialchars($post['title']); ?> ?</p><br>
-            <a href="index.php?page=admin&id=<?= $post['id']; ?>&delete=true"><button type="button" class="btn btn-warning">Oui</button></a>
-            <button type="button" class="btn btn-primary noDeletePost">Non</button>
-        </div>
-
-    </div>
+    <hr>
 
 <?php
 }
 ?>
-
-
 
 <?php $content = ob_get_clean(); ?>
 

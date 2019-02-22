@@ -3,6 +3,8 @@
     padding-bottom : 100px;
 }
 
+/* POSTS */
+
 .listPosts {
     -webkit-transition : background-color 0.5s ease;
     transition : background-color 0.5s ease;
@@ -12,7 +14,34 @@
     background-color: #F0F0F0;
 }
 
-div#overlayDeletePost {
+/* COMMENTS */
+
+.comment.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.authorCommentBloc {
+    background-color: rgb(158, 199, 253);
+    margin-bottom: 0;
+}
+
+.authorComment {
+    font-weight: bold;
+}
+
+.textComment {
+    background-color: rgb(221, 221, 221);
+}
+
+.authorCommentBloc, .textComment {
+    padding: 1em;
+}
+
+/* DELETE COMMENT - POST */
+
+div#overlayDelete, 
+div#overlayDeleteComment {
     display: none;
     z-index: 1;
     top: 0px;
@@ -35,7 +64,8 @@ div#overlayDeletePost {
     background: rgb(255, 255, 255);
 }
 
-.close {
+.closeDelete, 
+.closeDeleteComment {
     position: relative;
     right: 5px;
     top: 0px;
@@ -43,10 +73,14 @@ div#overlayDeletePost {
     height: 32px;
     opacity: 0.3;
   }
-  .close:hover {
+  .closeDelete:hover, 
+  .closeDeleteComment:hover {
     opacity: 1;
   }
-  .close:before, .close:after {
+  .closeDelete:after,
+  .closeDelete:before, 
+  .closeDeleteComment:before, 
+  .closeDeleteComment:after {
     position: absolute;
     left: 15px;
     content: ' ';
@@ -54,11 +88,14 @@ div#overlayDeletePost {
     width: 2px;
     background-color: #333;
   }
-  .close:before {
+  .closeDelete:before,
+  .closeDeleteComment:before {
     -webkit-transform: rotate(45deg);
             transform: rotate(45deg);
   }
-  .close:after {
+  
+  .closeDelete:after,
+  .closeDeleteComment:after {
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
   }

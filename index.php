@@ -14,7 +14,9 @@ require_once(__DIR__ . '/model/CommentManager.php');
 if (isset($_GET['page'])) {
 
     if ($_GET['page'] === 'home') {
+
         require(__DIR__ . '/view/frontend/listPostsView.php');
+
     } elseif ($_GET['page'] === 'admin') {
 
         if (isset($_POST['newPost'])) {
@@ -29,7 +31,7 @@ if (isset($_GET['page'])) {
 
         if (isset($_GET['delete'])) {
             $deletePost = new PostManager();
-            $deletePost->deletePost($_GET['id']);
+            $deletePost->deletePost($_GET['post_id']);
         }
 
         require(__DIR__ . '/view/backend/adminView.php');
@@ -48,6 +50,14 @@ if (isset($_GET['page'])) {
     } elseif ($_GET['page'] === 'updatePost') {
         require(__DIR__ . '/view/backend/updatePostView.php');
     } elseif ($_GET['page'] === 'adminPostView') {
+
+        if (isset($_GET['deleteComment'])) {
+            $newComment = new CommentManager();
+            $newComment->deleteComment($_GET['comment_id']);
+            
+            header('Location: index.php?page=adminPostView&id=' . $_GET['id']);
+        } 
+
         require(__DIR__ . '/view/backend/adminPostView.php');
     }
 

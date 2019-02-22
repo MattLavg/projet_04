@@ -24,7 +24,13 @@ while ($post = $posts->fetch())
     <div class="listPosts">
 
         <h3><a href="index.php?page=postView&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
-        <p>Le <?= $post['creation_date_fr']; ?> par <?= $post['author']; ?></p>
+        <p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
+        <?php
+            if ($post['updateDateFr'] !== NULL) {
+                echo '(Dernière modification le ' . $post['updateDateFr'] . ')';
+            }
+        ?>
+        </p>
 
         <p>
             <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
@@ -32,6 +38,8 @@ while ($post = $posts->fetch())
         </p>
 
     </div>
+
+    <hr>
 
 <?php
 }

@@ -1,38 +1,48 @@
-
-
-// document.getElementById("deleteBtn").addEventListener("click", function() {
-//     document.getElementById("overlayDeletePost").style.display = "block";
-// });
-
-// document.getElementsByClassName("listPosts").style.backgroundColor = "blue";
-
-// document.getElementById("overlayDeletePost").style.display = "block";
-
-// function askDeletePost() {
-//     document.getElementById("overlayDeletePost").style.display = "block";
-// }
-
-// var deleteBtn = document.getElementsByClassName("deleteBtn");
-
-// for (var i = 0; i < deleteBtn.length; i++) {
-//     var deleteBtn = deleteBtn[i];
-//     deleteBtn.onclick = askDeletePost(); 
-
-// }
-
-// document.getElementsByClassName("deleteBtn").onclick = function() {askDeletePost()};
-
 $(document).ready(function () {
-    $('.deleteBtn').click(function() {
-        document.getElementById("overlayDeletePost").style.display = "block";
+
+    // Suppression de post
+    $('.deletePostBtn').click(function(e) {
+        e.preventDefault();
+
+        $('#overlayDelete').css('display', 'block');
+
+        // this vaut .deletePostBtn 'cliqué'
+        // .parent().parent() permet de remonter à partir du bouton
+        var postTitle = $(this).parent().parent().find('span[id^=postTitle]').html();
+        var postDeleteUrl = $(this).attr('href');
+        
+
+        $('#overlayText').html('l\'article ' + postTitle);
+        $('#overlayConfirmBtn').attr('href', postDeleteUrl);
+        
+        
     });
 
-    $('.close').click(function() {
-        document.getElementById("overlayDeletePost").style.display = "none";
+    // Suppression de commentaire
+    $('.deleteCommentBtn').click(function(e) {
+        e.preventDefault();
+
+        $('#overlayDelete').css('display', 'block');
+
+        // this vaut .deletePostBtn 'cliqué'
+        // .parent().parent() permet de remonter à partir du bouton
+        var commentAuthor = $(this).parent().parent().find('span[id^=commentAuthor]').html();
+        console.log(commentAuthor);
+        var commentDeleteUrl = $(this).attr('href');
+
+        $('#overlayText').html('le commentaire de ' + commentAuthor);
+        $('#overlayConfirmBtn').attr('href', commentDeleteUrl);
+        
+        
     });
 
-    $('.noDeletePost').click(function() {
-        document.getElementById("overlayDeletePost").style.display = "none";
+    $('.closeDelete').click(function() {
+        $('#overlayDelete').css('display', 'none');
     });
+
+    $('.noDelete').click(function() {
+        $('#overlayDelete').css('display', 'none');
+    });
+
 });
 

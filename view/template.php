@@ -40,7 +40,7 @@
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.php?page=home">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
@@ -54,6 +54,17 @@
 
 <?= $content ?>
 
+<div id="overlayDelete" class="position-fixed">
+    
+    <div class="deleteQuestion position-relative">
+        <div class="crossArea"><a href="#" class="closeDelete"></a></div>
+        <p>Souhaitez-vous vraiment effacer <span id="overlayText"></span> ?</p><br>
+        <a id="overlayConfirmBtn" href=""><button type="button" class="btn btn-warning">Oui</button></a>
+        <button type="button" class="btn btn-primary noDelete">Non</button>
+    </div>
+
+</div>
+
 </main><!-- /.container -->
 
 <!-- TINYMCE -->
@@ -66,7 +77,8 @@
       'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
       'save table contextmenu directionality emoticons template paste textcolor'
     ],
-    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons'
+    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+    entity_encoding : "raw"
   });
   </script>
 

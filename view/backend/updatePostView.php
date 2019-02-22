@@ -41,6 +41,7 @@ $title = 'Modification |' . $post['title'];
 
 </form>
 
+<a href="index.php?page=adminPostView&id=<?= $_GET['id']; ?>">Revenir à la publication</a><br>
 <a href="index.php?page=admin">Annuler les modifications</a>
 
 <?php $content = ob_get_clean(); ?>
