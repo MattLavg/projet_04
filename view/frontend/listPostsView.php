@@ -47,4 +47,4 @@ while ($post = $posts->fetch())
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require(dirname(__DIR__) . '/template.php'); ?>
+<?php require(__DIR__ . '/template.php'); ?>

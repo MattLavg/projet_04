@@ -32,6 +32,8 @@ class PostManager extends Manager
         $content = strip_tags($content);
 
         $req->execute(array($title, $author, $content, NULL));
+
+        return $count = $req->rowCount();
     }
 
     public function updatePost($id, $title, $content)
@@ -44,10 +46,16 @@ class PostManager extends Manager
         $req->execute(array($title, $content, $id));
     }
 
-    public function deletePost($id)
+    public function deletePostAndComments($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('DELETE FROM posts WHERE id = ?');
+        $req = $db->prepare(
+        'DELETE P, C 
+        FROM posts AS P
+        LEFT JOIN comments AS C
+        ON C.post_id = P.id
+        WHERE P.id = ?
+        ');
         $req->execute(array($id));
     }
 

@@ -19,22 +19,59 @@ if (isset($_GET['page'])) {
 
     } elseif ($_GET['page'] === 'admin') {
 
-        if (isset($_POST['newPost'])) {
-            $newPost = new PostManager();
-            $newPost->addPost($_POST['title'], $_POST['author'], $_POST['content']);
+        if (isset($_GET['param'])) {
+
+            if ($_GET['param'] === 'addPost') {
+
+                if (isset($_POST['newPost'])) {
+                    $newPost = new PostManager();
+                    $newPostId = $newPost->addPost($_POST['title'], $_POST['author'], $_POST['content']);
+
+                    if ($newPostId > 0) {
+                        header('Location: index.php?page=admin&param=addPost&affectedLines=true');
+                    } 
+                }
+
+                return require(__DIR__ . '/view/backend/addPostView.php');
+            }
+
+            if ($_GET['param'] === 'updatePost') {
+
+                if (isset($_POST['updatePost'])) {
+                    $updatePost = new PostManager();
+                    $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
+
+                    header('Location: index.php?page=admin&post_id=' . $_POST['id']);
+
+                } elseif (isset($_GET['post_id'])) {
+
+                    header('Location: index.php?page=admin&post_id=' . $_GET['post_id']);
+                }
+
+                return require(__DIR__ . '/view/backend/addPostView.php');
+            }
+    
+            if ($_GET['param'] === 'deletePost') {
+
+                if (isset($_GET['post_id'])) {
+                    $deletePost = new PostManager();
+                    $deletePost->deletePostAndComments($_GET['post_id']);
+                }
+
+                return require(__DIR__ . '/view/backend/postManagement.php');
+            }
+
+            if ($_GET['param'] === 'manageListPosts') {
+
+                return require(__DIR__ . '/view/backend/postManagement.php');
+            }
+    
+            if ($_GET['param'] === 'comments') {
+                return require(__DIR__ . '/view/backend/commentsView.php');
+            }
         }
 
-        if (isset($_POST['updatePost'])) {
-            $updatePost = new PostManager();
-            $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
-        }
-
-        if (isset($_GET['delete'])) {
-            $deletePost = new PostManager();
-            $deletePost->deletePost($_GET['post_id']);
-        }
-
-        require(__DIR__ . '/view/backend/adminView.php');
+        require(__DIR__ . '/view/backend/addPostView.php');
 
     } elseif ($_GET['page'] === 'postView') {
 

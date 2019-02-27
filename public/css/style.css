@@ -1,4 +1,4 @@
-.container {
+.mainContainer {
     padding-top : 100px;
     padding-bottom : 100px;
 }
@@ -99,3 +99,4 @@ div#overlayDeleteComment {
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
   }
+

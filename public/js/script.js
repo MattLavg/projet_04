@@ -44,5 +44,16 @@ $(document).ready(function () {
         $('#overlayDelete').css('display', 'none');
     });
 
-});
 
+
+    
+    
+    function checkPostAffectedLines() {
+        $('#addedPost').fadeOut(5000);
+    }
+
+    setInterval(checkPostAffectedLines(), 1000);
+
+    
+
+});
