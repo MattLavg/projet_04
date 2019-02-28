@@ -5,22 +5,20 @@ namespace Math\projet04;
 use Math\projet04\Model\PostManager;
 use Math\projet04\Model\CommentManager;
 
-// require_once(__DIR__ . '/model/Autoloader.php');
-// Autoloader::register;
-
 require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
 
-?>
+$title = ''; 
 
+?>
 
 <?php ob_start(); ?>
 
 <?php
 
 $data = new PostManager();
-$post = $data->getPost($_GET['id']);
+$post = $data->getPost($_GET['postId']);
 $post = $post->fetch();
 
 $title = $post['title'];
@@ -39,7 +37,7 @@ $title = $post['title'];
 
 <a href="index.php?page=updatePost&id=<?= $post['id']; ?>">Modifier</a><br>
 <a href="index.php?page=admin&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn">Supprimer</a><br>
-<a href="index.php?page=admin">Revenir à l'administration</a>
+<a href="index.php?page=admin">Revenir à la gestion des articles</a>
 
 <hr>
 
@@ -48,7 +46,7 @@ $title = $post['title'];
 <?php
 
 $dataComments = new CommentManager();
-$comments = $dataComments->listComments($_GET['id']);
+$comments = $dataComments->listComments($_GET['postId']);
 
 while ($comment = $comments->fetch())
 {
@@ -72,4 +70,4 @@ while ($comment = $comments->fetch())
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require(dirname(__DIR__) . '/template.php'); ?>
+<?php require(__DIR__ . '/template.php'); ?>

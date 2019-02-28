@@ -43,7 +43,7 @@ $nbPost = 1;
             ?>
                 <tr>
                     <th scope="row"><?= $nbPost++; ?></th>
-                    <td><span id="postTitle<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></span></td>
+                    <td><a href="index.php?page=admin&param=postView&post_id=<?= $post['id']; ?>"><span id="postTitle<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></span></a></td>
                     <td><?= $post['creation_date_fr']; ?></td>
                     <td><a href="index.php?page=admin&param=updatePost&post_id=<?= $post['id']; ?>">Modifier</a></td>
                     <td><a href="index.php?page=admin&param=deletePost&post_id=<?= $post['id']; ?>" class="deletePostBtn">Supprimer</a></td>

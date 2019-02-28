@@ -65,6 +65,15 @@ if (isset($_GET['page'])) {
 
                 return require(__DIR__ . '/view/backend/postManagement.php');
             }
+
+            if ($_GET['param'] === 'postView') {
+
+                if (isset($_GET['post_id'])) {
+                    header('Location: index.php?page=admin&param=postView&postId=' . $_GET['post_id']);
+                }
+
+                return require(__DIR__ . '/view/backend/postView.php');
+            }
     
             if ($_GET['param'] === 'comments') {
                 return require(__DIR__ . '/view/backend/commentsView.php');
