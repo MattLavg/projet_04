@@ -35,9 +35,9 @@ $title = $post['title'];
         </p>
 <p><?= nl2br(htmlspecialchars($post['content'])); ?></p>
 
-<a href="index.php?page=updatePost&id=<?= $post['id']; ?>">Modifier</a><br>
-<a href="index.php?page=admin&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn">Supprimer</a><br>
-<a href="index.php?page=admin">Revenir à la gestion des articles</a>
+<a href="index.php?page=admin&param=updatePost&post_id=<?= $post['id']; ?>">Modifier</a><br>
+<a href="index.php?page=admin&param=deletePost&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn">Supprimer</a><br>
+<a href="index.php?page=admin&param=manageListPosts">Revenir à la gestion des articles</a>
 
 <hr>
 
@@ -48,24 +48,40 @@ $title = $post['title'];
 $dataComments = new CommentManager();
 $comments = $dataComments->listComments($_GET['postId']);
 
-while ($comment = $comments->fetch())
-{
+$commentsOnPage = false;
+
+while ($comment = $comments->fetch()) { // début du while
+    
+    $commentsOnPage = true;
 ?>
-
-<div class="comment container">
-
-    <div class="row">
     
-        <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $comment['id']; ?>"><?= htmlspecialchars($comment['author']); ?></span> (publié le <?= $comment['creation_date_fr']; ?>)</p>
-        <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
-        <p class="col-12"><a class="deleteCommentBtn" href="index.php?page=adminPostView&id=<?= $comment['post_id']; ?>&comment_id=<?= $comment['id']; ?>&deleteComment=true">Supprimer</a></p>
+    <div class="comment container">
     
+        <div class="row">
+        
+            <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $comment['id']; ?>"><?= htmlspecialchars($comment['author']); ?></span> (publié le <?= $comment['creation_date_fr']; ?>)</p>
+            <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
+            <div class="col-12 commentButtonBloc d-flex justify-content-end">
+                <a class="deleteCommentBtn" href="index.php?page=admin&param=deleteComment&post_id=<?= $comment['post_id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-danger btn-sm">Supprimer</button></a>
+            </div>
+
+            <?php
+                if ($comment['reported']) {
+                    echo '<span class="reported"></span>';
+                }
+            ?>
+
+        </div>
+
     </div>
-
-</div>
-
+    
 <?php
+} // fin du while
+
+if (!$commentsOnPage) {
+    echo 'Il n\'y a actuellement aucun commentaire';
 }
+
 ?>
 
 <?php $content = ob_get_clean(); ?>

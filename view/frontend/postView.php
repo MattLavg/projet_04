@@ -76,6 +76,15 @@ while ($comment = $comments->fetch())
     
         <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment['author']); ?></span> (publié le<?= $comment['creation_date_fr']; ?>)</p>
         <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
+        <div class="col-12 commentButtonBloc d-flex justify-content-end">
+            <a href="index.php?page=postView&param=reportComment&post_id=<?= $post['id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
+        </div>
+
+        <?php
+            if ($comment['reported']) {
+                echo '<span class="reported"></span>';
+            }
+        ?>
     
     </div>
 

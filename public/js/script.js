@@ -54,6 +54,6 @@ $(document).ready(function () {
 
     setInterval(checkPostAffectedLines(), 1000);
 
-    
+    $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
 
 });

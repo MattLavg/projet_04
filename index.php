@@ -32,23 +32,24 @@ if (isset($_GET['page'])) {
                     } 
                 }
 
-                return require(__DIR__ . '/view/backend/addPostView.php');
+                return require(__DIR__ . '/view/backend/addAndUpdatePostView.php');
             }
 
             if ($_GET['param'] === 'updatePost') {
 
-                if (isset($_POST['updatePost'])) {
+                // Pour afficher infos déjà présentes
+                if (isset($_GET['post_id'])) {
+
+                    header('Location: index.php?page=admin&param=updatePost&updatePostId=' . $_GET['post_id']);
+
+                } elseif (isset($_POST['newUpdatePost'])) {
                     $updatePost = new PostManager();
                     $updatePost->updatePost($_POST['id'], $_POST['title'], $_POST['content']);
 
-                    header('Location: index.php?page=admin&post_id=' . $_POST['id']);
-
-                } elseif (isset($_GET['post_id'])) {
-
-                    header('Location: index.php?page=admin&post_id=' . $_GET['post_id']);
+                    header('Location: index.php?page=admin&param=postView&post_id=' . $_POST['id']);
                 }
 
-                return require(__DIR__ . '/view/backend/addPostView.php');
+                return require(__DIR__ . '/view/backend/addAndUpdatePostView.php');
             }
     
             if ($_GET['param'] === 'deletePost') {
@@ -74,13 +75,25 @@ if (isset($_GET['page'])) {
 
                 return require(__DIR__ . '/view/backend/postView.php');
             }
+
+            if ($_GET['param'] === 'deleteComment') {
+
+                if (isset($_GET['comment_id'])) {
+                    $deleteComment = new CommentManager();
+                    $deleteComment->deleteComment($_GET['comment_id']);
+
+                    header('Location: index.php?page=admin&param=postView&postId=' . $_GET['post_id']);
+                }
+
+                return require(__DIR__ . '/view/backend/postView.php');
+            }
     
             if ($_GET['param'] === 'comments') {
                 return require(__DIR__ . '/view/backend/commentsView.php');
             }
         }
 
-        require(__DIR__ . '/view/backend/addPostView.php');
+        require(__DIR__ . '/view/backend/addAndUpdatePostView.php');
 
     } elseif ($_GET['page'] === 'postView') {
 
@@ -90,6 +103,18 @@ if (isset($_GET['page'])) {
 
             header('Location: index.php?page=postView&id=' . $_POST['post_id']);
         } 
+
+        if ($_GET['param'] === 'reportComment') {
+
+            if (isset($_GET['comment_id']) && isset($_GET['post_id'])) {
+                $reportComment = new CommentManager();
+                $reportComment->reportComment($_GET['comment_id']);
+
+                header('Location: index.php?page=postView&id=' . $_GET['post_id']);
+            }
+
+            return require(__DIR__ . '/view/frontend/postView.php');
+        }
         
         require(__DIR__ . '/view/frontend/postView.php');
 

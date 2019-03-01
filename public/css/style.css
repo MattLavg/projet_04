@@ -21,6 +21,10 @@
     padding-bottom: 20px;
 }
 
+.comment.container p {
+    margin-bottom: 0px;
+}
+
 .authorCommentBloc {
     background-color: rgb(158, 199, 253);
     margin-bottom: 0;
@@ -36,6 +40,11 @@
 
 .authorCommentBloc, .textComment {
     padding: 1em;
+}
+
+.commentButtonBloc {
+    background-color: rgb(221, 221, 221);
+    padding: 0.5em;
 }
 
 /* DELETE COMMENT - POST */
