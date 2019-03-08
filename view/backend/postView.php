@@ -4,12 +4,27 @@ namespace Math\projet04;
 
 use Math\projet04\Model\PostManager;
 use Math\projet04\Model\CommentManager;
+use Math\projet04\Model\Pagination;
 
 require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
+require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
 
-$title = ''; 
+if (!isset($_GET['pageNb'])) {
+    $_GET['pageNb'] = 1;
+}
+
+$data = new PostManager();
+$post = $data->getPost($_GET['postId']);
+$post = $post->fetch();
+
+$dataComments = new CommentManager();
+$totalNbRows = $dataComments->count($_GET['postId']);
+
+$pagination = new Pagination($_GET['pageNb'], $totalNbRows, $_SERVER['PHP_SELF'], $_SERVER['argv'], CommentManager::NB_COMMENTS_BY_PAGE);
+
+$comments = $dataComments->listComments($_GET['postId'], $pagination->getFirstEntry());
 
 ?>
 
@@ -17,9 +32,6 @@ $title = '';
 
 <?php
 
-$data = new PostManager();
-$post = $data->getPost($_GET['postId']);
-$post = $post->fetch();
 
 $title = $post['title'];
 
@@ -36,7 +48,7 @@ $title = $post['title'];
 <p><?= nl2br(htmlspecialchars($post['content'])); ?></p>
 
 <a href="index.php?page=admin&param=updatePost&post_id=<?= $post['id']; ?>">Modifier</a><br>
-<a href="index.php?page=admin&param=deletePost&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn">Supprimer</a><br>
+<a href="index.php?page=admin&param=deletePost&post_id=<?= $post['id']; ?>&delete=true" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
 <a href="index.php?page=admin&param=manageListPosts">Revenir à la gestion des articles</a>
 
 <hr>
@@ -45,13 +57,12 @@ $title = $post['title'];
 
 <?php
 
-$dataComments = new CommentManager();
-$comments = $dataComments->listComments($_GET['postId']);
-
+$elementsOnPage = false;
 $commentsOnPage = false;
 
 while ($comment = $comments->fetch()) { // début du while
     
+    $elementsOnPage = true;
     $commentsOnPage = true;
 ?>
     
@@ -62,7 +73,7 @@ while ($comment = $comments->fetch()) { // début du while
             <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $comment['id']; ?>"><?= htmlspecialchars($comment['author']); ?></span> (publié le <?= $comment['creation_date_fr']; ?>)</p>
             <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
             <div class="col-12 commentButtonBloc d-flex justify-content-end">
-                <a class="deleteCommentBtn" href="index.php?page=admin&param=deleteComment&post_id=<?= $comment['post_id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-danger btn-sm">Supprimer</button></a>
+                <a class="deleteCommentBtn" href="index.php?page=admin&param=deleteComment&postView=true&post_id=<?= $comment['post_id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
             </div>
 
             <?php

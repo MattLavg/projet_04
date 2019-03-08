@@ -4,16 +4,14 @@ $(document).ready(function () {
     $('.deletePostBtn').click(function(e) {
         e.preventDefault();
 
-        $('#overlayDelete').css('display', 'block');
-
         // this vaut .deletePostBtn 'cliqué'
         // .parent().parent() permet de remonter à partir du bouton
         var postTitle = $(this).parent().parent().find('span[id^=postTitle]').html();
         var postDeleteUrl = $(this).attr('href');
         
 
-        $('#overlayText').html('l\'article ' + postTitle);
-        $('#overlayConfirmBtn').attr('href', postDeleteUrl);
+        $('#modalText').html('l\'article ' + postTitle);
+        $('#modalConfirmBtn').attr('href', postDeleteUrl);
         
         
     });
@@ -22,31 +20,20 @@ $(document).ready(function () {
     $('.deleteCommentBtn').click(function(e) {
         e.preventDefault();
 
-        $('#overlayDelete').css('display', 'block');
-
         // this vaut .deletePostBtn 'cliqué'
         // .parent().parent() permet de remonter à partir du bouton
         var commentAuthor = $(this).parent().parent().find('span[id^=commentAuthor]').html();
-        console.log(commentAuthor);
+
         var commentDeleteUrl = $(this).attr('href');
 
-        $('#overlayText').html('le commentaire de ' + commentAuthor);
-        $('#overlayConfirmBtn').attr('href', commentDeleteUrl);
+        $('#modalText').html('le commentaire de ' + commentAuthor);
+        $('#modalConfirmBtn').attr('href', commentDeleteUrl);
         
         
     });
 
-    $('.closeDelete').click(function() {
-        $('#overlayDelete').css('display', 'none');
-    });
-
-    $('.noDelete').click(function() {
-        $('#overlayDelete').css('display', 'none');
-    });
 
 
-
-    
     
     function checkPostAffectedLines() {
         $('#addedPost').fadeOut(5000);
@@ -54,6 +41,7 @@ $(document).ready(function () {
 
     setInterval(checkPostAffectedLines(), 1000);
 
+    // Colore les commentaires signalés
     $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
 
 });

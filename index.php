@@ -82,14 +82,21 @@ if (isset($_GET['page'])) {
                     $deleteComment = new CommentManager();
                     $deleteComment->deleteComment($_GET['comment_id']);
 
-                    header('Location: index.php?page=admin&param=postView&postId=' . $_GET['post_id']);
+                    if (isset($_GET['postView'])) {
+                        header('Location: index.php?page=admin&param=postView&postId=' . $_GET['post_id']);
+                    }
+
+                    if (isset($_GET['reportedCommentsView'])) {
+                        header('Location: index.php?page=admin&param=reportedCommentsView');
+                    }
+                    
                 }
 
                 return require(__DIR__ . '/view/backend/postView.php');
             }
     
-            if ($_GET['param'] === 'comments') {
-                return require(__DIR__ . '/view/backend/commentsView.php');
+            if ($_GET['param'] === 'reportedCommentsView') {
+                return require(__DIR__ . '/view/backend/reportedCommentsView.php');
             }
         }
 
@@ -104,16 +111,19 @@ if (isset($_GET['page'])) {
             header('Location: index.php?page=postView&id=' . $_POST['post_id']);
         } 
 
-        if ($_GET['param'] === 'reportComment') {
+        if (isset($_GET['param'])) {
 
-            if (isset($_GET['comment_id']) && isset($_GET['post_id'])) {
-                $reportComment = new CommentManager();
-                $reportComment->reportComment($_GET['comment_id']);
+            if ($_GET['param'] === 'reportComment') {
 
-                header('Location: index.php?page=postView&id=' . $_GET['post_id']);
+                if (isset($_GET['comment_id']) && isset($_GET['post_id'])) {
+                    $reportComment = new CommentManager();
+                    $reportComment->reportComment($_GET['comment_id']);
+    
+                    header('Location: index.php?page=postView&id=' . $_GET['post_id']);
+                }
+    
+                return require(__DIR__ . '/view/frontend/postView.php');
             }
-
-            return require(__DIR__ . '/view/frontend/postView.php');
         }
         
         require(__DIR__ . '/view/frontend/postView.php');

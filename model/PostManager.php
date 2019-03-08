@@ -6,13 +6,23 @@ namespace Math\projet04\Model;
 
 class PostManager extends Manager
 {
+    const NB_POST_BY_PAGE = 5;
 
-    public function listPosts()
+    public function listPosts($firstEntry = 0)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDateFr FROM posts ORDER BY creationDate DESC');
+        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDateFr FROM posts ORDER BY creationDate DESC LIMIT ' . $firstEntry . ',' . self::NB_POST_BY_PAGE . '');
 
         return $req;
+    }
+
+    public function count()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT COUNT(*) AS nbRows FROM posts');
+        $result = $req->fetch();
+
+        return $totalNbRows = $result['nbRows'];
     }
 
     public function getPost($id)

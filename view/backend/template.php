@@ -60,29 +60,70 @@
             <ul class="list-group">
                 <a href="index.php?page=admin&param=addPost"><li class="list-group-item">Ajouter un article</li></a>
                 <a href="index.php?page=admin&param=manageListPosts"><li class="list-group-item">Gérer les articles</li></a>
-                <a href="index.php?page=admin&param=comments"><li class="list-group-item">Modérer les commentaires</li></a>
+                <a href="index.php?page=admin&param=reportedCommentsView"><li class="list-group-item">Modérer les commentaires</li></a>
             </ul>
         </div>
 
         <div class="col-lg-8">
             <?= $content ?>
+
+            <?php
+
+            if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
+            ?>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getPreviousPage(); ?>">Précédent</a>
+                    </li>
+                    <?php
+                    for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
+
+                        if ($i == $pagination->getCurrentPage()) {
+                            echo '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
+                        } else {
+                            echo '<li class="page-item"><a class="page-link" href="' . $pagination->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
+                        }
+                    }
+                    ?>
+                    <li class="page-item"><a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getNextPage(); ?>">Suivant</a></li>
+                </ul>
+            </nav>
+
+            <?php
+            }
+            ?>
+
         </div>
     </div>
 
 </div>
 
 
-
-<div id="overlayDelete" class="position-fixed">
-    
-    <div class="deleteQuestion position-relative">
-        <div class="crossArea"><a href="#" class="closeDelete"></a></div>
-        <p>Souhaitez-vous vraiment effacer <span id="overlayText"></span> ?</p><br>
-        <a id="overlayConfirmBtn" href=""><button type="button" class="btn btn-warning">Oui</button></a>
-        <button type="button" class="btn btn-primary noDelete">Non</button>
+<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Suppression</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Souhaitez-vous vraiment effacer <span id="modalText"></span> ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+        <a id="modalConfirmBtn" href="">
+            <button type="button" class="btn btn-primary">Effacer</button>
+        </a>
+      </div>
     </div>
-
+  </div>
 </div>
+
+
 
 </main><!-- /.container -->
 

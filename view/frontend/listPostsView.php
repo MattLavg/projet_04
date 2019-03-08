@@ -3,9 +3,25 @@
 namespace Math\projet04;
 
 use Math\projet04\Model\PostManager;
+use Math\projet04\Model\Pagination;
 
 require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php'); 
+require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
+
+if (!isset($_GET['pageNb'])) {
+    $_GET['pageNb'] = 1;
+}
+
+$data = new PostManager();
+
+$totalNbRows = $data->count();
+
+$pagination = new Pagination($_GET['pageNb'], $totalNbRows, $_SERVER['PHP_SELF'], $_SERVER['argv'], PostManager::NB_POST_BY_PAGE);
+
+$posts = $data->listPosts($pagination->getFirstEntry());
+
+
 ?>
 
 <?php $title = 'Le blog de Jean Forteroche'; ?>
@@ -14,11 +30,11 @@ require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 
 <?php
 
-$data = new PostManager();
-$posts = $data->listPosts();
+$elementsOnPage = false;
 
 while ($post = $posts->fetch()) 
 {
+    $elementsOnPage = true;
 ?>
 
     <div class="listPosts">
@@ -43,6 +59,7 @@ while ($post = $posts->fetch())
 
 <?php
 }
+
 ?>
 
 <?php $content = ob_get_clean(); ?>

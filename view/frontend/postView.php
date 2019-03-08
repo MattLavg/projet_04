@@ -4,10 +4,27 @@ namespace Math\projet04;
 
 use Math\projet04\Model\PostManager;
 use Math\projet04\Model\CommentManager;
+use Math\projet04\Model\Pagination;
 
 require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
+require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
+
+if (!isset($_GET['pageNb'])) {
+    $_GET['pageNb'] = 1;
+}
+
+$data = new PostManager();
+$post = $data->getPost($_GET['id']);
+$post = $post->fetch();
+
+$dataComments = new CommentManager();
+$totalNbRows = $dataComments->count($_GET['id']);
+
+$pagination = new Pagination($_GET['pageNb'], $totalNbRows, $_SERVER['PHP_SELF'], $_SERVER['argv'], CommentManager::NB_COMMENTS_BY_PAGE);
+
+$comments = $dataComments->listComments($_GET['id'], $pagination->getFirstEntry());
 
 
 ?>
@@ -16,9 +33,8 @@ require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
 
 <?php
 
-$data = new PostManager();
-$post = $data->getPost($_GET['id']);
-$post = $post->fetch();
+
+
 
 
 $title = htmlspecialchars($post['title']);
@@ -63,18 +79,20 @@ $title = htmlspecialchars($post['title']);
 
 <?php
 
-$dataComments = new CommentManager();
-$comments = $dataComments->listComments($_GET['id']);
+$elementsOnPage = false;
+$commentsOnPage = false;
 
 while ($comment = $comments->fetch())
 {
+    $elementsOnPage = true;
+    $commentsOnPage = true;
 ?>
 
 <div class="comment container">
 
     <div class="row">
     
-        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment['author']); ?></span> (publié le<?= $comment['creation_date_fr']; ?>)</p>
+        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment['author']); ?></span> (publié le <?= $comment['creation_date_fr']; ?>)</p>
         <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
             <a href="index.php?page=postView&param=reportComment&post_id=<?= $post['id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
@@ -92,6 +110,11 @@ while ($comment = $comments->fetch())
 
 <?php
 }
+
+if (!$commentsOnPage) {
+    echo 'Il n\'y a actuellement aucun commentaire';
+}
+
 ?>
 
 <?php $content = ob_get_clean(); ?>

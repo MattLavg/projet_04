@@ -54,6 +54,37 @@
 
 <?= $content ?>
 
+
+
+<?php
+
+if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
+?>
+
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item">
+            <a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getPreviousPage(); ?>">Précédent</a>
+        </li>
+        <?php
+        for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
+
+            if ($i == $pagination->getCurrentPage()) {
+                echo '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
+            } else {
+                echo '<li class="page-item"><a class="page-link" href="' . $pagination->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
+            }
+        }
+        ?>
+        <li class="page-item"><a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getNextPage(); ?>">Suivant</a></li>
+    </ul>
+</nav>
+
+<?php
+}
+?>
+
+
 </main><!-- /.container -->
 
 <!-- TINYMCE -->
