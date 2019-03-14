@@ -7,6 +7,8 @@
 
     <title><?= $title; ?></title>
 
+    <link href="/projet_04/public/css/style.css" rel="stylesheet">
+
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
 
@@ -28,7 +30,7 @@
       }
     </style>
     
-    <link href="/projet_04/public/css/style.css" rel="stylesheet">
+    
 
   </head>
   <body>
@@ -44,7 +46,7 @@
         <a class="nav-link" href="index.php?page=home">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?page=admin">Admin</a>
+        <a class="nav-link" href="index.php?page=admin">Se connecter</a>
       </li>
     </ul>
   </div>
@@ -53,7 +55,6 @@
 <main role="main" class="mainContainer container">
 
 <?= $content ?>
-
 
 
 <?php
@@ -67,13 +68,19 @@ if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) {
             <a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getPreviousPage(); ?>">Précédent</a>
         </li>
         <?php
+
+
+// foreach ($pagination->getElementsToDisplay() as $value) {
+//     echo $value;
+// }
+
         for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
 
             if ($i == $pagination->getCurrentPage()) {
                 echo '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
-            } else {
+            } elseif ($pagination->getCurrentPage() - $i <= 2 && $pagination->getCurrentPage() - $i >= -2) {
                 echo '<li class="page-item"><a class="page-link" href="' . $pagination->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
-            }
+            } 
         }
         ?>
         <li class="page-item"><a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getNextPage(); ?>">Suivant</a></li>
@@ -84,6 +91,9 @@ if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) {
 }
 ?>
 
+<footer class="container-fluid fixed-bottom d-flex justify-content-center align-items-center bg-dark p-2">
+      <p><span class="text-light">Jean Forteroche -</span> <a href="index.php?page=authentication">Connexion</a></p>
+</footer>
 
 </main><!-- /.container -->
 

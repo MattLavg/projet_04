@@ -109,3 +109,13 @@ div#overlayDeleteComment {
             transform: rotate(-45deg);
   }
 
+/* FOOTER */
+
+footer p {
+    margin-top: inherit;
+    margin-bottom: inherit;
+}
+
+footer a:hover {
+    color: #FFFFFF;
+}

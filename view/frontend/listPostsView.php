@@ -11,6 +11,8 @@ require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
 
 if (!isset($_GET['pageNb'])) {
     $_GET['pageNb'] = 1;
+} elseif (isset($_GET['pageNb']) && $_GET['pageNb'] < 1) {
+    $_GET['pageNb'] = 1;
 }
 
 $data = new PostManager();

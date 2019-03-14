@@ -44,7 +44,7 @@
         <a class="nav-link" href="index.php?page=home">Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="index.php?page=admin">Admin</a>
+        <a class="nav-link" href="index.php?page=admin">Déconnexion</a>
       </li>
     </ul>
   </div>
@@ -82,9 +82,9 @@
 
                         if ($i == $pagination->getCurrentPage()) {
                             echo '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
-                        } else {
+                        } elseif ($pagination->getCurrentPage() - $i <= 2 && $pagination->getCurrentPage() - $i >= -2) {
                             echo '<li class="page-item"><a class="page-link" href="' . $pagination->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
-                        }
+                        } 
                     }
                     ?>
                     <li class="page-item"><a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getNextPage(); ?>">Suivant</a></li>
@@ -123,7 +123,9 @@
   </div>
 </div>
 
-
+<footer class="container-fluid fixed-bottom d-flex justify-content-center align-items-center bg-dark p-2">
+      <p><span class="text-light">Jean Forteroche</p>
+</footer>
 
 </main><!-- /.container -->
 
