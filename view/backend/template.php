@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION)) {
+    session_start();
+}
+
+?>
+
 
 <!doctype html>
 <html lang="fr">
@@ -33,18 +41,18 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="index.php?page=home">Jean Forteroche</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand" href="index.php?page=home">Jean Forteroche</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="index.php?page=home">Home<span class="sr-only">(current)</span></a>
-      </li>
+      </li> -->
       <li class="nav-item">
-        <a class="nav-link" href="index.php?page=admin">Déconnexion</a>
+        <a class="nav-link" href="index.php?page=admin&param=signOut">Déconnexion</a>
       </li>
     </ul>
   </div>

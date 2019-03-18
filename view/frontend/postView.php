@@ -11,6 +11,7 @@ require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
 
+
 if (!isset($_GET['pageNb'])) {
     $_GET['pageNb'] = 1;
 }

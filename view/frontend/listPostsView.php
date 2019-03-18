@@ -9,6 +9,7 @@ require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php'); 
 require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
 
+
 if (!isset($_GET['pageNb'])) {
     $_GET['pageNb'] = 1;
 } elseif (isset($_GET['pageNb']) && $_GET['pageNb'] < 1) {

@@ -9,6 +9,7 @@ require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
 require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
 
+
 $title = 'Gestion d\'articles'; 
 
 if (!isset($_GET['pageNb'])) {

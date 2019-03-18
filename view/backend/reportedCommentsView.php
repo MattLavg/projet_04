@@ -6,6 +6,8 @@ use Math\projet04\Model\CommentManager;
 
 require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
 
+
+
 ?>
 
 <?php ob_start(); ?>
