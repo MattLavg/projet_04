@@ -29,8 +29,8 @@ $posts = $data->listPosts($pagination->getFirstEntry());
 
 <?php ob_start(); ?>
 
-<?php require(dirname(__DIR__) . '/view/frontend/home.php'); ?>
+<?php require(VIEW . '/frontend/home.php'); ?>
 
 <?php $content = ob_get_clean(); ?>
 
-<?php require(dirname(__DIR__) . '/view/frontend/template.php'); ?>
+<?php require(VIEW . '/frontend/template.php'); ?>

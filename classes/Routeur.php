@@ -24,7 +24,7 @@ class Routeur
         if (key_exists($request, $this->_routes)) {
 
             $controller = $this->_routes[$request];
-            require(CONTROLLER . $request . '.php');
+            require(CONTROLLER . $controller . '.php');
 
         } else {
             echo '404';

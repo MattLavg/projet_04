@@ -1,4 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/config.php');
-require_once(__DIR__ . '/controller/home.php');
+require_once('config.php');
+require_once(CLASSES . '/Routeur.php');
+
+$request = $_GET['page'];
+
+$routeur = new Routeur($request);
+$routeur->renderController();
+
+
