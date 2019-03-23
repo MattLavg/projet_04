@@ -1,5 +1,9 @@
-<?php $title = 'Le blog de Jean Forteroche'; ?>
 <?php
+
+// namespace Math\projet04\view\frontend;
+
+$title = 'Le blog de Jean Forteroche';
+
 
 $elementsOnPage = false;
 

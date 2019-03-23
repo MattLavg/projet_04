@@ -1,10 +1,10 @@
 <?php 
 
-namespace Math\projet04;
+// namespace Math\projet04;
 
-use Math\projet04\Model\PostManager;
-use Math\projet04\Model\CommentManager;
-use Math\projet04\Model\Pagination;
+// use Math\projet04\Model\PostManager;
+// use Math\projet04\Model\CommentManager;
+// use Math\projet04\Model\Pagination;
 
 // require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
 // require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
@@ -30,10 +30,3 @@ use Math\projet04\Model\Pagination;
 
 ?>
 
-<?php ob_start(); ?>
-
-<?php require(VIEW . '/frontend/post.php'); ?>
-
-<?php $content = ob_get_clean(); ?>
-
-<?php require(VIEW . '/frontend/template.php'); ?>
