@@ -4,7 +4,6 @@
 
 // use Math\projet04\controller\Home;
 
-require_once(CONTROLLER . 'Home.php'); 
 
 /**
  *  Classe Routeur
@@ -34,9 +33,6 @@ class Routeur
 
             $controller = $this->_routes[$request]['controller'];
             $method = $this->_routes[$request]['method'];
-
-            // require(CONTROLLER . $controller . '.php');
-            // $controller = $controller . '\\' . $controller;
 
             $currentController = new $controller();
             $currentController->$method();

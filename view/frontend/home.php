@@ -7,25 +7,26 @@ $title = 'Le blog de Jean Forteroche';
 
 $elementsOnPage = false;
 
-while ($post = $posts->fetch()) 
+
+foreach ($posts as $post) 
 {
     $elementsOnPage = true;
 ?>
 
     <div class="listPosts">
 
-        <h3><a href="index.php?page=postView&id=<?= $post['id']; ?>"><?= htmlspecialchars($post['title']); ?></a></h3>
-        <p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
+        <h3><a href="index.php?page=postView&id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a></h3>
+        <p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
         <?php
-            if ($post['updateDateFr'] !== NULL) {
-                echo '(Dernière modification le ' . $post['updateDateFr'] . ')';
+            if ($post->getUpdateDate() !== NULL) {
+                echo '(Dernière modification le ' . $post->getUpdateDate() . ')';
             }
         ?>
         </p>
 
         <p>
-            <?= substr(htmlspecialchars($post['content']), 0, 350) . '... '; ?><br>
-            <a href="index.php?page=postView&id=<?= $post['id']; ?>">Voir la suite</a>
+            <?= substr(htmlspecialchars($post->getContent()), 0, 350) . '... '; ?><br>
+            <a href="index.php?page=postView&id=<?= $post->getId(); ?>">Voir la suite</a>
         </p>
 
     </div>

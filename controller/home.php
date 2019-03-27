@@ -9,9 +9,9 @@
 // require_once(dirname(__DIR__) . '/model/PostManager.php'); 
 // require_once(dirname(__DIR__) . '/model/Pagination.php');
 
-require_once(MODEL . 'Manager.php');
-require_once(MODEL . 'PostManager.php'); 
-require_once(MODEL . 'Pagination.php');
+// require_once(MODEL . 'Manager.php');
+// require_once(MODEL . 'PostManager.php'); 
+// require_once(MODEL . 'Pagination.php');
 
 
 /**
@@ -38,24 +38,16 @@ class Home
         
         $posts = $data->listPosts($pagination->getFirstEntry());
 
-        ob_start();
+        $view = new View('home');
+        $view->render($posts, $pagination);
 
-        require(VIEW . 'frontend/home.php');
 
-        $content = ob_get_clean();
-
-        require(VIEW . 'frontend/template.php');
     }
 
     public function showPost()
     {
-        ob_start();
-
-        require(VIEW . '/frontend/post.php');
-
-        $content = ob_get_clean();
-
-        require(VIEW . '/frontend/template.php');
+        $view = new View('post');
+        $view->render($pagination);
     }
 }
 

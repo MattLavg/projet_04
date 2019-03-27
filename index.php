@@ -5,8 +5,8 @@
 // use Math\projet04\classes\Routeur;
 
 require_once('config.php');
-require_once(CLASSES . 'Routeur.php');
 
+Autoloader::start();
 
 if (isset($_GET['page'])) {
     $request = $_GET['page'];
