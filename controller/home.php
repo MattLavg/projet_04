@@ -22,7 +22,7 @@
 
 class Home
 {
-    public function showHome()
+    public function showHome($params)
     {
         if (!isset($_GET['pageNb'])) {
             $_GET['pageNb'] = 1;
@@ -39,18 +39,43 @@ class Home
         $posts = $data->listPosts($pagination->getFirstEntry());
 
         $view = new View('home');
-        $view->render($posts, $pagination);
-
-
+        $view->render(array('posts' => $posts), $pagination);
     }
 
-    public function showPost()
+    public function showPost($params)
     {
+        extract($params); // permet d'extraire la variable $id
+// print_r($params);var_dump($id);exit;        
+        $manager = new PostManager();
+        $post = $manager->getPost($id);
+
         $view = new View('post');
-        $view->render($pagination);
+        $view->render(array('post' => $post));
+    }
+
+    public function updatePost()
+    {
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $manager = new PostManager();
+            $post = $manager->getPost($id);
+        } else {
+            $post = new Post();
+        }
+
+        $view = new View('edit');
+        $view->render(array('post' => $post));
+    }
+
+    public function addPost()
+    {
+        $values = $_POST['values'];
+
+        $manager = new PostManager();
+        $manager->addPost($values);
+
+        $view = new View();
+        $view->redirect('home.html');
     }
 }
-
-
-?>
 

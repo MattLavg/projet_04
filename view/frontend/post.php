@@ -1,18 +1,18 @@
 <?php
 
-$title = htmlspecialchars($post['title']);
+$title = htmlspecialchars($post->getTitle());
 
 ?>
 
-<h1><?= htmlspecialchars($post['title']); ?></h1>
-<p>Publié le <?= $post['creation_date_fr']; ?> par <?= htmlspecialchars($post['author']); ?>
+<h1><?= htmlspecialchars($post->getTitle()); ?></h1>
+<p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
 <?php
-    if ($post['updateDateFr'] !== NULL) {
-        echo '(Dernière modification le ' . $post['updateDateFr'] . ')';
+    if ($post->getUpdateDate() !== NULL) {
+        echo '(Dernière modification le ' . $post->getUpdateDate() . ')';
     }
 ?>
 </p>
-<p><?= nl2br(htmlspecialchars($post['content'])); ?></p>
+<p><?= nl2br(htmlspecialchars($post->getContent())); ?></p>
 
 <hr>
 
@@ -31,7 +31,7 @@ $title = htmlspecialchars($post['title']);
     </div>
 
     <div class="form-group">
-        <input id="post_id" type="hidden" name="post_id" value="<?= $post['id']; ?>" />
+        <input id="post_id" type="hidden" name="post_id" value="<?= $post->getId(); ?>" />
     </div>
   
     <input type="submit" value="Envoyer" name="newComment" class="btn btn-primary" />

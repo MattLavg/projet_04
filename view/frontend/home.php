@@ -15,7 +15,9 @@ foreach ($posts as $post)
 
     <div class="listPosts">
 
-        <h3><a href="index.php?page=postView&id=<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a></h3>
+        <h3>
+            <a href="<?= HOST; ?>post/id/<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a>
+        </h3>
         <p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
         <?php
             if ($post->getUpdateDate() !== NULL) {

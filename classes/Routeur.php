@@ -17,25 +17,56 @@ class Routeur
 
     protected $_routes = [ 
         'home.html' => ['controller' => 'Home', 'method' => 'showHome'],
-        'post.html'  => ['controller' => 'Home', 'method' => 'showPost']
+        'post'  => ['controller' => 'Home', 'method' => 'showPost'],
+        'add-post.html'  => ['controller' => 'Home', 'method' => 'addPost'],
+        'update-post.html'  => ['controller' => 'Home', 'method' => 'updatePost']
     ];
 
     public function __construct($request)
     {
         $this->_request = $request;
+        // echo $request; exit;
+    }
+
+    public function getRoute()
+    {
+        $elements = explode('/', $this->_request);
+        return $elements[0];
+    }
+
+    public function getParams()
+    {
+        $elements = explode('/', $this->_request); 
+        // print_r($elements); exit;
+        unset($elements[0]);
+        // print_r($elements); exit;
+
+        for ($i = 1; $i<count($elements); $i++) {
+            $params[$elements[$i]] = $elements[$i + 1];
+            $i++; // Ajoute encore un si autres à la suite
+        }
+
+        if (!isset($params)) {
+            $params = NULL;
+        }
+
+        return $params;
     }
 
     public function renderController()
     {
-        $request = $this->_request;
+        $route = $this->getRoute();
+        $params = $this->getParams();
 
-        if (key_exists($request, $this->_routes)) {
+        // $request = $this->_request;
 
-            $controller = $this->_routes[$request]['controller'];
-            $method = $this->_routes[$request]['method'];
+        if (key_exists($route, $this->_routes)) {
+
+            $controller = $this->_routes[$route]['controller'];
+            $method = $this->_routes[$route]['method'];
 
             $currentController = new $controller();
-            $currentController->$method();
+            $currentController->$method($params);
 
         } else {
             echo '404';

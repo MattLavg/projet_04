@@ -45,9 +45,9 @@
       <li class="nav-item">
         <a class="nav-link" href="index.php?page=home">Accueil<span class="sr-only">(current)</span></a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="index.php?page=admin">Se connecter</a>
-      </li> -->
+      <li class="nav-item">
+        <a class="nav-link" href="<?= HOST; ?>addPost.html">Ajouter</a>
+      </li>
     </ul>
   </div>
 </nav>

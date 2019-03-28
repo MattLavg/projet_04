@@ -35,24 +35,29 @@ class PostManager extends Manager
     }
 
     public function getPost($id)
-    {
+    { 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDateFr FROM posts WHERE id = ?');
+        $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts WHERE id = ?');
         $req->execute(array($id));
 
-        return $req;
+        $data = $req->fetch(PDO::FETCH_ASSOC);
+
+        $post = new Post();
+        $post->hydrate($data);
+
+        return $post;
     }
 
-    public function addPost($title, $author, $content)
+    public function addPost($values)
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts (title, author, content, creationDate, updateDate) VALUES(?, ?, ?, NOW(), ?)');
 
-        $content = strip_tags($content);
+        $content = strip_tags($values['content']);
 
-        $req->execute(array($title, $author, $content, NULL));
+        $req->execute(array($values['title'], $values['author'], $values['content'], NULL));
 
-        return $count = $req->rowCount();
+        // return $count = $req->rowCount();
     }
 
     public function updatePost($id, $title, $content)
