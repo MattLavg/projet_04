@@ -38,4 +38,7 @@ foreach ($posts as $post)
 <?php
 }
 
+if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
+    $pagination->render($pagination);
+}
 ?>

@@ -35,7 +35,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="index.php?page=home">Jean Forteroche</a>
+  <a class="navbar-brand" href="<?= HOST; ?>">Jean Forteroche</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -43,7 +43,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="index.php?page=home">Accueil<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="<?= HOST; ?>">Accueil<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= HOST; ?>addPost.html">Ajouter</a>
@@ -57,39 +57,6 @@
 <?= $content ?>
 
 
-<?php
-
-if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
-?>
-
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        <li class="page-item">
-            <a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getPreviousPage(); ?>">Précédent</a>
-        </li>
-        <?php
-
-
-// foreach ($pagination->getElementsToDisplay() as $value) {
-//     echo $value;
-// }
-
-        for ($i = 1; $i <= $pagination->getTotalPages(); $i++) {
-
-            if ($i == $pagination->getCurrentPage()) {
-                echo '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
-            } elseif ($pagination->getCurrentPage() - $i <= 2 && $pagination->getCurrentPage() - $i >= -2) {
-                echo '<li class="page-item"><a class="page-link" href="' . $pagination->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
-            } 
-        }
-        ?>
-        <li class="page-item"><a class="page-link" href="<?= $pagination->getCurrentUrl(); ?>&pageNb=<?= $pagination->getNextPage(); ?>">Suivant</a></li>
-    </ul>
-</nav>
-
-<?php
-}
-?>
 
 <footer class="container-fluid fixed-bottom d-flex justify-content-center align-items-center bg-dark p-2">
       <p><span class="text-light">Jean Forteroche -</span> <a href="index.php?page=authentication">Connexion</a></p>

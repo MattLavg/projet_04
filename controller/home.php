@@ -22,60 +22,86 @@
 
 class Home
 {
-    public function showHome($params)
-    {
-        if (!isset($_GET['pageNb'])) {
-            $_GET['pageNb'] = 1;
-        } elseif (isset($_GET['pageNb']) && $_GET['pageNb'] < 1) {
-            $_GET['pageNb'] = 1;
-        }
+    public function showHome($params = [])
+    {   
+        $pageNb = 1;
+
+        if (isset($params['pageNb'])) {
+            $pageNb = $params['pageNb'];
+        } 
+
+        $postManager = new PostManager();
+     
+        $pagination = $this->paginationInit($postManager, $pageNb);
         
-        $data = new PostManager();
-        
-        $totalNbRows = $data->count();
-        
-        $pagination = new Pagination($_GET['pageNb'], $totalNbRows, $_SERVER['PHP_SELF'], $_SERVER['argv'], PostManager::NB_POST_BY_PAGE);
-        
-        $posts = $data->listPosts($pagination->getFirstEntry());
+        $posts = $postManager->listPosts($pagination->getFirstEntry());
 
         $view = new View('home');
         $view->render(array('posts' => $posts), $pagination);
     }
 
-    public function showPost($params)
+    public function showPost($params = [])
     {
+        $pageNb = 1;
+
+        if (isset($params['pageNb'])) {
+            $pageNb = $params['pageNb'];
+        } 
+
         extract($params); // permet d'extraire la variable $id
-// print_r($params);var_dump($id);exit;        
-        $manager = new PostManager();
-        $post = $manager->getPost($id);
+
+        $post_id = $id;
+
+        $postManager = new PostManager();
+        $post = $postManager->getPost($post_id);
+
+        $commentsManager = new CommentManager();
+        $pagination = $this->paginationInit($commentsManager, $pageNb, $post_id);
+
+        $comments = $commentsManager->listComments($post_id, $pagination->getFirstEntry());
 
         $view = new View('post');
-        $view->render(array('post' => $post));
+        $view->render(array('post' => $post, 'comments' => $comments), $pagination);
     }
 
-    public function updatePost()
+    public function paginationInit($manager, $pageNb, $post_id = NULL)
     {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
-            $manager = new PostManager();
-            $post = $manager->getPost($id);
-        } else {
-            $post = new Post();
-        }
+        // var_dump($manager);exit;
+        $totalNbRows = $manager->count($post_id);
 
-        $view = new View('edit');
-        $view->render(array('post' => $post));
+        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], $manager::NB_ELEMENTS_BY_PAGE);
+
+        return $pagination;
     }
 
-    public function addPost()
+    // public function updatePost()
+    // {
+    //     if (isset($_GET['id'])) {
+    //         $id = $_GET['id'];
+    //         $manager = new PostManager();
+    //         $post = $manager->getPost($id);
+    //     } else {
+    //         $post = new Post();
+    //     }
+
+    //     $view = new View('edit');
+    //     $view->render(array('post' => $post));
+    // }
+
+    // public function addPost()
+    // {
+    //     $values = $_POST['values'];
+
+    //     $manager = new PostManager();
+    //     $manager->addPost($values);
+
+    //     $view = new View();
+    //     $view->redirect('home.html');
+    // }
+
+    public function showComments() 
     {
-        $values = $_POST['values'];
 
-        $manager = new PostManager();
-        $manager->addPost($values);
-
-        $view = new View();
-        $view->redirect('home.html');
     }
 }
 

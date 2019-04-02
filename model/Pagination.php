@@ -11,16 +11,16 @@ class Pagination
     protected $_previousPage;
     protected $_nextPage;
     protected $_notEnoughEntries;
-    protected $_elementsToDisplay;
+    // protected $_elementsToDisplay;
 
-    public function __construct($currentPage, $totalNbRows, $url, $parameters = NULL, $elementNbByPages)
+    public function __construct($currentPage, $totalNbRows, $url, $elementNbByPages)
     {
         $this->totalPages($totalNbRows, $elementNbByPages);
         $this->setCurrentPage($currentPage);
         $this->setPreviousPage();
         $this->setNextPage();
         $this->firstEntry($elementNbByPages);
-        $this->currentUrl($url, $parameters);
+        $this->currentUrl($url);
         $this->notEnoughEntries($totalNbRows, $elementNbByPages);
         // $this->elementsToDisplay();
     }
@@ -41,24 +41,33 @@ class Pagination
         $this->_firstEntry = $firstEntry;
     }
 
-    protected function currentUrl($url, $parameters)
-    {
-        $url = substr($url, 11) . '?';
-
-        if (!$parameters == NULL) {
-
-            $parameters = $parameters[0];
-
-            if (stristr($parameters, 'pageNb')) {
-                $parameters = preg_replace('#&pageNb=[0-9]+#', "", $parameters);
-            }
-
-            $this->_currentUrl = $url . $parameters;
-
-        } else {
-            $this->_currentUrl = $url;
+    protected function currentUrl($url)
+    { 
+        // récupère l'url en cours et place la route principale dans un tableau
+        preg_match('#/[a-zA-Z0-9_]+/([a-zA-Z0-9_]+)/([a-zA-Z0-9_]+)*/*([a-zA-Z0-9_]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
+// print_r($matches);exit;
+        $currentUrl = $matches[1];
+// var_dump($currentUrl);exit;
+        if ($currentUrl == 'post') {
+            // print_r($matches);exit;
+            $post = $matches[1];
+            $id = $matches[2];
+            $nb =$matches[3];
+            return $this->_currentUrl = $post . '/' . $id . '/' . $nb;
         }
+
+        $this->_currentUrl = $currentUrl;
         
+    }
+
+    public function render($pagination)
+    {
+        // ob_start();
+        
+        require(PAGINATION . 'template.php');
+        // $pagination = ob_get_clean();
+
+        // require(VIEW . 'home.php');
     }
 
     // protected function elementsToDisplay()
@@ -181,5 +190,10 @@ class Pagination
         } 
 
         $this->_nextPage = $currentPage;
+    }
+
+    public function setCurrentUrl($url)
+    {
+        $this->_currentUrl = $url;
     }
 }

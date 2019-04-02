@@ -1,18 +1,29 @@
 <?php
 
-namespace Math\projet04\Model;
+// namespace Math\projet04\Model;
 
 class CommentManager extends Manager
 {
-    const NB_COMMENTS_BY_PAGE = 10;
+    const NB_ELEMENTS_BY_PAGE = 10;
 
     public function listComments($post_id, $firstEntry = 0)
-    {
+    { 
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, post_id, author, content, reported, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE post_id = ? ORDER BY creationDate DESC Limit ' . $firstEntry . ',' . self::NB_COMMENTS_BY_PAGE . '');
-        $req->execute(array($post_id));
+        $req = $db->prepare('SELECT id, post_id, author, content, reported, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC Limit ' . $firstEntry . ',' . self::NB_ELEMENTS_BY_PAGE . '');
+        $req->execute([$post_id]);
 
-        return $req;
+        $comments = [];
+
+        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+  
+            $comment = new Comment();
+            $comment->hydrate($data);
+
+            $comments[] = $comment;
+            
+        }
+
+        return $comments;
     }
 
     public function count($post_id)

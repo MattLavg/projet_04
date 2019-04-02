@@ -11,7 +11,7 @@ Autoloader::start();
 if (isset($_GET['page'])) {
     $request = $_GET['page'];
 } else {
-    $request = 'home.html';
+    $request = 'home';
 }
 
 $routeur = new Routeur($request);

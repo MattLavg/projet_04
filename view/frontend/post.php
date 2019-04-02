@@ -44,8 +44,8 @@ $title = htmlspecialchars($post->getTitle());
 
 $elementsOnPage = false;
 $commentsOnPage = false;
-
-while ($comment = $comments->fetch())
+// var_dump($comments);exit;
+foreach ($comments as $comment)
 {
     $elementsOnPage = true;
     $commentsOnPage = true;
@@ -55,14 +55,14 @@ while ($comment = $comments->fetch())
 
     <div class="row">
     
-        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment['author']); ?></span> (publié le <?= $comment['creation_date_fr']; ?>)</p>
-        <p class="col-12 textComment"><?= htmlspecialchars($comment['content']); ?></p>
+        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
+        <p class="col-12 textComment"><?= htmlspecialchars($comment->getContent()); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
-            <a href="index.php?page=postView&param=reportComment&post_id=<?= $post['id']; ?>&comment_id=<?= $comment['id']; ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
+            <a href="index.php?page=postView&param=reportComment&post_id=<?= $post->getId(); ?>&comment_id=<?= $comment->getId(); ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
         </div>
 
         <?php
-            if ($comment['reported']) {
+            if ($comment->getReported()) {
                 echo '<span class="reported"></span>';
             }
         ?>
@@ -76,6 +76,11 @@ while ($comment = $comments->fetch())
 
 if (!$commentsOnPage) {
     echo 'Il n\'y a actuellement aucun commentaire';
+}
+
+
+if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
+    $pagination->render($pagination);
 }
 
 ?>

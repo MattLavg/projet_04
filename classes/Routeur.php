@@ -16,10 +16,11 @@ class Routeur
     protected $_request;
 
     protected $_routes = [ 
-        'home.html' => ['controller' => 'Home', 'method' => 'showHome'],
+        'home' => ['controller' => 'Home', 'method' => 'showHome'],
         'post'  => ['controller' => 'Home', 'method' => 'showPost'],
         'add-post.html'  => ['controller' => 'Home', 'method' => 'addPost'],
         'update-post.html'  => ['controller' => 'Home', 'method' => 'updatePost']
+        // 'pagination'  => ['controller' => 'Home', 'method' => 'showHome']
     ];
 
     public function __construct($request)
@@ -47,7 +48,7 @@ class Routeur
         }
 
         if (!isset($params)) {
-            $params = NULL;
+            $params = [];
         }
 
         return $params;
