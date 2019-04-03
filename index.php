@@ -4,6 +4,8 @@
 
 // use Math\projet04\classes\Routeur;
 
+session_start();
+
 require_once('config.php');
 
 Autoloader::start();

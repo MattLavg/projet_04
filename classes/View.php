@@ -9,7 +9,7 @@ class View
         $this->_template = $template;
     }
 
-    public function render($params = array(), $pagination = NULL)
+    public function render($params = array(), $pagination = null, $isSessionValid = null)
     {
         // foreach ($params as $name => $value) {
         //     ${name} = $value;
@@ -21,10 +21,10 @@ class View
         $template = $this->_template;
 
         ob_start();
-        require(VIEW . $template . '.php');
+        require(VIEWFRONT . $template . '.php');
         $content = ob_get_clean();
 
-        require(VIEW . 'template.php');
+        require(VIEWFRONT . 'template.php');
     }
 
     public function redirect($route)

@@ -18,9 +18,11 @@ class Routeur
     protected $_routes = [ 
         'home' => ['controller' => 'Home', 'method' => 'showHome'],
         'post'  => ['controller' => 'Home', 'method' => 'showPost'],
+        'connection'  => ['controller' => 'Home', 'method' => 'showConnection'],
+        'login'  => ['controller' => 'Home', 'method' => 'loginCheck'],
+        'logout'  => ['controller' => 'Home', 'method' => 'logOut'],
         'add-post.html'  => ['controller' => 'Home', 'method' => 'addPost'],
         'update-post.html'  => ['controller' => 'Home', 'method' => 'updatePost']
-        // 'pagination'  => ['controller' => 'Home', 'method' => 'showHome']
     ];
 
     public function __construct($request)
@@ -37,6 +39,9 @@ class Routeur
 
     public function getParams()
     {
+        $params = NULL;
+        
+        // GET 
         $elements = explode('/', $this->_request); 
         // print_r($elements); exit;
         unset($elements[0]);
@@ -49,6 +54,15 @@ class Routeur
 
         if (!isset($params)) {
             $params = [];
+        }
+
+        // POST
+        if ($_POST) {
+
+            foreach ($_POST as $key => $value) {
+                $params[$key] = $value;
+            }
+
         }
 
         return $params;

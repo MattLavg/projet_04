@@ -1,5 +1,9 @@
 <?php
 
+// if (isset($_SESSION['valid'])) {
+//     exit('la session est valide.');
+// }
+
 $title = htmlspecialchars($post->getTitle());
 
 ?>

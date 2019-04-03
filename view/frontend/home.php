@@ -4,6 +4,9 @@
 
 $title = 'Le blog de Jean Forteroche';
 
+// if (isset($_SESSION['valid'])) {
+//     exit('la session est valide.');
+// }
 
 $elementsOnPage = false;
 
