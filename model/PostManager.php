@@ -55,7 +55,7 @@ class PostManager extends Manager
 
         $content = strip_tags($values['content']);
 
-        $req->execute(array($values['title'], $values['author'], $values['content'], NULL));
+        $req->execute(array($values['title'], $values['author'], $content, NULL));
 
         // return $count = $req->rowCount();
     }

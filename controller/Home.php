@@ -69,7 +69,7 @@ class Home
         if ($this->isSessionValid()) {
 
             $view = new View('edit');
-            $view->render();
+            $view->renderBack();
 
         } else {
             echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
@@ -145,20 +145,19 @@ class Home
     //     $view->render(array('post' => $post));
     // }
 
-    // public function addPost()
-    // {
-    //     $values = $_POST['values'];
-
-    //     $manager = new PostManager();
-    //     $manager->addPost($values);
-
-    //     $view = new View();
-    //     $view->redirect('home.html');
-    // }
-
-    public function showComments() 
+    public function addPost($params)
     {
 
+        $manager = new PostManager();
+        $manager->addPost($params);
+
+        $view = new View();
+        $view->redirect('home');
     }
+
+    // public function showComments() 
+    // {
+
+    // }
 }
 

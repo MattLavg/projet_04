@@ -31,7 +31,7 @@ foreach ($posts as $post)
 
         <p>
             <?= substr(htmlspecialchars($post->getContent()), 0, 350) . '... '; ?><br>
-            <a href="index.php?page=postView&id=<?= $post->getId(); ?>">Voir la suite</a>
+            <a href="<?= HOST; ?>post/id/<?= $post->getId(); ?>">Voir la suite</a>
         </p>
 
     </div>

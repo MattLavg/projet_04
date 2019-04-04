@@ -4,7 +4,7 @@
 //     exit('la session est valide.');
 // }
 
-$title = htmlspecialchars($post->getTitle());
+$title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle());
 
 ?>
 
@@ -41,6 +41,10 @@ $title = htmlspecialchars($post->getTitle());
     <input type="submit" value="Envoyer" name="newComment" class="btn btn-primary" />
 
 </form>
+
+<a href="<?= HOST; ?>update-post/id/<?= $post->getid(); ?>">Modifier</a><br>
+<a href="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
+<a href="<?= HOST; ?>post-management">Revenir à la gestion des articles</a>
 
 <hr>
 

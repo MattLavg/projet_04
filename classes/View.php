@@ -27,6 +27,19 @@ class View
         require(TEMPLATE . 'front.php');
     }
 
+    public function renderBack($params = array(), $pagination = null, $isSessionValid = null)
+    {
+        extract($params);
+
+        $template = $this->_template;
+
+        ob_start();
+        require(VIEWBACK . $template . '.php');
+        $content = ob_get_clean();
+
+        require(TEMPLATE . 'back.php');
+    }
+
     public function redirect($route)
     {
         header('location: ' . HOST . $route);

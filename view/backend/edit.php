@@ -1,6 +1,12 @@
+<?php
+
+$title = 'Le blog de Jean Forteroche ' . '|' . ' Ajout d\'article';
+
+?>
+
 <h1>Ajouter un article</h1>
 
-<form method="post" action="<?= HOST; ?>add-post.html">
+<form method="post" action="<?= HOST; ?>add-post">
 
     <div class="form-group">
         <label for="title">Titre :&nbsp;</label>
@@ -16,6 +22,6 @@
         <textarea id="tinymcetextarea" name="content">Hello, World!</textarea>
     </div>
 
-    <input type="submit" value="Envoyer" name="newPost" class="btn btn-primary" />
+    <input type="submit" value="Envoyer" class="btn btn-primary" />
 
 </form>
