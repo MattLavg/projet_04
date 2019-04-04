@@ -61,7 +61,19 @@ class Home
         $comments = $commentsManager->listComments($post_id, $pagination->getFirstEntry());
 
         $view = new View('post');
-        $view->render(array('post' => $post, 'comments' => $comments), $pagination);
+        $view->render(array('post' => $post, 'comments' => $comments), $pagination, $this->isSessionValid());
+    }
+
+    public function showEdit()
+    {
+        if ($this->isSessionValid()) {
+
+            $view = new View('edit');
+            $view->render();
+
+        } else {
+            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+        }
     }
 
     public function showConnection()
@@ -102,7 +114,7 @@ class Home
 
     public function isSessionValid()
     {
-        if ($_SESSION['valid'] == true) {
+        if (isset($_SESSION['valid']) && $_SESSION['valid'] == true) {
             return true;
         }
 

@@ -24,7 +24,7 @@ class View
         require(VIEWFRONT . $template . '.php');
         $content = ob_get_clean();
 
-        require(VIEWFRONT . 'template.php');
+        require(TEMPLATE . 'front.php');
     }
 
     public function redirect($route)

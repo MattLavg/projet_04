@@ -21,7 +21,8 @@ class Routeur
         'connection'  => ['controller' => 'Home', 'method' => 'showConnection'],
         'login'  => ['controller' => 'Home', 'method' => 'loginCheck'],
         'logout'  => ['controller' => 'Home', 'method' => 'logOut'],
-        'add-post.html'  => ['controller' => 'Home', 'method' => 'addPost'],
+        'edit'  => ['controller' => 'Home', 'method' => 'showEdit'],
+        'add-post'  => ['controller' => 'Home', 'method' => 'addPost'],
         'update-post.html'  => ['controller' => 'Home', 'method' => 'updatePost']
     ];
 

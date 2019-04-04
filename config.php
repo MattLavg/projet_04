@@ -15,8 +15,9 @@ class Autoloader
         define('CONTROLLER', ROOT . 'controller/');
         define('MODEL', ROOT . 'model/');
         define('VIEWFRONT', ROOT . 'view/frontend/');
+        define('VIEWBACK', ROOT . 'view/backend/');
         define('CLASSES', ROOT . 'classes/');
-        define('PAGINATION', ROOT . 'view/pagination-template/');
+        define('TEMPLATE', ROOT . 'view/templates/');
         define('ASSETS', HOST . 'public/');
     }
 
