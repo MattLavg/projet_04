@@ -1,14 +1,10 @@
 <?php
 
-// if (isset($_SESSION['valid'])) {
-//     exit('la session est valide.');
-// }
-
 $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle());
 
 ?>
 
-<h1><?= htmlspecialchars($post->getTitle()); ?></h1>
+<h1><span id="postTitle"><?= htmlspecialchars($post->getTitle()); ?></span></h1>
 <p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
 <?php
     if ($post->getUpdateDate() !== NULL) {
@@ -17,6 +13,16 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
 ?>
 </p>
 <p><?= nl2br(htmlspecialchars($post->getContent())); ?></p>
+
+<?php
+if ($isSessionValid) {
+?>
+    <a href="<?= HOST; ?>edit/id/<?= $post->getid(); ?>">Modifier</a><br>
+    <a href="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
+    <a href="<?= HOST; ?>post-management">Revenir à la gestion des articles</a>
+<?php
+}
+?>
 
 <hr>
 
@@ -41,10 +47,6 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
     <input type="submit" value="Envoyer" name="newComment" class="btn btn-primary" />
 
 </form>
-
-<a href="<?= HOST; ?>update-post/id/<?= $post->getid(); ?>">Modifier</a><br>
-<a href="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
-<a href="<?= HOST; ?>post-management">Revenir à la gestion des articles</a>
 
 <hr>
 

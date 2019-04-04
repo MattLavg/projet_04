@@ -64,12 +64,20 @@ class Home
         $view->render(array('post' => $post, 'comments' => $comments), $pagination, $this->isSessionValid());
     }
 
-    public function showEdit()
+    public function showEdit($params)
     {
         if ($this->isSessionValid()) {
 
+            if (isset($params)) {
+
+                extract($params);
+
+                $postManager = new PostManager();
+                $post = $postManager->getPost($id);
+            }
+
             $view = new View('edit');
-            $view->renderBack();
+            $view->renderBack(array('post' => $post));
 
         } else {
             echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
@@ -131,23 +139,8 @@ class Home
         return $pagination;
     }
 
-    // public function updatePost()
-    // {
-    //     if (isset($_GET['id'])) {
-    //         $id = $_GET['id'];
-    //         $manager = new PostManager();
-    //         $post = $manager->getPost($id);
-    //     } else {
-    //         $post = new Post();
-    //     }
-
-    //     $view = new View('edit');
-    //     $view->render(array('post' => $post));
-    // }
-
     public function addPost($params)
     {
-
         $manager = new PostManager();
         $manager->addPost($params);
 
@@ -155,9 +148,23 @@ class Home
         $view->redirect('home');
     }
 
-    // public function showComments() 
-    // {
+    public function updatePost($params)
+    {
+        $manager = new PostManager();
+        $post = $manager->updatePost($params);
 
-    // }
+        // redirect on the updated post
+        $view = new View();
+        $view->redirect('post/id/' . $params['id']);
+    }
+
+    public function deletePostAndComments($params)
+    {
+        $postManager = new PostManager();
+        $postManager->deletePostAndComments($params['id']);
+
+        $view = new View();
+        $view->redirect('home');
+    }
 }
 

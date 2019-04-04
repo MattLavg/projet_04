@@ -60,14 +60,14 @@ class PostManager extends Manager
         // return $count = $req->rowCount();
     }
 
-    public function updatePost($id, $title, $content)
+    public function updatePost($values)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE posts SET title = ?, content = ?, updateDate = NOW() WHERE id = ?');
+        $req = $db->prepare('UPDATE posts SET title = ?, author = ?, content = ?, updateDate = NOW() WHERE id = ?');
 
-        $content = strip_tags($content);
+        $content = strip_tags($values['content']);
 
-        $req->execute(array($title, $content, $id));
+        $req->execute(array($values['title'],$values['author'], $content, $values['id']));
     }
 
     public function deletePostAndComments($id)

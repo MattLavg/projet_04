@@ -23,7 +23,8 @@ class Routeur
         'logout'  => ['controller' => 'Home', 'method' => 'logOut'],
         'edit'  => ['controller' => 'Home', 'method' => 'showEdit'],
         'add-post'  => ['controller' => 'Home', 'method' => 'addPost'],
-        'update-post.html'  => ['controller' => 'Home', 'method' => 'updatePost']
+        'update-post'  => ['controller' => 'Home', 'method' => 'updatePost'],
+        'delete-post'  => ['controller' => 'Home', 'method' => 'deletePostAndComments']
     ];
 
     public function __construct($request)
