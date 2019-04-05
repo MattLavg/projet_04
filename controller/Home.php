@@ -89,6 +89,30 @@ class Home
         }
     }
 
+    public function showPostsManagement($params = [])
+    {
+        if ($this->isSessionValid()) {
+
+            $pageNb = 1;
+
+            if (isset($params['pageNb'])) {
+                $pageNb = $params['pageNb'];
+            } 
+
+            $postManager = new PostManager();
+        
+            $pagination = $this->paginationInit($postManager, $pageNb);
+            
+            $posts = $postManager->listPosts($pagination->getFirstEntry());
+
+            $view = new View('postManagement');
+            $view->renderBack(array('posts' => $posts), $pagination, $this->isSessionValid());
+
+        } else {
+            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+        }
+    }
+
     public function showConnection()
     {
         $view = new View('connection');

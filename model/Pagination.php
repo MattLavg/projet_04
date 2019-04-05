@@ -44,7 +44,7 @@ class Pagination
     protected function currentUrl($url)
     { 
         // récupère l'url en cours et place la route principale dans un tableau
-        preg_match('#/[a-zA-Z0-9_]+/([a-zA-Z0-9_]+)*/*([a-zA-Z0-9_]+)*/*([a-zA-Z0-9_]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
+        preg_match('#/[a-zA-Z0-9_-]+/([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
 
         if (!isset($matches[1])) {
             $matches[1] = 'home';
