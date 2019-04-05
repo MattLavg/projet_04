@@ -30,7 +30,7 @@ class View
     public function renderBack($params = array(), $pagination = null, $isSessionValid = null)
     {
         extract($params);
-
+        
         $template = $this->_template;
 
         ob_start();

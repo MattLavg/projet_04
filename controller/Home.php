@@ -68,16 +68,21 @@ class Home
     {
         if ($this->isSessionValid()) {
 
-            if (isset($params)) {
+            if (isset($params['id'])) {
 
                 extract($params);
 
                 $postManager = new PostManager();
                 $post = $postManager->getPost($id);
-            }
 
-            $view = new View('edit');
-            $view->renderBack(array('post' => $post));
+                $view = new View('edit');
+                $view->renderBack(array('post' => $post));
+            } else {
+
+                $view = new View('edit');
+                $view->renderBack();
+
+            }
 
         } else {
             echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';

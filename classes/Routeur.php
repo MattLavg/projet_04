@@ -24,7 +24,8 @@ class Routeur
         'edit'  => ['controller' => 'Home', 'method' => 'showEdit'],
         'add-post'  => ['controller' => 'Home', 'method' => 'addPost'],
         'update-post'  => ['controller' => 'Home', 'method' => 'updatePost'],
-        'delete-post'  => ['controller' => 'Home', 'method' => 'deletePostAndComments']
+        'delete-post'  => ['controller' => 'Home', 'method' => 'deletePostAndComments'],
+        'post-management'  => ['controller' => 'Home', 'method' => 'showPostManagement']
     ];
 
     public function __construct($request)

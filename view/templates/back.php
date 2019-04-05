@@ -64,14 +64,14 @@
 
         <div class="col-lg-4">
             <ul class="list-group">
-                <a href="index.php?page=admin&param=addPost"><li class="list-group-item">Ajouter un article</li></a>
+                <a href="<?= HOST; ?>"><li class="list-group-item">Ajouter un article</li></a>
                 <a href="index.php?page=admin&param=manageListPosts"><li class="list-group-item">Gérer les articles</li></a>
                 <a href="index.php?page=admin&param=reportedCommentsView"><li class="list-group-item">Modérer les commentaires</li></a>
             </ul>
         </div>
 
         <div class="col-lg-8">
-        
+
             <?= $content ?>
 
         </div>
