@@ -2,43 +2,50 @@
 
 class View
 {
+    protected $_view;
     protected $_template;
 
-    public function __construct($template = null)
+    public function __construct($view = null)
     {
-        $this->_template = $template;
+        $this->_view = $view;
     }
 
-    public function render($params = array(), $pagination = null, $isSessionValid = null)
+    public function render($params = array(), $template, $pagination = null, $isSessionValid = null)
     {
         // foreach ($params as $name => $value) {
         //     ${name} = $value;
         // }
-// print_r($params); exit;
-        extract($params);
-        // var_dump($params);exit;
 
-        $template = $this->_template;
+        extract($params);
+
+        $this->_template = $template;
+
+        $view = $this->_view;
 
         ob_start();
-        require(VIEWFRONT . $template . '.php');
-        $content = ob_get_clean();
-
-        require(TEMPLATE . 'front.php');
-    }
-
-    public function renderBack($params = array(), $pagination = null, $isSessionValid = null)
-    {
-        extract($params);
+        if ($template == 'front') {
+            require(VIEWFRONT . $view . '.php');
+        } else {
+            require(VIEWBACK . $view . '.php');
+        }
         
-        $template = $this->_template;
-
-        ob_start();
-        require(VIEWBACK . $template . '.php');
         $content = ob_get_clean();
 
-        require(TEMPLATE . 'back.php');
+        require(TEMPLATE . $this->_template . '.php');
     }
+
+    // public function renderBack($params = array(), $pagination = null, $isSessionValid = null)
+    // {
+    //     extract($params);
+        
+    //     $view = $this->_view;
+
+    //     ob_start();
+    //     require(VIEWBACK . $view . '.php');
+    //     $content = ob_get_clean();
+
+    //     require(TEMPLATE . 'back.php');
+    // }
 
     public function redirect($route)
     {

@@ -37,7 +37,7 @@ class Home
         $posts = $postManager->listPosts($pagination->getFirstEntry());
 
         $view = new View('home');
-        $view->render(array('posts' => $posts), $pagination, $this->isSessionValid());
+        $view->render(array('posts' => $posts), 'front', $pagination, $this->isSessionValid());
     }
 
     public function showPost($params = [])
@@ -61,7 +61,7 @@ class Home
         $comments = $commentsManager->listComments($post_id, $pagination->getFirstEntry());
 
         $view = new View('post');
-        $view->render(array('post' => $post, 'comments' => $comments), $pagination, $this->isSessionValid());
+        $view->render(array('post' => $post, 'comments' => $comments), 'front', $pagination, $this->isSessionValid());
     }
 
     public function showEdit($params)
@@ -76,11 +76,11 @@ class Home
                 $post = $postManager->getPost($id);
 
                 $view = new View('edit');
-                $view->renderBack(array('post' => $post));
+                $view->render(array('post' => $post), 'back');
             } else {
 
                 $view = new View('edit');
-                $view->renderBack();
+                $view->render(array(), 'back');
 
             }
 
@@ -106,7 +106,7 @@ class Home
             $posts = $postManager->listPosts($pagination->getFirstEntry());
 
             $view = new View('postManagement');
-            $view->renderBack(array('posts' => $posts), $pagination, $this->isSessionValid());
+            $view->render(array('posts' => $posts), 'back', $pagination, $this->isSessionValid());
 
         } else {
             echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
@@ -116,7 +116,7 @@ class Home
     public function showConnection()
     {
         $view = new View('connection');
-        $view->render();
+        $view->render(array(), 'front');
     }
 
     public function loginCheck($params)
