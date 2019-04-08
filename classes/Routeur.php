@@ -26,7 +26,9 @@ class Routeur
         'update-post'  => ['controller' => 'Home', 'method' => 'updatePost'],
         'delete-post'  => ['controller' => 'Home', 'method' => 'deletePostAndComments'],
         'post-management'  => ['controller' => 'Home', 'method' => 'showPostsManagement'],
-        'reported-comments'  => ['controller' => 'Home', 'method' => 'showReportedComments']
+        'reported-comments'  => ['controller' => 'Home', 'method' => 'showReportedComments'],
+        'add-comment'  => ['controller' => 'Home', 'method' => 'addComment'],
+        'delete-comment'  => ['controller' => 'Home', 'method' => 'deleteComment']
     ];
 
     public function __construct($request)

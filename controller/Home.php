@@ -195,5 +195,48 @@ class Home
         $view = new View();
         $view->redirect('home');
     }
+
+    public function showReportedComments()
+    {
+        if ($this->isSessionValid()) {
+
+            $commentsManager = new CommentManager();
+            $reportedComments = $commentsManager->listReportedComments();
+
+            $view = new View('reportedComments');
+            $view->render(array('reportedComments' => $reportedComments), 'back');
+
+        } else {
+            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+        }
+    }
+
+    public function addComment($params)
+    {
+        $commentManager = new CommentManager();
+        $commentId = $commentManager->addComment($params);
+
+        if (isset($params['main-author'])) {
+            $commentManager->isAuthor($commentId);
+        }
+
+        $view = new View();
+        $view->redirect('post/id/' . $params['post-id']);
+    }
+
+    public function deleteComment($params)
+    { 
+        $commentManager = new CommentManager();
+        $commentManager->deleteComment($params['id']);
+
+        if (isset($params['post-id'])) {
+            $view = new View();
+            $view->redirect('post/id/' . $params['post-id']);
+        } else {
+            $view = new View();
+            $view->redirect('reported-comments');
+        }
+    }
 }
+
 

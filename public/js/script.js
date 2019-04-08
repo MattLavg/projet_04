@@ -43,5 +43,6 @@ $(document).ready(function () {
 
     // Colore les commentaires signalés
     $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
+    $('.isAuthor').parent().find('.authorCommentBloc').css('background-color', '#9CFF94');
 
 });

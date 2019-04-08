@@ -8,6 +8,7 @@ class Comment
     protected $_content;
     protected $_creationDate;
     protected $_reported;
+    protected $_isAuthor;
 
     public function hydrate($data)
     {   
@@ -53,6 +54,11 @@ class Comment
         return $this->_reported;
     }
 
+    public function getIsAuthor()
+    {
+        return $this->_isAuthor;
+    }
+
     // SETTERS
 
     public function setId(int $id)
@@ -83,5 +89,10 @@ class Comment
     public function setReported($reported)
     {
         $this->_reported = $reported;
+    }
+
+    public function setIsAuthor($isAuthor)
+    {
+        $this->_isAuthor = $isAuthor;
     }
 }

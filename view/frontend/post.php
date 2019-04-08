@@ -28,7 +28,7 @@ if ($isSessionValid) {
 
 <h4>Ajouter un commentaire</h4>
 
-<form method="post" action="index.php?page=postView">
+<form method="post" action="<?= HOST; ?>add-comment">
 
     <div class="form-group">
         <label for="author">Pseudo :&nbsp;</label>
@@ -41,10 +41,20 @@ if ($isSessionValid) {
     </div>
 
     <div class="form-group">
-        <input id="post_id" type="hidden" name="post_id" value="<?= $post->getId(); ?>" />
+        <input id="post_id" type="hidden" name="post-id" value="<?= $post->getId(); ?>" />
     </div>
+
+<?php
+if ($isSessionValid) {
+?>
+    <div class="form-group">
+        <input id="post_id" type="hidden" name="main-author" value="sessionValid" />
+    </div>
+<?php
+}
+?>
   
-    <input type="submit" value="Envoyer" name="newComment" class="btn btn-primary" />
+    <input type="submit" value="Envoyer" class="btn btn-primary" />
 
 </form>
 
@@ -65,14 +75,35 @@ foreach ($comments as $comment)
 
     <div class="row">
     
-        <p class="col-12 authorCommentBloc"><span class="authorComment"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
+        <p class="col-12 font-weight-bold authorCommentBloc"><span id="commentAuthor<?= $comment->getId(); ?>"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
         <p class="col-12 textComment"><?= htmlspecialchars($comment->getContent()); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
+
+<?php
+        if (!$comment->getIsAuthor()) { // if not author's comment, reported button on display
+?>
             <a href="index.php?page=postView&param=reportComment&post_id=<?= $post->getId(); ?>&comment_id=<?= $comment->getId(); ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
+<?php
+        } 
+?>
+
+
+<?php
+        if ($isSessionValid) { // author can delete comments
+?>
+            <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
+<?php
+        } 
+?>
+
         </div>
 
-        <?php
+        <?php 
             if ($comment->getReported()) {
+                echo '<span class="reported"></span>';
+            } elseif ($comment->getIsAuthor()) {
+                echo '<span class="isAuthor"></span>';
+            } elseif ($comment->getIsAuthor() && $comment->getReported()) {
                 echo '<span class="reported"></span>';
             }
         ?>
