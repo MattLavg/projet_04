@@ -4,12 +4,10 @@
 
 class CommentManager extends Manager
 {
-    const NB_ELEMENTS_BY_PAGE = 10;
-
-    public function listComments($post_id, $firstEntry = 0)
-    { 
+    public function listComments($post_id, $firstEntry = 0, $nbElementsByPage)
+    {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, post_id, author, content, reported, isAuthor, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC Limit ' . $firstEntry . ',' . self::NB_ELEMENTS_BY_PAGE . '');
+        $req = $db->prepare('SELECT id, post_id, author, content, reported, isAuthor, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
         $req->execute([$post_id]);
 
         $comments = [];
@@ -36,10 +34,20 @@ class CommentManager extends Manager
         return $totalNbRows = $result['nbRows'];
     }
 
-    public function listReportedComments()
+    public function countReportedComments()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, post_id, author, content, reported, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM comments WHERE reported = 1 ORDER BY creationDate DESC');
+        $req = $db->query('SELECT COUNT(*) nbReportedComments FROM comments WHERE reported = 1');
+
+        $result = $req->fetch();
+
+        return $result['nbReportedComments'];
+    }
+
+    public function listReportedComments($firstEntry = 0, $nbElementsByPage)
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, post_id, author, content, reported, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE reported = 1 ORDER BY comments.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
 
         $comments = [];
 

@@ -11,7 +11,7 @@ class Pagination
     protected $_previousPage;
     protected $_nextPage;
     protected $_notEnoughEntries;
-    // protected $_elementsToDisplay;
+    protected $_elementNbByPage;
 
     public function __construct($currentPage, $totalNbRows, $url, $elementNbByPages)
     {
@@ -19,6 +19,7 @@ class Pagination
         $this->setCurrentPage($currentPage);
         $this->setPreviousPage();
         $this->setNextPage();
+        $this->setElementNbByPage($elementNbByPages);
         $this->firstEntry($elementNbByPages);
         $this->currentUrl($url);
         $this->notEnoughEntries($totalNbRows, $elementNbByPages);
@@ -147,9 +148,9 @@ class Pagination
         return $this->_notEnoughEntries;
     }
 
-    public function getElementsToDisplay()
+    public function getElementNbByPage()
     {
-        return $this->_elementsToDisplay;
+        return $this->_elementNbByPage;
     }
 
     // SETTERS
@@ -193,5 +194,10 @@ class Pagination
     public function setCurrentUrl($url)
     {
         $this->_currentUrl = $url;
+    }
+
+    public function setElementNbByPage($elementNbByPage)
+    {
+        $this->_elementNbByPage = $elementNbByPage;
     }
 }

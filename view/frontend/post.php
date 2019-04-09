@@ -75,14 +75,14 @@ foreach ($comments as $comment)
 
     <div class="row">
     
-        <p class="col-12 font-weight-bold authorCommentBloc"><span id="commentAuthor<?= $comment->getId(); ?>"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
+        <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $comment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
         <p class="col-12 textComment"><?= htmlspecialchars($comment->getContent()); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
 
 <?php
-        if (!$comment->getIsAuthor()) { // if not author's comment, reported button on display
+        if (!$comment->getIsAuthor()) { // if it is not author's comment, display reported button
 ?>
-            <a href="index.php?page=postView&param=reportComment&post_id=<?= $post->getId(); ?>&comment_id=<?= $comment->getId(); ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
+            <a href="<?= HOST; ?>report-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
 <?php
         } 
 ?>

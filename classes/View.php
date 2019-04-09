@@ -34,19 +34,6 @@ class View
         require(TEMPLATE . $this->_template . '.php');
     }
 
-    // public function renderBack($params = array(), $pagination = null, $isSessionValid = null)
-    // {
-    //     extract($params);
-        
-    //     $view = $this->_view;
-
-    //     ob_start();
-    //     require(VIEWBACK . $view . '.php');
-    //     $content = ob_get_clean();
-
-    //     require(TEMPLATE . 'back.php');
-    // }
-
     public function redirect($route)
     {
         header('location: ' . HOST . $route);

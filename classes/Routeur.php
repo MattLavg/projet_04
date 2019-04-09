@@ -28,7 +28,8 @@ class Routeur
         'post-management'  => ['controller' => 'Home', 'method' => 'showPostsManagement'],
         'reported-comments'  => ['controller' => 'Home', 'method' => 'showReportedComments'],
         'add-comment'  => ['controller' => 'Home', 'method' => 'addComment'],
-        'delete-comment'  => ['controller' => 'Home', 'method' => 'deleteComment']
+        'delete-comment'  => ['controller' => 'Home', 'method' => 'deleteComment'],
+        'report-comment'  => ['controller' => 'Home', 'method' => 'reportComment']
     ];
 
     public function __construct($request)
@@ -45,18 +46,23 @@ class Routeur
 
     public function getParams()
     {
-        $params = NULL;
+        $params = null;
         
         // GET 
         $elements = explode('/', $this->_request); 
-        // print_r($elements); exit;
         unset($elements[0]);
-        // print_r($elements); exit;
+
+        // var_dump($elements);
+        // echo '<br>';
 
         for ($i = 1; $i<count($elements); $i++) {
+
             $params[$elements[$i]] = $elements[$i + 1];
             $i++; // Ajoute encore un si autres à la suite
+            // var_dump($i);exit;
         }
+
+        // var_dump($params);exit;
 
         if (!isset($params)) {
             $params = [];

@@ -31,10 +31,11 @@ class Home
         } 
 
         $postManager = new PostManager();
-     
-        $pagination = $this->paginationInit($postManager, $pageNb);
+
+        $totalNbRows = $postManager->count();
+        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 5);
         
-        $posts = $postManager->listPosts($pagination->getFirstEntry());
+        $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
         $view = new View('home');
         $view->render(array('posts' => $posts), 'front', $pagination, $this->isSessionValid());
@@ -50,15 +51,17 @@ class Home
 
         extract($params); // permet d'extraire la variable $id
 
-        $post_id = $id;
+        $postId = $id;
 
         $postManager = new PostManager();
-        $post = $postManager->getPost($post_id);
+        $post = $postManager->getPost($postId);
 
-        $commentsManager = new CommentManager();
-        $pagination = $this->paginationInit($commentsManager, $pageNb, $post_id);
+        $commentManager = new CommentManager();
 
-        $comments = $commentsManager->listComments($post_id, $pagination->getFirstEntry());
+        $totalNbRows = $commentManager->count($postId);
+        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 10);
+
+        $comments = $commentManager->listComments($postId, $pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
         $view = new View('post');
         $view->render(array('post' => $post, 'comments' => $comments), 'front', $pagination, $this->isSessionValid());
@@ -100,10 +103,11 @@ class Home
             } 
 
             $postManager = new PostManager();
-        
-            $pagination = $this->paginationInit($postManager, $pageNb);
+
+            $totalNbRows = $postManager->count();
+            $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 15);
             
-            $posts = $postManager->listPosts($pagination->getFirstEntry());
+            $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
             $view = new View('postManagement');
             $view->render(array('posts' => $posts), 'back', $pagination, $this->isSessionValid());
@@ -158,15 +162,14 @@ class Home
         return false;
     }
 
-    public function paginationInit($manager, $pageNb, $post_id = NULL)
-    {
-        // var_dump($manager);exit;
-        $totalNbRows = $manager->count($post_id);
+    // public function paginationInit($manager, $pageNb, $nbElementsByPage, $post_id = null)
+    // {
+    //     $totalNbRows = $manager->count($post_id);
 
-        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], $manager::NB_ELEMENTS_BY_PAGE);
+    //     $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], $nbElementsByPage);
 
-        return $pagination;
-    }
+    //     return $pagination;
+    // }
 
     public function addPost($params)
     {
@@ -200,11 +203,21 @@ class Home
     {
         if ($this->isSessionValid()) {
 
-            $commentsManager = new CommentManager();
-            $reportedComments = $commentsManager->listReportedComments();
+            $pageNb = 1;
+
+            if (isset($params['pageNb'])) {
+                $pageNb = $params['pageNb'];
+            } 
+
+            $commentManager = new CommentManager();
+
+            $totalNbRows = $commentManager->countReportedComments();
+            $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 5);
+
+            $reportedComments = $commentManager->listReportedComments($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
             $view = new View('reportedComments');
-            $view->render(array('reportedComments' => $reportedComments), 'back');
+            $view->render(array('reportedComments' => $reportedComments), 'back', $pagination);
 
         } else {
             echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
@@ -236,6 +249,15 @@ class Home
             $view = new View();
             $view->redirect('reported-comments');
         }
+    }
+
+    public function reportComment($params)
+    {
+        $commentManager = new CommentManager();
+        $commentManager->reportComment($params['id']);
+
+        $view = new View();
+        $view->redirect('post/id/' . $params['post-id']);
     }
 }
 

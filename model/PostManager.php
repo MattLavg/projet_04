@@ -6,12 +6,10 @@
 
 class PostManager extends Manager
 {
-    const NB_ELEMENTS_BY_PAGE = 5;
-
-    public function listPosts($firstEntry = 0)
+    public function listPosts($firstEntry = 0, $nbElementsByPage)
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts ORDER BY posts.creationDate DESC LIMIT ' . $firstEntry . ',' . self::NB_ELEMENTS_BY_PAGE . '');
+        $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts ORDER BY posts.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
 
         while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
 
