@@ -7,8 +7,12 @@
 session_start();
 
 require_once('config.php');
+require_once(MODEL . 'Autoloader.php');
 
 Autoloader::start();
+
+// $autoloader = new Autoloader();
+// $autoloader->start();
 
 if (isset($_GET['page'])) {
     $request = $_GET['page'];

@@ -16,20 +16,20 @@ class Routeur
     protected $_request;
 
     protected $_routes = [ 
-        'home' => ['controller' => 'Home', 'method' => 'showHome'],
-        'post'  => ['controller' => 'Home', 'method' => 'showPost'],
-        'connection'  => ['controller' => 'Home', 'method' => 'showConnection'],
-        'login'  => ['controller' => 'Home', 'method' => 'loginCheck'],
-        'logout'  => ['controller' => 'Home', 'method' => 'logOut'],
-        'edit'  => ['controller' => 'Home', 'method' => 'showEdit'],
-        'add-post'  => ['controller' => 'Home', 'method' => 'addPost'],
-        'update-post'  => ['controller' => 'Home', 'method' => 'updatePost'],
-        'delete-post'  => ['controller' => 'Home', 'method' => 'deletePostAndComments'],
-        'post-management'  => ['controller' => 'Home', 'method' => 'showPostsManagement'],
-        'reported-comments'  => ['controller' => 'Home', 'method' => 'showReportedComments'],
-        'add-comment'  => ['controller' => 'Home', 'method' => 'addComment'],
-        'delete-comment'  => ['controller' => 'Home', 'method' => 'deleteComment'],
-        'report-comment'  => ['controller' => 'Home', 'method' => 'reportComment']
+        'home' => ['controller' => 'HomeController', 'method' => 'showHome'],
+        'post'  => ['controller' => 'PostController', 'method' => 'showPost'],
+        'connection'  => ['controller' => 'ConnectionController', 'method' => 'showConnection'],
+        'login'  => ['controller' => 'ConnectionController', 'method' => 'loginCheck'],
+        'logout'  => ['controller' => 'ConnectionController', 'method' => 'logOut'],
+        'edit'  => ['controller' => 'BackController', 'method' => 'showEdit'],
+        'add-post'  => ['controller' => 'PostController', 'method' => 'addPost'],
+        'update-post'  => ['controller' => 'PostController', 'method' => 'updatePost'],
+        'delete-post'  => ['controller' => 'PostController', 'method' => 'deletePostAndComments'],
+        'post-management'  => ['controller' => 'BackController', 'method' => 'showPostsManagement'],
+        'reported-comments'  => ['controller' => 'BackController', 'method' => 'showReportedComments'],
+        'add-comment'  => ['controller' => 'CommentController', 'method' => 'addComment'],
+        'delete-comment'  => ['controller' => 'CommentController', 'method' => 'deleteComment'],
+        'report-comment'  => ['controller' => 'CommentController', 'method' => 'reportComment']
     ];
 
     public function __construct($request)
