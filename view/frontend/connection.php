@@ -1,7 +1,7 @@
 <?php 
 
 // namespace Math\projet04;
-
+// var_dump($errorMessage);
 ?>
 
 <?php $title = 'Se connecter'; ?>
@@ -20,4 +20,13 @@
     </div>
     <button type="submit" class="btn btn-primary">Se connecter</button>
 </form>
+
+<?php 
+
+if (isset($errorMessage)) {
+    echo '<p class="errorMessage">' . $errorMessage . '</p>';
+}
+
+?>
+
 

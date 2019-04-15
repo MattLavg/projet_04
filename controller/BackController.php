@@ -14,16 +14,20 @@ class BackController
                 $post = $postManager->getPost($id);
 
                 $view = new View('edit');
-                $view->render(array('post' => $post), 'back');
+                $view->render('back', array('post' => $post));
             } else {
 
                 $view = new View('edit');
-                $view->render(array(), 'back');
+                $view->render('back', array());
 
             }
 
         } else {
-            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+
+            $_SESSION['errorMessage'] = 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+
+            $view = new View();
+            $view->redirect('connection');
         }
     }
 
@@ -45,10 +49,17 @@ class BackController
             $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
             $view = new View('postManagement');
-            $view->render(array('posts' => $posts), 'back', $pagination, ConnectionController::isSessionValid());
+            $view->render('back', array(
+                'posts' => $posts, 
+                'pagination' => $pagination,
+                'isSessionValid' => ConnectionController::isSessionValid()));
 
         } else {
-            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+            
+            $_SESSION['errorMessage'] = 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+
+            $view = new View();
+            $view->redirect('connection');
         }
     }
     
@@ -70,10 +81,16 @@ class BackController
             $reportedComments = $commentManager->listReportedComments($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
             $view = new View('reportedComments');
-            $view->render(array('reportedComments' => $reportedComments), 'back', $pagination);
+            $view->render('back', array(
+                'reportedComments' => $reportedComments, 
+                'pagination' => $pagination));
 
         } else {
-            echo 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+            
+            $_SESSION['errorMessage'] = 'Vous ne pouvez accéder à cette page, veuillez vous connecter.';
+
+            $view = new View();
+            $view->redirect('connection');
         }
     }
 }

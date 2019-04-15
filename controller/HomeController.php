@@ -38,7 +38,10 @@ class HomeController
         $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
         $view = new View('home');
-        $view->render(array('posts' => $posts), 'front', $pagination, ConnectionController::isSessionValid());
+        $view->render('front', array(
+            'posts' => $posts, 
+            'pagination' => $pagination, 
+            'isSessionValid' => ConnectionController::isSessionValid()));
     }
 }
 

@@ -48,7 +48,7 @@ if (!$commentsOnPage) {
 }
 
 if (isset($commentsOnPage) && $pagination->getNotEnoughEntries()) { 
-    $pagination->render($pagination);
+    $pagination->render();
 }
 
 ?>

@@ -2,6 +2,7 @@
 
 $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle());
 
+
 ?>
 
 <h1><span id="postTitle"><?= htmlspecialchars($post->getTitle()); ?></span></h1>
@@ -15,7 +16,7 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
 <p><?= nl2br(htmlspecialchars($post->getContent())); ?></p>
 
 <?php
-if ($isSessionValid) {
+if (isset($isSessionValid)) {
 ?>
     <a href="<?= HOST; ?>edit/id/<?= $post->getid(); ?>">Modifier</a><br>
     <a href="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
@@ -45,7 +46,7 @@ if ($isSessionValid) {
     </div>
 
 <?php
-if ($isSessionValid) {
+if (isset($isSessionValid)) {
 ?>
     <div class="form-group">
         <input id="post_id" type="hidden" name="main-author" value="sessionValid" />
@@ -58,13 +59,20 @@ if ($isSessionValid) {
 
 </form>
 
+<?php
+if (isset($errorMessage)) {
+    echo '<p class="errorMessage">' . $errorMessage . '</p>';
+}
+?>
+
+
 <hr>
 
 <?php
 
 $elementsOnPage = false;
 $commentsOnPage = false;
-// var_dump($comments);exit;
+
 foreach ($comments as $comment)
 {
     $elementsOnPage = true;
@@ -89,7 +97,7 @@ foreach ($comments as $comment)
 
 
 <?php
-        if ($isSessionValid) { // author can delete comments
+        if (isset($isSessionValid)) { // author can delete comments
 ?>
             <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
 <?php
@@ -121,7 +129,7 @@ if (!$commentsOnPage) {
 
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
-    $pagination->render($pagination);
+    $pagination->render();
 }
 
 ?>

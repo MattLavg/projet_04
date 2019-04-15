@@ -42,6 +42,6 @@ foreach ($posts as $post)
 }
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
-    $pagination->render($pagination);
+    $pagination->render();
 }
 ?>

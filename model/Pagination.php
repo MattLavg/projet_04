@@ -64,7 +64,7 @@ class Pagination
         
     }
 
-    public function render($pagination)
+    public function render()
     {      
         require(TEMPLATE . 'pagination.php');
     }

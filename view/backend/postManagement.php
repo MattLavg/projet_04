@@ -58,6 +58,6 @@ $elementsOnPage = false;
 
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
-    $pagination->render($pagination);
+    $pagination->render();
 }
 ?>

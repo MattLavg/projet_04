@@ -4,11 +4,19 @@ class PostController
 {
     public function showPost($params = [])
     {
+        // pour la pagination
         $pageNb = 1;
 
         if (isset($params['pageNb'])) {
             $pageNb = $params['pageNb'];
         } 
+
+        // pour les erreurs
+        $errorMessage = null;
+
+        if (isset($_SESSION['errorMessage'])) {
+            $errorMessage = $_SESSION['errorMessage'];
+        }
 
         extract($params); // permet d'extraire la variable $id
 
@@ -25,7 +33,14 @@ class PostController
         $comments = $commentManager->listComments($postId, $pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
         $view = new View('post');
-        $view->render(array('post' => $post, 'comments' => $comments), 'front', $pagination, ConnectionController::isSessionValid());
+        $view->render('front', array(
+            'post' => $post, 
+            'comments' => $comments, 
+            'pagination' => $pagination, 
+            'isSessionValid' => ConnectionController::isSessionValid(), 
+            'errorMessage' => $errorMessage));
+
+        unset($_SESSION['errorMessage']);
     }
 
     public function addPost($params)

@@ -35,11 +35,18 @@ $(document).ready(function () {
 
 
     
-    function checkPostAffectedLines() {
-        $('#addedPost').fadeOut(5000);
-    }
+    // function checkPostAffectedLines() {
+    //     $('#addedPost').fadeOut(5000);
+    // }
 
-    setInterval(checkPostAffectedLines(), 1000);
+    // setInterval(checkPostAffectedLines(), 1000);
+
+
+    // efface le message d'erreur
+    function checkErrorMessages() {
+        $('.errorMessage').fadeOut(4000);
+    }
+    setInterval(checkErrorMessages(), 1000);
 
     // Colore les commentaires signalés
     $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');

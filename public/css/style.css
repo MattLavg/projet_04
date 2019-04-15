@@ -3,6 +3,12 @@
     padding-bottom : 100px;
 }
 
+/* ERRORS */
+
+.errorMessage {
+    color: #FF1301;
+}
+
 /* POSTS */
 
 .listPosts {

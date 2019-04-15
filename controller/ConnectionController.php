@@ -4,8 +4,17 @@ class ConnectionController
 {
     public function showConnection()
     {
+        // pour les erreurs
+        $errorMessage = null;
+
+        if (isset($_SESSION['errorMessage'])) {
+            $errorMessage = $_SESSION['errorMessage'];
+        }
+// var_dump($errorMessage);exit;
         $view = new View('connection');
-        $view->render(array(), 'front');
+        $view->render('front', array('errorMessage' => $errorMessage));
+
+        unset($_SESSION['errorMessage']);
     }
 
     public function loginCheck($params)
@@ -16,17 +25,27 @@ class ConnectionController
         // var_dump($authentication);exit;
 
         $_SESSION['valid'] = false;
-        
+        // var_dump($params);exit;
         if ($params['name'] == $authentication['name'] && $params['password'] == $authentication['password']) {
             
             $_SESSION['valid'] = true;
 
             $view = new View();
-            $view->redirect('home');
+            $view->redirect('post-management');
 
+        } elseif (empty($params['name']) || empty($params['password'])) {
+
+            $_SESSION['errorMessage'] = 'Veuillez renseigner les identifiants.';
+
+            $view = new View();
+            $view->redirect('connection');
+            
         } else {
-            echo 'Les identifiants ne sont pas valides.<br>';
-            echo '<a href="' . HOST .'connection">Retour à la page de connexion</a>';
+
+            $_SESSION['errorMessage'] = 'Les identifiants ne sont pas valides.';
+
+            $view = new View();
+            $view->redirect('connection');
         }
     }
 
@@ -44,6 +63,6 @@ class ConnectionController
             return true;
         }
 
-        return false;
+        return null;
     }
 }

@@ -47,7 +47,7 @@
       </li>
 
 <?php
-      if ($isSessionValid) {
+      if (isset($isSessionValid)) {
 ?>
       <li class="nav-item">
         <a class="nav-link" href="<?= HOST; ?>edit">Administration</a>

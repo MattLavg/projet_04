@@ -10,7 +10,7 @@ class View
         $this->_view = $view;
     }
 
-    public function render($params = array(), $template, $pagination = null, $isSessionValid = null)
+    public function render($template, $params = array())
     {
         // foreach ($params as $name => $value) {
         //     ${name} = $value;

@@ -4,15 +4,33 @@ class CommentController
 {
     public function addComment($params)
     {
-        $commentManager = new CommentManager();
-        $commentId = $commentManager->addComment($params);
+        // if (!empty($params['author'])) {
+        //     echo 'TRUE';exit;
+        // } else {
+        //     echo 'FALSE';exit;
+        // }
 
-        if (isset($params['main-author'])) {
-            $commentManager->isAuthor($commentId);
+        if (!empty($params['author']) || !empty($params['content'])) {
+
+            $commentManager = new CommentManager();
+            $commentId = $commentManager->addComment($params);
+
+            if (isset($params['main-author'])) {
+                $commentManager->isAuthor($commentId);
+            }
+
+            $view = new View();
+            $view->redirect('post/id/' . $params['post-id']);
+
+        } else {
+
+            $_SESSION['errorMessage'] = 'Vous devez renseigner tous les champs du formulaire.';
+
+            $view = new View();
+            $view->redirect('post/id/' . $params['post-id']);
         }
 
-        $view = new View();
-        $view->redirect('post/id/' . $params['post-id']);
+        
     }
 
     public function deleteComment($params)
