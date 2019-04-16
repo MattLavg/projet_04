@@ -29,7 +29,8 @@ class Routeur
         'reported-comments'  => ['controller' => 'BackController', 'method' => 'showReportedComments'],
         'add-comment'  => ['controller' => 'CommentController', 'method' => 'addComment'],
         'delete-comment'  => ['controller' => 'CommentController', 'method' => 'deleteComment'],
-        'report-comment'  => ['controller' => 'CommentController', 'method' => 'reportComment']
+        'report-comment'  => ['controller' => 'CommentController', 'method' => 'reportComment'],
+        'valid-comment'  => ['controller' => 'CommentController', 'method' => 'validComment']
     ];
 
     public function __construct($request)

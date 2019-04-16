@@ -87,19 +87,25 @@ foreach ($comments as $comment)
         <p class="col-12 textComment"><?= htmlspecialchars($comment->getContent()); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
 
-<?php
-        if (!$comment->getIsAuthor()) { // if it is not author's comment, display reported button
-?>
-            <a href="<?= HOST; ?>report-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>"><button type="button" class="btn btn-warning btn-sm">Signaler</button></a>
-<?php
-        } 
-?>
-
+        <a href="<?= HOST; ?>report-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">
+            <button type="button" class="btn btn-warning btn-sm">Signaler</button>
+        </a>
 
 <?php
-        if (isset($isSessionValid)) { // author can delete comments
+        if ($comment->getReported() && isset($isSessionValid)) { // if author, comments can be approved
 ?>
-            <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
+            <a class="ml-2" href="<?= HOST; ?>valid-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">
+                <button type="button" class="btn btn-success btn-sm">Publier</button>
+            </a>
+
+<?php
+        }
+        
+        if (isset($isSessionValid)) { // if author, comments can be deleted
+?>
+            <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">
+                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
+            </a>
 <?php
         } 
 ?>

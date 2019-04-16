@@ -89,6 +89,13 @@ class CommentManager extends Manager
         $req->execute(array($id));
     }
 
+    public function validComment($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('UPDATE comments SET reported = 0 WHERE id = ?');
+        $req->execute(array($id));
+    }
+
     public function isAuthor($id)
     {
         $db = $this->dbConnect();

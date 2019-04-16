@@ -8,17 +8,34 @@ class BackController
 
             if (isset($params['id'])) {
 
+                $errorMessage = null;
+
+                if (isset($_SESSION['errorMessage'])) {
+                    $errorMessage = $_SESSION['errorMessage'];
+                }
+
                 extract($params);
 
                 $postManager = new PostManager();
                 $post = $postManager->getPost($id);
 
                 $view = new View('edit');
-                $view->render('back', array('post' => $post));
+                $view->render('back', array('post' => $post, 'errorMessage' => $errorMessage));
+
+                unset($_SESSION['errorMessage']);
+
             } else {
 
+                $errorMessage = null;
+
+                if (isset($_SESSION['errorMessage'])) {
+                    $errorMessage = $_SESSION['errorMessage'];
+                }
+
                 $view = new View('edit');
-                $view->render('back', array());
+                $view->render('back', array('errorMessage' => $errorMessage));
+
+                unset($_SESSION['errorMessage']);
 
             }
 

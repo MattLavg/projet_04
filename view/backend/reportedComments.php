@@ -26,8 +26,14 @@ foreach ($reportedComments as $reportedComment) {
         
             <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $reportedComment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($reportedComment->getAuthor()); ?></span> (publié le <?= $reportedComment->getCreationDate(); ?>)</p>
             <p class="col-12 textComment"><?= htmlspecialchars($reportedComment->getContent()); ?></p>
+
             <div class="col-12 commentButtonBloc d-flex justify-content-end">
-                <a class="deleteCommentBtn" href="<?= HOST; ?>delete-comment/id/<?= $reportedComment->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
+
+                <a href="<?= HOST; ?>valid-comment/id/<?= $reportedComment->getId(); ?>">
+                    <button type="button" class="btn btn-success btn-sm">Publier</button>
+                </a>
+
+                <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $reportedComment->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
             </div>
             
             <?php

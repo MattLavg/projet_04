@@ -4,12 +4,6 @@ class CommentController
 {
     public function addComment($params)
     {
-        // if (!empty($params['author'])) {
-        //     echo 'TRUE';exit;
-        // } else {
-        //     echo 'FALSE';exit;
-        // }
-
         if (!empty($params['author']) || !empty($params['content'])) {
 
             $commentManager = new CommentManager();
@@ -29,8 +23,6 @@ class CommentController
             $view = new View();
             $view->redirect('post/id/' . $params['post-id']);
         }
-
-        
     }
 
     public function deleteComment($params)
@@ -54,5 +46,19 @@ class CommentController
 
         $view = new View();
         $view->redirect('post/id/' . $params['post-id']);
+    }
+
+    public function validComment($params)
+    {
+        $commentManager = new CommentManager();
+        $commentManager->validComment($params['id']);
+
+        if (isset($params['post-id'])) {
+            $view = new View();
+            $view->redirect('post/id/' . $params['post-id']);
+        } else {
+            $view = new View();
+            $view->redirect('reported-comments');
+        }
     }
 }

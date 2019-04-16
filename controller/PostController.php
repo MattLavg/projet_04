@@ -45,21 +45,43 @@ class PostController
 
     public function addPost($params)
     {
-        $manager = new PostManager();
-        $manager->addPost($params);
+        if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
 
-        $view = new View();
-        $view->redirect('home');
+            $manager = new PostManager();
+            $manager->addPost($params);
+
+            $view = new View();
+            $view->redirect('home');
+
+        } else {
+
+            $_SESSION['errorMessage'] = 'Tous les champs doivent être renseignés.';
+
+            $view = new View();
+            $view->redirect('edit');
+
+        }
     }
 
     public function updatePost($params)
     {
-        $manager = new PostManager();
-        $post = $manager->updatePost($params);
+        if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
 
-        // redirect on the updated post
-        $view = new View();
-        $view->redirect('post/id/' . $params['id']);
+            $manager = new PostManager();
+            $post = $manager->updatePost($params);
+
+            // redirect on the updated post
+            $view = new View();
+            $view->redirect('post/id/' . $params['id']);
+
+        } else {
+
+            $_SESSION['errorMessage'] = 'Tous les champs doivent être renseignés.';
+
+            $view = new View();
+            $view->redirect('edit/id/' . $params['id']);
+
+        }
     }
 
     public function deletePostAndComments($params)

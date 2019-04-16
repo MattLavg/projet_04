@@ -60,7 +60,9 @@ if (isset($post)) {
     
     <?php
     }
+
+    if (isset($errorMessage)) {
+        echo '<p class="errorMessage">' . $errorMessage . '</p>';
+    }
+
     ?>
-
-
-
