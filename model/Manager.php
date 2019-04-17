@@ -1,6 +1,7 @@
 <?php
 
-// namespace Math\projet04\Model;
+// namespace Math\projet04\model;
+
 
 class Manager
 {

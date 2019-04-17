@@ -1,6 +1,10 @@
 <?php
 
-// namespace Math\projet04\Model;
+// namespace Math\projet04\model;
+
+// require_once(MODEL . 'Manager.php');
+
+// use Math\projet04\model\Manager;
 
 class Authentication extends Manager
 {

@@ -50,7 +50,7 @@
       if (isset($isSessionValid)) {
 ?>
       <li class="nav-item">
-        <a class="nav-link" href="<?= HOST; ?>edit">Administration</a>
+        <a class="nav-link" href="<?= HOST; ?>post-management">Administration</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="<?= HOST; ?>logout">Déconnexion</a>

@@ -1,13 +1,16 @@
 <?php
 
-// namespace Math\projet04;
-
-// use Math\projet04\classes\Routeur;
-
-session_start();
+// namespace Math\projet_04;
 
 require_once('config.php');
 require_once(MODEL . 'Autoloader.php');
+
+// use Math\projet04\model\Autoloader;
+// use Math\projet_04\application\Routeur;
+
+
+session_start();
+
 
 Autoloader::start();
 

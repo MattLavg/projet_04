@@ -1,5 +1,7 @@
 <?php
 
+// namespace Math\projet04\application;
+
 class View
 {
     protected $_view;

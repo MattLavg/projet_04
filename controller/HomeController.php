@@ -2,17 +2,16 @@
 
 // namespace Math\projet04\controller;
 
-// use Math\projet04\Model\PostManager;
-// use Math\projet04\Model\Pagination;
 
-// require_once(dirname(__DIR__) . '/model/Manager.php');
-// require_once(dirname(__DIR__) . '/model/PostManager.php'); 
-// require_once(dirname(__DIR__) . '/model/Pagination.php');
-
-// require_once(MODEL . 'Manager.php');
 // require_once(MODEL . 'PostManager.php'); 
 // require_once(MODEL . 'Pagination.php');
+// require_once(APPLICATION . 'View.php');
+// require_once(CONTROLLER . 'ConnectionController.php');
 
+// use Math\projet04\model\PostManager;
+// use Math\projet04\model\Pagination;
+// use Math\projet04\application\View;
+// use Math\projet04\controller\ConnectionController;
 
 /**
  * Class Home

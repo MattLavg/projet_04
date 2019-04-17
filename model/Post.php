@@ -1,5 +1,7 @@
 <?php
 
+// namespace Math\projet04\model;
+
 class Post
 {
     protected $_id;

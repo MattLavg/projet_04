@@ -15,11 +15,11 @@ class Autoloader
 
             include_once (MODEL . $class . '.php');
 
-        } else if (file_exists(CLASSES . $class . '.php')) {
+        } elseif (file_exists(APPLICATION . $class . '.php')) {
 
-            include_once (CLASSES . $class . '.php');
+            include_once (APPLICATION . $class . '.php');
 
-        } else if (file_exists(CONTROLLER . $class . '.php')) {
+        } elseif (file_exists(CONTROLLER . $class . '.php')) {
 
             include_once (CONTROLLER . $class . '.php');
 

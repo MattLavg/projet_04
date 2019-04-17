@@ -1,6 +1,13 @@
 <?php
 
-// namespace Math\projet04\Model;
+// namespace Math\projet04\model;
+
+// require_once(MODEL . 'Manager.php');
+// // require_once(APPLICATION . 'Routeur.php');
+// require_once(MODEL . 'Post.php');
+
+// use Math\projet04\model\Manager;
+// use Math\projet04\model\Post;
 
 // require_once(__DIR__ . '/Manager.php');
 
@@ -11,7 +18,7 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts ORDER BY posts.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
 
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
 
             $post = new Post();
             $post->hydrate($data);
@@ -38,7 +45,7 @@ class PostManager extends Manager
         $req = $db->prepare('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts WHERE id = ?');
         $req->execute(array($id));
 
-        $data = $req->fetch(PDO::FETCH_ASSOC);
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
 
         $post = new Post();
         $post->hydrate($data);

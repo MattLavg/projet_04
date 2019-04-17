@@ -1,8 +1,19 @@
 <?php
 
-// namespace Math\projet04\classes;
+// namespace Math\projet_04\application;
 
-// use Math\projet04\controller\Home;
+// require_once(CONTROLLER . 'HomeController.php');
+// require_once(MODEL . 'PostManager.php');
+
+// use Math\projet_04\model\PostManager;
+
+// use Math\projet_04\controller\HomeController;
+// use Math\projet04\controller\PostController;
+// use Math\projet04\controller\CommentController;
+// use Math\projet04\controller\ConnectionController;
+// use Math\projet04\controller\BackController;
+
+
 
 
 /**
@@ -15,6 +26,10 @@ class Routeur
 {
     protected $_request;
 
+    /**
+     * @var array déclaration des routes
+     * précision sur la clé controller, utilisation du namespace complet
+     */
     protected $_routes = [ 
         'home' => ['controller' => 'HomeController', 'method' => 'showHome'],
         'post'  => ['controller' => 'PostController', 'method' => 'showPost'],
@@ -92,7 +107,9 @@ class Routeur
 
             $controller = $this->_routes[$route]['controller'];
             $method = $this->_routes[$route]['method'];
-
+            // new PostManager();die;
+            // new HomeController();die;
+            // var_dump($controller);die;
             $currentController = new $controller();
             $currentController->$method($params);
 

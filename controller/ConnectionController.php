@@ -1,5 +1,13 @@
 <?php
 
+// namespace Math\projet04\controller;
+
+// require_once(APPLICATION . 'View.php');
+// require_once(MODEL . 'Authentication.php');
+
+// use Math\projet04\application\View;
+// use Math\projet04\model\Authentication;
+
 class ConnectionController
 {
     public function showConnection()
