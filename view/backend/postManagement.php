@@ -45,7 +45,7 @@ $elementsOnPage = false;
                     <td><a href="<?= HOST; ?>post/id/<?= $post->getId(); ?>"><span id="postTitle<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></span></a></td>
                     <td><?= $post->getCreationDate(); ?></td>
                     <td><a href="<?= HOST; ?>edit/id/<?= $post->getId(); ?>">Modifier</a></td>
-                    <td><a href="<?= HOST; ?>delete-post/id/<?= $post->getId(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a></td>
+                    <td><a href="<?= HOST; ?>delete-post/id/<?= $post->getId(); ?>/post-management/true" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a></td>
                 </tr>  
             <?php
             }

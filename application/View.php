@@ -1,6 +1,6 @@
 <?php
 
-// namespace Math\projet04\application;
+namespace application;
 
 class View
 {

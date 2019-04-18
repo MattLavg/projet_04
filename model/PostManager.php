@@ -1,13 +1,13 @@
 <?php
 
-// namespace Math\projet04\model;
+namespace model;
 
 // require_once(MODEL . 'Manager.php');
 // // require_once(APPLICATION . 'Routeur.php');
 // require_once(MODEL . 'Post.php');
 
-// use Math\projet04\model\Manager;
-// use Math\projet04\model\Post;
+use model\Manager;
+use model\Post;
 
 // require_once(__DIR__ . '/Manager.php');
 
@@ -57,7 +57,6 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts (title, author, content, creationDate, updateDate) VALUES(?, ?, ?, NOW(), ?)');
-
         $content = strip_tags($values['content']);
 
         $req->execute(array($values['title'], $values['author'], $content, NULL));

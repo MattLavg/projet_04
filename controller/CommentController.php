@@ -1,10 +1,15 @@
 <?php
 
+namespace controller;
+
+use application\View;
+use model\CommentManager;
+
 class CommentController
 {
     public function addComment($params)
     {
-        if (!empty($params['author']) || !empty($params['content'])) {
+        if (!empty($params['author']) && !empty($params['content'])) {
 
             $commentManager = new CommentManager();
             $commentId = $commentManager->addComment($params);

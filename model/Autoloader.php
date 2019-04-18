@@ -1,6 +1,6 @@
 <?php
 
-// namespace Math\projet04\Model;
+namespace model;
 
 class Autoloader
 {
@@ -11,18 +11,9 @@ class Autoloader
 
     public static function load($class)
     {
-        if (file_exists(MODEL . $class . '.php')) {
+        // $class = path of the class with namespace
+        $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
 
-            include_once (MODEL . $class . '.php');
-
-        } elseif (file_exists(APPLICATION . $class . '.php')) {
-
-            include_once (APPLICATION . $class . '.php');
-
-        } elseif (file_exists(CONTROLLER . $class . '.php')) {
-
-            include_once (CONTROLLER . $class . '.php');
-
-        }
+        require_once ROOT . $class . '.php';
     }
 }

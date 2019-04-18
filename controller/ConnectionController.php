@@ -1,28 +1,33 @@
 <?php
 
-// namespace Math\projet04\controller;
+namespace controller;
 
-// require_once(APPLICATION . 'View.php');
-// require_once(MODEL . 'Authentication.php');
-
-// use Math\projet04\application\View;
-// use Math\projet04\model\Authentication;
+use application\View;
+use model\Authentication;
 
 class ConnectionController
 {
     public function showConnection()
     {
-        // pour les erreurs
-        $errorMessage = null;
+        if ($this->isSessionValid()) {
 
-        if (isset($_SESSION['errorMessage'])) {
-            $errorMessage = $_SESSION['errorMessage'];
+            $view = new View();
+            $view->redirect('post-management');
+
+        } else {
+
+            // pour les erreurs
+            $errorMessage = null;
+
+            if (isset($_SESSION['errorMessage'])) {
+                $errorMessage = $_SESSION['errorMessage'];
+            }
+
+            $view = new View('connection');
+            $view->render('front', array('errorMessage' => $errorMessage));
+
+            unset($_SESSION['errorMessage']);
         }
-// var_dump($errorMessage);exit;
-        $view = new View('connection');
-        $view->render('front', array('errorMessage' => $errorMessage));
-
-        unset($_SESSION['errorMessage']);
     }
 
     public function loginCheck($params)

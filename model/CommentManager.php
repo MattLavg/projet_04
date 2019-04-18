@@ -1,6 +1,9 @@
 <?php
 
-// namespace Math\projet04\Model;
+namespace Model;
+
+use model\Comment;
+use model\Manager;
 
 class CommentManager extends Manager
 {
@@ -12,7 +15,7 @@ class CommentManager extends Manager
 
         $comments = [];
 
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
   
             $comment = new Comment();
             $comment->hydrate($data);
@@ -51,7 +54,7 @@ class CommentManager extends Manager
 
         $comments = [];
 
-        while ($data = $req->fetch(PDO::FETCH_ASSOC)) {
+        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
   
             $comment = new Comment();
             $comment->hydrate($data);

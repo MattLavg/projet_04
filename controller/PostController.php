@@ -1,5 +1,13 @@
 <?php
 
+namespace controller;
+
+use model\PostManager;
+use model\CommentManager;
+use model\Pagination;
+use controller\ConnectionController;
+use application\View;
+
 class PostController 
 {
     public function showPost($params = [])
@@ -85,11 +93,20 @@ class PostController
     }
 
     public function deletePostAndComments($params)
-    {
+    { 
         $postManager = new PostManager();
         $postManager->deletePostAndComments($params['id']);
 
-        $view = new View();
-        $view->redirect('home');
+        if (isset($params['post-management'])) {
+
+            $view = new View();
+            $view->redirect('post-management');
+
+        } else {
+
+            $view = new View();
+            $view->redirect('home');
+
+        }
     }
 }

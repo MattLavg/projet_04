@@ -1,6 +1,6 @@
 <?php 
 
-// namespace Math\projet04\controller;
+namespace controller;
 
 
 // require_once(MODEL . 'PostManager.php'); 
@@ -8,10 +8,10 @@
 // require_once(APPLICATION . 'View.php');
 // require_once(CONTROLLER . 'ConnectionController.php');
 
-// use Math\projet04\model\PostManager;
-// use Math\projet04\model\Pagination;
-// use Math\projet04\application\View;
-// use Math\projet04\controller\ConnectionController;
+use model\PostManager;
+use model\Pagination;
+use application\View;
+use controller\ConnectionController;
 
 /**
  * Class Home

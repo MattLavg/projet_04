@@ -1,5 +1,13 @@
 <?php
 
+namespace controller;
+
+use controller\ConnectionController;
+use model\PostManager;
+use model\CommentManager;
+use model\Pagination;
+use application\View;
+
 class BackController
 {
     public function showEdit($params)

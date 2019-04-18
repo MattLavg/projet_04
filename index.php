@@ -1,21 +1,16 @@
 <?php
 
-// namespace Math\projet_04;
-
 require_once('config.php');
-require_once(MODEL . 'Autoloader.php');
+require_once(AUTOLOAD . 'Autoloader.php');
 
-// use Math\projet04\model\Autoloader;
-// use Math\projet_04\application\Routeur;
+use model\Autoloader;
+use application\Routeur;
 
 
 session_start();
 
-
 Autoloader::start();
 
-// $autoloader = new Autoloader();
-// $autoloader->start();
 
 if (isset($_GET['page'])) {
     $request = $_GET['page'];

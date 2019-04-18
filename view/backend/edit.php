@@ -51,7 +51,7 @@ if (isset($post)) {
             </div>
             
             <div class="form-group">
-                <textarea id="tinymcetextarea" name="content">Hello, World!</textarea>
+                <textarea id="tinymcetextarea" name="content"></textarea>
             </div>
     
             <input type="submit" value="Envoyer" class="btn btn-primary" />
