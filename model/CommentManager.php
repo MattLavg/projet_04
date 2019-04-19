@@ -1,9 +1,9 @@
 <?php
 
-namespace Model;
+namespace Blog\Model;
 
-use model\Comment;
-use model\Manager;
+use Blog\Model\Comment;
+use Blog\Model\Manager;
 
 class CommentManager extends Manager
 {

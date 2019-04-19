@@ -1,12 +1,12 @@
 <?php
 
-namespace controller;
+namespace Blog\Controller;
 
-use controller\ConnectionController;
-use model\PostManager;
-use model\CommentManager;
-use model\Pagination;
-use application\View;
+use Blog\Controller\ConnectionController;
+use Blog\Model\PostManager;
+use Blog\Model\CommentManager;
+use Blog\Model\Pagination;
+use Blog\Core\View;
 
 class BackController
 {

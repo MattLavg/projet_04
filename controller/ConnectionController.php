@@ -1,9 +1,9 @@
 <?php
 
-namespace controller;
+namespace Blog\Controller;
 
-use application\View;
-use model\Authentication;
+use Blog\Core\View;
+use Blog\Model\Authentication;
 
 class ConnectionController
 {

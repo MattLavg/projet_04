@@ -1,15 +1,9 @@
 <?php
 
-namespace model;
+namespace Blog\Model;
 
-// require_once(MODEL . 'Manager.php');
-// // require_once(APPLICATION . 'Routeur.php');
-// require_once(MODEL . 'Post.php');
-
-use model\Manager;
-use model\Post;
-
-// require_once(__DIR__ . '/Manager.php');
+use Blog\Model\Manager;
+use Blog\Model\Post;
 
 class PostManager extends Manager
 {

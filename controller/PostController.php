@@ -1,12 +1,12 @@
 <?php
 
-namespace controller;
+namespace Blog\Controller;
 
-use model\PostManager;
-use model\CommentManager;
-use model\Pagination;
-use controller\ConnectionController;
-use application\View;
+use Blog\Model\PostManager;
+use Blog\Model\CommentManager;
+use Blog\Model\Pagination;
+use Blog\Controller\ConnectionController;
+use Blog\Core\View;
 
 class PostController 
 {

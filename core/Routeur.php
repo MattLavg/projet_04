@@ -1,20 +1,6 @@
 <?php
 
-namespace application;
-
-// require_once(CONTROLLER . 'HomeController.php');
-// require_once(MODEL . 'PostManager.php');
-
-// use Math\projet_04\model\PostManager;
-
-// use controller\HomeController;
-// use controller\PostController;
-// use controller\CommentController;
-// use controller\ConnectionController;
-// use controller\BackController;
-
-
-
+namespace Blog\Core;
 
 /**
  *  Classe Routeur
@@ -31,21 +17,21 @@ class Routeur
      * précision sur la clé controller : utilisation du namespace complet puisque PHP ne trouve pas le fichier en écriture dynamique
      */
     protected $_routes = [ 
-        'home' => ['controller' => 'controller\HomeController', 'method' => 'showHome'],
-        'post'  => ['controller' => 'controller\PostController', 'method' => 'showPost'],
-        'connection'  => ['controller' => 'controller\ConnectionController', 'method' => 'showConnection'],
-        'login'  => ['controller' => 'controller\ConnectionController', 'method' => 'loginCheck'],
-        'logout'  => ['controller' => 'controller\ConnectionController', 'method' => 'logOut'],
-        'edit'  => ['controller' => 'controller\BackController', 'method' => 'showEdit'],
-        'add-post'  => ['controller' => 'controller\PostController', 'method' => 'addPost'],
-        'update-post'  => ['controller' => 'controller\PostController', 'method' => 'updatePost'],
-        'delete-post'  => ['controller' => 'controller\PostController', 'method' => 'deletePostAndComments'],
-        'post-management'  => ['controller' => 'controller\BackController', 'method' => 'showPostsManagement'],
-        'reported-comments'  => ['controller' => 'controller\BackController', 'method' => 'showReportedComments'],
-        'add-comment'  => ['controller' => 'controller\CommentController', 'method' => 'addComment'],
-        'delete-comment'  => ['controller' => 'controller\CommentController', 'method' => 'deleteComment'],
-        'report-comment'  => ['controller' => 'controller\CommentController', 'method' => 'reportComment'],
-        'valid-comment'  => ['controller' => 'controller\CommentController', 'method' => 'validComment']
+        'home'               => ['controller' => 'Blog\Controller\HomeController',       'method' => 'showHome'],
+        'post'               => ['controller' => 'Blog\Controller\PostController',       'method' => 'showPost'],
+        'connection'         => ['controller' => 'Blog\Controller\ConnectionController', 'method' => 'showConnection'],
+        'login'              => ['controller' => 'Blog\Controller\ConnectionController', 'method' => 'loginCheck'],
+        'logout'             => ['controller' => 'Blog\Controller\ConnectionController', 'method' => 'logOut'],
+        'edit'               => ['controller' => 'Blog\Controller\BackController',       'method' => 'showEdit'],
+        'add-post'           => ['controller' => 'Blog\Controller\PostController',       'method' => 'addPost'],
+        'update-post'        => ['controller' => 'Blog\Controller\PostController',       'method' => 'updatePost'],
+        'delete-post'        => ['controller' => 'Blog\Controller\PostController',       'method' => 'deletePostAndComments'],
+        'post-management'    => ['controller' => 'Blog\Controller\BackController',       'method' => 'showPostsManagement'],
+        'reported-comments'  => ['controller' => 'Blog\Controller\BackController',       'method' => 'showReportedComments'],
+        'add-comment'        => ['controller' => 'Blog\Controller\CommentController',    'method' => 'addComment'],
+        'delete-comment'     => ['controller' => 'Blog\Controller\CommentController',    'method' => 'deleteComment'],
+        'report-comment'     => ['controller' => 'Blog\Controller\CommentController',    'method' => 'reportComment'],
+        'valid-comment'      => ['controller' => 'Blog\Controller\CommentController',    'method' => 'validComment']
     ];
 
     public function __construct($request)

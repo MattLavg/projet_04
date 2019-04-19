@@ -1,9 +1,9 @@
 <?php
 
-namespace controller;
+namespace Blog\Controller;
 
-use application\View;
-use model\CommentManager;
+use Blog\Core\View;
+use Blog\Model\CommentManager;
 
 class CommentController
 {

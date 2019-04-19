@@ -1,10 +1,8 @@
 <?php
 
-namespace model;
+namespace Blog\Model;
 
-// require_once(MODEL . 'Manager.php');
-
-use model\Manager;
+use Blog\Model\Manager;
 
 class Authentication extends Manager
 {

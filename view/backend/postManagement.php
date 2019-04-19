@@ -1,15 +1,5 @@
 <?php 
 
-// namespace Math\projet04;
-
-// use Math\projet04\Model\PostManager;
-// use Math\projet04\Model\Pagination;
-
-// require_once(dirname(dirname(__DIR__)) . '/model/Manager.php');
-// require_once(dirname(dirname(__DIR__)) . '/model/PostManager.php');
-// require_once(dirname(dirname(__DIR__)) . '/model/Pagination.php');
-
-
 $title = 'Gestion d\'articles'; 
 
 ?>

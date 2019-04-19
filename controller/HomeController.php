@@ -1,17 +1,11 @@
 <?php 
 
-namespace controller;
+namespace Blog\Controller;
 
-
-// require_once(MODEL . 'PostManager.php'); 
-// require_once(MODEL . 'Pagination.php');
-// require_once(APPLICATION . 'View.php');
-// require_once(CONTROLLER . 'ConnectionController.php');
-
-use model\PostManager;
-use model\Pagination;
-use application\View;
-use controller\ConnectionController;
+use Blog\Model\PostManager;
+use Blog\Model\Pagination;
+use Blog\Core\View;
+use Blog\Controller\ConnectionController;
 
 /**
  * Class Home

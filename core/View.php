@@ -1,6 +1,6 @@
 <?php
 
-namespace application;
+namespace Blog\Core;
 
 class View
 {

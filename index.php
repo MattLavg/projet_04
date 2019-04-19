@@ -3,8 +3,8 @@
 require_once('config.php');
 require_once(AUTOLOAD . 'Autoloader.php');
 
-use model\Autoloader;
-use application\Routeur;
+use Blog\Model\Autoloader;
+use Blog\Core\Routeur;
 
 
 session_start();
