@@ -3,7 +3,7 @@
 namespace Blog\Model;
 
 use Blog\Model\Comment;
-use Blog\Model\Manager;
+use Blog\Core\Manager;
 
 class CommentManager extends Manager
 {

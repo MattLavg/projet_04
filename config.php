@@ -1,5 +1,7 @@
 <?php
 
+$db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
+
 $root = $_SERVER['DOCUMENT_ROOT'];
 $host = $_SERVER['HTTP_HOST'];
 

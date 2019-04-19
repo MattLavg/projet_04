@@ -2,7 +2,7 @@
 
 namespace Blog\Model;
 
-use Blog\Model\Manager;
+use Blog\Core\Manager;
 
 class Authentication extends Manager
 {
