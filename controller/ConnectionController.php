@@ -39,7 +39,7 @@ class ConnectionController
 
         $_SESSION['valid'] = false;
         // var_dump($params);exit;
-        if ($params['name'] == $authentication['name'] && $params['password'] == $authentication['password']) {
+        if ($params['name'] == $authentication['name'] && password_verify($params['password'], $authentication['password'])) {
             
             $_SESSION['valid'] = true;
 

@@ -42,7 +42,7 @@ $(document).ready(function () {
     // setInterval(checkPostAffectedLines(), 1000);
 
 
-    // efface le message d'erreur
+    // supprime le message d'erreur
     function checkErrorMessages() {
         $('.errorMessage').fadeOut(4000);
     }

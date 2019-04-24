@@ -10,7 +10,7 @@ class CommentManager extends Manager
     public function listComments($post_id, $firstEntry = 0, $nbElementsByPage)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, post_id, author, content, reported, isAuthor, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
+        $req = $db->prepare('SELECT id, post_id, author, content, reported, isAdmin, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
         $req->execute([$post_id]);
 
         $comments = [];
@@ -66,14 +66,19 @@ class CommentManager extends Manager
         return $comments;
     }
 
-    public function addComment($values)
+    public function addComment($values, $admin = null)
     {
+        //var_dump($values, $admin); die;
         $db = $this->dbConnect();
-        $req = $db->prepare('INSERT INTO comments (post_id, author, content, creationDate) VALUES(?, ?, ?, NOW())');
+        $req = $db->prepare('INSERT INTO comments (post_id, author, content, isAdmin, creationDate) VALUES(?, ?, ?, ?, NOW())');
 
         $content = strip_tags($values['content']);
 
-        $req->execute(array($values['post-id'], $values['author'], $content));
+        if ($admin) {
+            $req->execute(array($values['post-id'], $values['author'], $content, 1));
+        } else {
+            $req->execute(array($values['post-id'], $values['author'], $content, 0));
+        }
 
         return $db->lastInsertId();
     }
@@ -99,10 +104,10 @@ class CommentManager extends Manager
         $req->execute(array($id));
     }
 
-    public function isAuthor($id)
+    public function isAdmin($id)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE comments SET isAuthor = 1 WHERE id = ?');
+        $req = $db->prepare('UPDATE comments SET isAdmin = 1 WHERE id = ?');
         $req->execute(array($id));
     }
 }

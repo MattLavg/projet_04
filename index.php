@@ -22,5 +22,3 @@ if (isset($_GET['page'])) {
 
 $routeur = new Routeur($request);
 $routeur->renderController();
-
-

@@ -12,12 +12,17 @@ class CommentController
         if (!empty($params['author']) && !empty($params['content'])) {
 
             $commentManager = new CommentManager();
-            $commentId = $commentManager->addComment($params);
 
-            if (isset($params['main-author'])) {
-                $commentManager->isAuthor($commentId);
+            if (ConnectionController::isSessionValid()) {
+
+                $commentId = $commentManager->addComment($params, $admin = true);
+
+            } else {
+
+                $commentId = $commentManager->addComment($params);
+
             }
-
+var_dump($commentId);die;
             $view = new View();
             $view->redirect('post/id/' . $params['post-id']);
 

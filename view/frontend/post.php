@@ -33,7 +33,7 @@ if (isset($isSessionValid)) {
 
     <div class="form-group">
         <label for="author">Pseudo :&nbsp;</label>
-        <input type="text" id="author" name="author" class="form-control" />
+        <input type="text" id="author" name="author" class="form-control" value="<?php if (isset($isSessionValid)) { echo 'Jean Forteroche';} ?>" />
     </div>
 
     <div class="form-group">
@@ -115,9 +115,9 @@ foreach ($comments as $comment)
         <?php 
             if ($comment->getReported()) {
                 echo '<span class="reported"></span>';
-            } elseif ($comment->getIsAuthor()) {
+            } elseif ($comment->getIsAdmin()) {
                 echo '<span class="isAuthor"></span>';
-            } elseif ($comment->getIsAuthor() && $comment->getReported()) {
+            } elseif ($comment->getIsAdmin() && $comment->getReported()) {
                 echo '<span class="reported"></span>';
             }
         ?>

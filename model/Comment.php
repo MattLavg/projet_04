@@ -10,7 +10,7 @@ class Comment
     protected $_content;
     protected $_creationDate;
     protected $_reported;
-    protected $_isAuthor;
+    protected $_isAdmin;
 
     public function hydrate($data)
     {   
@@ -56,9 +56,9 @@ class Comment
         return $this->_reported;
     }
 
-    public function getIsAuthor()
+    public function getIsAdmin()
     {
-        return $this->_isAuthor;
+        return $this->_isAdmin;
     }
 
     // SETTERS
@@ -93,8 +93,8 @@ class Comment
         $this->_reported = $reported;
     }
 
-    public function setIsAuthor($isAuthor)
+    public function setIsAdmin($isAdmin)
     {
-        $this->_isAuthor = $isAuthor;
+        $this->_isAdmin = $isAdmin;
     }
 }
