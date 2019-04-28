@@ -62,6 +62,8 @@ if (isset($isSessionValid)) {
 <?php
 if (isset($errorMessage)) {
     echo '<p class="errorMessage">' . $errorMessage . '</p>';
+} else if (isset($actionDone)) {
+    echo '<p class="actionDone">' . $actionDone . '</p>';
 }
 ?>
 

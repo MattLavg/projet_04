@@ -6,7 +6,19 @@
 /* ERRORS */
 
 .errorMessage {
-    color: #FF1301;
+    background-color: #FF1301;
+    color : #FFFFFF;
+    padding: 1.5em;
+    margin-top: 15px;
+}
+
+/* ACTIONS */
+
+.actionDone {
+    background-color: #0026FF;
+    color : #FFFFFF;
+    padding: 1.5em;
+    margin-top: 15px;
 }
 
 /* POSTS */

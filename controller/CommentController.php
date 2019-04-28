@@ -14,15 +14,15 @@ class CommentController
             $commentManager = new CommentManager();
 
             if (ConnectionController::isSessionValid()) {
-
                 $commentId = $commentManager->addComment($params, $admin = true);
-
             } else {
-
                 $commentId = $commentManager->addComment($params);
-
             }
-var_dump($commentId);die;
+
+            if ($commentId) {
+                $_SESSION['actionDone'] = 'Votre commentaire a bien été publié.';
+            }
+
             $view = new View();
             $view->redirect('post/id/' . $params['post-id']);
 
@@ -52,7 +52,11 @@ var_dump($commentId);die;
     public function reportComment($params)
     {
         $commentManager = new CommentManager();
-        $commentManager->reportComment($params['id']);
+        $reportedComment = $commentManager->reportComment($params['id']);
+
+        if ($reportedComment) {
+            $_SESSION['actionDone'] = 'Le commentaire a bien été signalé.';
+        }
 
         $view = new View();
         $view->redirect('post/id/' . $params['post-id']);

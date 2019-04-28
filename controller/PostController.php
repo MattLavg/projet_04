@@ -21,9 +21,15 @@ class PostController
 
         // pour les erreurs
         $errorMessage = null;
+        // en cas de réussite
+        $actionDone = null;
 
         if (isset($_SESSION['errorMessage'])) {
             $errorMessage = $_SESSION['errorMessage'];
+        }
+
+        if (isset($_SESSION['actionDone'])) {
+            $actionDone = $_SESSION['actionDone'];
         }
 
         extract($params); // permet d'extraire la variable $id
@@ -46,9 +52,10 @@ class PostController
             'comments' => $comments, 
             'pagination' => $pagination, 
             'isSessionValid' => ConnectionController::isSessionValid(), 
-            'errorMessage' => $errorMessage));
+            'errorMessage' => $errorMessage,
+            'actionDone' => $actionDone));
 
-        unset($_SESSION['errorMessage']);
+        unset($_SESSION['errorMessage'], $_SESSION['actionDone']);
     }
 
     public function addPost($params)

@@ -42,11 +42,11 @@ $(document).ready(function () {
     // setInterval(checkPostAffectedLines(), 1000);
 
 
-    // supprime le message d'erreur
-    function checkErrorMessages() {
-        $('.errorMessage').fadeOut(4000);
+    // supprime les message d'erreurs ou d'actions réussies
+    function fadeOutMessages() {
+        $('.errorMessage, .actionDone').fadeOut(4000);
     }
-    setInterval(checkErrorMessages(), 1000);
+    setInterval(fadeOutMessages(), 1000);
 
     // Colore les commentaires signalés
     $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');

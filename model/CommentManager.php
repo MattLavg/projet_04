@@ -94,7 +94,9 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comments SET reported = 1 WHERE id = ?');
-        $req->execute(array($id));
+        $reportedComment = $req->execute(array($id));
+
+        return $reportedComment;
     }
 
     public function validComment($id)
