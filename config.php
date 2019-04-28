@@ -1,6 +1,7 @@
 <?php
 
 $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
+
 // var_dump($_SERVER['DOCUMENT_ROOT'], __DIR__);die;
 // get the current directory
 // preg_match('#/([a-zA-Z0-9_-]+)+/([a-zA-Z0-9_-]+)*#', $_SERVER['PHP_SELF'], $matches);

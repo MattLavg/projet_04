@@ -47,7 +47,7 @@ foreach ($reportedComments as $reportedComment) {
     </div>
     
 <?php
-} // fin du while
+} // fin du foreach
 
 if (!$commentsOnPage) {
     echo 'Il n\'y a actuellement aucun commentaire signalé.';

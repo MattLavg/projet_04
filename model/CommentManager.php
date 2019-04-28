@@ -54,13 +54,17 @@ class CommentManager extends Manager
 
         $comments = [];
 
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
-  
-            $comment = new Comment();
-            $comment->hydrate($data);
+        if ($req) {
 
-            $comments[] = $comment;
-            
+            while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+  
+                $comment = new Comment();
+                $comment->hydrate($data);
+    
+                $comments[] = $comment;
+                
+            }
+
         }
 
         return $comments;
