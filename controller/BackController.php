@@ -100,6 +100,13 @@ class BackController
                 $pageNb = $params['pageNb'];
             } 
 
+            // when publish or delete a comment
+            $actionDone = null;
+
+            if (isset($_SESSION['actionDone'])) {
+                $actionDone = $_SESSION['actionDone'];
+            }
+
             $commentManager = new CommentManager();
 
             $totalNbRows = $commentManager->countReportedComments();
@@ -112,7 +119,10 @@ class BackController
             $view = new View('reportedComments');
             $view->render('back', array(
                 'reportedComments' => $reportedComments, 
-                'pagination' => $pagination));
+                'pagination' => $pagination,
+                'actionDone' => $actionDone));
+
+            unset($_SESSION['actionDone']);
 
         } else {
             

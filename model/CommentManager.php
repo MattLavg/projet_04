@@ -109,10 +109,20 @@ class CommentManager extends Manager
         $req->execute(array($id));
     }
 
-    public function isAdmin($id)
+    public function isAdmin($id) // voir si toujours utile
     {
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comments SET isAdmin = 1 WHERE id = ?');
         $req->execute(array($id));
+    }
+
+    public function isReportedComment($id)
+    {
+        $db = $this->dbConnect();
+        $req = $db->prepare('SELECT reported FROM comments WHERE id = ?');
+        $req->execute(array($id));
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
+
+        return $data;
     }
 }

@@ -13,18 +13,23 @@
 
 $title = 'Modération des commentaires';
 
+if (isset($actionDone)) {
+    echo '<p class="actionDone">' . $actionDone . '</p>';
+}
+
 $commentsOnPage = false;
 
 foreach ($reportedComments as $reportedComment) {
     
     $commentsOnPage = true;
+
 ?>
     
     <div class="comment container">
     
         <div class="row">
         
-            <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $reportedComment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($reportedComment->getAuthor()); ?></span> (publié le <?= $reportedComment->getCreationDate(); ?>)</p>
+            <p class="col-12 authorCommentBloc bg-warning"><span id="commentAuthor<?= $reportedComment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($reportedComment->getAuthor()); ?></span> (publié le <?= $reportedComment->getCreationDate(); ?>)</p>
             <p class="col-12 textComment"><?= htmlspecialchars($reportedComment->getContent()); ?></p>
 
             <div class="col-12 commentButtonBloc d-flex justify-content-end">
@@ -35,15 +40,7 @@ foreach ($reportedComments as $reportedComment) {
 
                 <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $reportedComment->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
             </div>
-            
-            <?php
-                if ($reportedComment->getReported()) {
-                    echo '<span class="reported"></span>';
-                }
-            ?>
-
         </div>
-
     </div>
     
 <?php

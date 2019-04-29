@@ -75,17 +75,30 @@ if (isset($errorMessage)) {
 $elementsOnPage = false;
 $commentsOnPage = false;
 
+
+
 foreach ($comments as $comment)
 {
     $elementsOnPage = true;
     $commentsOnPage = true;
+
+    $backgroundComment = 'bg-secondary text-white';
+
+    if ($comment->getReported()) {
+        $backgroundComment = 'bg-warning';
+    } elseif ($comment->getIsAdmin()) {
+        $backgroundComment = 'bg-info text-white';
+    } elseif ($comment->getIsAdmin() && $comment->getReported()) {
+        $backgroundComment = 'bg-warning';
+    }
+
 ?>
 
 <div class="comment container">
 
     <div class="row">
     
-        <p class="col-12 authorCommentBloc"><span id="commentAuthor<?= $comment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
+        <p class="col-12 authorCommentBloc <?= $backgroundComment; ?>"><span id="commentAuthor<?= $comment->getId(); ?>" class="font-weight-bold"><?= htmlspecialchars($comment->getAuthor()); ?></span> (publié le <?= $comment->getCreationDate(); ?>)</p>
         <p class="col-12 textComment"><?= htmlspecialchars($comment->getContent()); ?></p>
         <div class="col-12 commentButtonBloc d-flex justify-content-end">
 
@@ -113,19 +126,7 @@ foreach ($comments as $comment)
 ?>
 
         </div>
-
-        <?php 
-            if ($comment->getReported()) {
-                echo '<span class="reported"></span>';
-            } elseif ($comment->getIsAdmin()) {
-                echo '<span class="isAuthor"></span>';
-            } elseif ($comment->getIsAdmin() && $comment->getReported()) {
-                echo '<span class="reported"></span>';
-            }
-        ?>
-    
     </div>
-
 </div>
 
 <?php

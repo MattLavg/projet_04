@@ -40,6 +40,8 @@ class CommentController
         $commentManager = new CommentManager();
         $commentManager->deleteComment($params['id']);
 
+        $_SESSION['actionDone'] = 'Vous avez supprimé un commentaire.';
+
         if (isset($params['post-id'])) {
             $view = new View();
             $view->redirect('post/id/' . $params['post-id']);
@@ -52,10 +54,20 @@ class CommentController
     public function reportComment($params)
     {
         $commentManager = new CommentManager();
-        $reportedComment = $commentManager->reportComment($params['id']);
+        $isReportedComment = $commentManager->isReportedComment($params['id']);
 
-        if ($reportedComment) {
-            $_SESSION['actionDone'] = 'Le commentaire a bien été signalé.';
+        if ($isReportedComment['reported'] == 1) {
+
+            $_SESSION['actionDone'] = 'Le commentaire a déjà été signalé.';
+
+        } else {
+
+            $reportedComment = $commentManager->reportComment($params['id']);
+
+            if ($reportedComment) {
+                $_SESSION['actionDone'] = 'Le commentaire a bien été signalé.';
+            }
+
         }
 
         $view = new View();
@@ -66,6 +78,8 @@ class CommentController
     {
         $commentManager = new CommentManager();
         $commentManager->validComment($params['id']);
+
+        $_SESSION['actionDone'] = 'Le commentaire a été publié.';
 
         if (isset($params['post-id'])) {
             $view = new View();

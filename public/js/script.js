@@ -48,8 +48,8 @@ $(document).ready(function () {
     }
     setInterval(fadeOutMessages(), 1000);
 
-    // Colore les commentaires signalés
-    $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
-    $('.isAuthor').parent().find('.authorCommentBloc').css('background-color', '#9CFF94');
+    // // Colore les commentaires signalés
+    // $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
+    // $('.isAuthor').parent().find('.authorCommentBloc').css('background-color', '#9CFF94');
 
 });
