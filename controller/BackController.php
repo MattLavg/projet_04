@@ -69,7 +69,9 @@ class BackController
             $postManager = new PostManager();
 
             $totalNbRows = $postManager->count();
-            $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 15);
+            $url = HOST . 'post-management';
+
+            $pagination = new Pagination($pageNb, $totalNbRows, $url, 15);
             
             $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 
@@ -88,7 +90,7 @@ class BackController
         }
     }
     
-    public function showReportedComments()
+    public function showReportedComments($params = [])
     {
         if (ConnectionController::isSessionValid()) {
 
@@ -101,7 +103,9 @@ class BackController
             $commentManager = new CommentManager();
 
             $totalNbRows = $commentManager->countReportedComments();
-            $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 5);
+            $url = HOST . 'reported-comments';
+
+            $pagination = new Pagination($pageNb, $totalNbRows, $url, 10);
 
             $reportedComments = $commentManager->listReportedComments($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 

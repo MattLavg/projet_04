@@ -42,7 +42,9 @@ class PostController
         $commentManager = new CommentManager();
 
         $totalNbRows = $commentManager->count($postId);
-        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 10);
+        $url = HOST . 'post/id/' . $postId;
+
+        $pagination = new Pagination($pageNb, $totalNbRows, $url, 10);
 
         $comments = $commentManager->listComments($postId, $pagination->getFirstEntry(), $pagination->getElementNbByPage());
 

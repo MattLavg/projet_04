@@ -12,12 +12,18 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, title, content, author, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate, DATE_FORMAT(updateDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updateDate FROM posts ORDER BY posts.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
 
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+        $posts = [];
 
-            $post = new Post();
-            $post->hydrate($data);
+        if ($req) {
 
-            $posts[] = $post;
+            while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+
+                $post = new Post();
+                $post->hydrate($data);
+    
+                $posts[] = $post;
+    
+            }
 
         }
 

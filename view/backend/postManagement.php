@@ -46,6 +46,10 @@ $elementsOnPage = false;
 
 <?php
 
+if (!$elementsOnPage) {
+    echo 'Il n\'y a actuellement aucun article';
+}
+
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
     $pagination->render();

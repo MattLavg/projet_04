@@ -72,7 +72,6 @@ class CommentManager extends Manager
 
     public function addComment($values, $admin = null)
     {
-        //var_dump($values, $admin); die;
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO comments (post_id, author, content, isAdmin, creationDate) VALUES(?, ?, ?, ?, NOW())');
 

@@ -10,7 +10,6 @@ $title = 'Le blog de Jean Forteroche';
 
 $elementsOnPage = false;
 
-
 foreach ($posts as $post) 
 {
     $elementsOnPage = true;
@@ -39,6 +38,10 @@ foreach ($posts as $post)
     <hr>
 
 <?php
+}
+
+if (!$elementsOnPage) {
+    echo 'Il n\'y a actuellement aucun article';
 }
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 

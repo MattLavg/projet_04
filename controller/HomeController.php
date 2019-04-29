@@ -26,7 +26,9 @@ class HomeController
         $postManager = new PostManager();
 
         $totalNbRows = $postManager->count();
-        $pagination = new Pagination($pageNb, $totalNbRows, $_SERVER['REQUEST_URI'], 5);
+        $url = HOST . 'home';
+
+        $pagination = new Pagination($pageNb, $totalNbRows, $url, 5);
         
         $posts = $postManager->listPosts($pagination->getFirstEntry(), $pagination->getElementNbByPage());
 

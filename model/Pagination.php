@@ -21,7 +21,7 @@ class Pagination
         $this->setNextPage();
         $this->setElementNbByPage($elementNbByPages);
         $this->firstEntry($elementNbByPages);
-        $this->currentUrl($url);
+        $this->setCurrentUrl($url);
         $this->notEnoughEntries($totalNbRows, $elementNbByPages);
         // $this->elementsToDisplay();
     }
@@ -42,27 +42,27 @@ class Pagination
         $this->_firstEntry = $firstEntry;
     }
 
-    protected function currentUrl($url)
-    { 
-        // récupère l'url en cours et place la route principale dans un tableau
-        preg_match('#/[a-zA-Z0-9_-]+/([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
+    // protected function currentUrl($url)
+    // { 
+    //     // récupère l'url en cours et place la route principale dans un tableau
+    //     preg_match('#/[a-zA-Z0-9_-]+/([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
 
-        if (!isset($matches[1])) {
-            $matches[1] = 'home';
-        }
+    //     if (!isset($matches[1])) {
+    //         $matches[1] = 'home';
+    //     }
 
-        $currentUrl = $matches[1];
+    //     $currentUrl = $matches[1];
         
-        if ($currentUrl == 'post') {
-            $post = $matches[1];
-            $id = $matches[2];
-            $nb =$matches[3];
-            return $this->_currentUrl = $post . '/' . $id . '/' . $nb;
-        }
+    //     if ($currentUrl == 'post') {
+    //         $post = $matches[1];
+    //         $id = $matches[2];
+    //         $nb =$matches[3];
+    //         return $this->_currentUrl = $post . '/' . $id . '/' . $nb;
+    //     }
 
-        $this->_currentUrl = $currentUrl;
+    //     $this->_currentUrl = $currentUrl;
         
-    }
+    // }
 
     public function render()
     {      
