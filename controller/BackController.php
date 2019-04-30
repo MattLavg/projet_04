@@ -66,6 +66,13 @@ class BackController
                 $pageNb = $params['pageNb'];
             } 
 
+            // when publish or delete a comment
+            $actionDone = null;
+
+            if (isset($_SESSION['actionDone'])) {
+                $actionDone = $_SESSION['actionDone'];
+            }
+
             $postManager = new PostManager();
 
             $totalNbRows = $postManager->count();
@@ -79,7 +86,10 @@ class BackController
             $view->render('back', array(
                 'posts' => $posts, 
                 'pagination' => $pagination,
-                'isSessionValid' => ConnectionController::isSessionValid()));
+                'isSessionValid' => ConnectionController::isSessionValid(),
+                'actionDone' => $actionDone));
+
+            unset($_SESSION['actionDone']);
 
         } else {
             

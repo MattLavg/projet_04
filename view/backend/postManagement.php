@@ -8,6 +8,10 @@ $title = 'Gestion d\'articles';
 
 <?php
 
+if (isset($actionDone)) {
+    echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
+}
+
 $nbPost = 1;
 $elementsOnPage = false;
 ?>

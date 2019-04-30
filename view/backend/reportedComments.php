@@ -14,7 +14,7 @@
 $title = 'Modération des commentaires';
 
 if (isset($actionDone)) {
-    echo '<p class="actionDone">' . $actionDone . '</p>';
+    echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
 }
 
 $commentsOnPage = false;

@@ -24,14 +24,14 @@ class CommentController
             }
 
             $view = new View();
-            $view->redirect('post/id/' . $params['post-id']);
+            $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
 
         } else {
 
             $_SESSION['errorMessage'] = 'Vous devez renseigner tous les champs du formulaire.';
 
             $view = new View();
-            $view->redirect('post/id/' . $params['post-id']);
+            $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
         }
     }
 
@@ -44,7 +44,7 @@ class CommentController
 
         if (isset($params['post-id'])) {
             $view = new View();
-            $view->redirect('post/id/' . $params['post-id']);
+            $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
         } else {
             $view = new View();
             $view->redirect('reported-comments');
@@ -71,7 +71,7 @@ class CommentController
         }
 
         $view = new View();
-        $view->redirect('post/id/' . $params['post-id']);
+        $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
     }
 
     public function validComment($params)
@@ -83,7 +83,7 @@ class CommentController
 
         if (isset($params['post-id'])) {
             $view = new View();
-            $view->redirect('post/id/' . $params['post-id']);
+            $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
         } else {
             $view = new View();
             $view->redirect('reported-comments');

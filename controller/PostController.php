@@ -67,6 +67,8 @@ class PostController
             $manager = new PostManager();
             $manager->addPost($params);
 
+            $_SESSION['actionDone'] = 'Un nouvel article a été ajouté.';
+
             $view = new View();
             $view->redirect('home');
 
@@ -87,9 +89,11 @@ class PostController
             $manager = new PostManager();
             $post = $manager->updatePost($params);
 
+            $_SESSION['actionDone'] = 'L\'article a été modifié.';
+
             // redirect on the updated post
             $view = new View();
-            $view->redirect('post/id/' . $params['id']);
+            $view->redirect('post/id/' . $params['id'] . '#actionDone');
 
         } else {
 
@@ -105,6 +109,8 @@ class PostController
     { 
         $postManager = new PostManager();
         $postManager->deletePostAndComments($params['id']);
+
+        $_SESSION['actionDone'] = 'Vous avez supprimé un article.';
 
         if (isset($params['post-management'])) {
 

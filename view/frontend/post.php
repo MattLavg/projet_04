@@ -27,7 +27,8 @@ if (isset($isSessionValid)) {
 
 <hr>
 
-<h4>Ajouter un commentaire</h4>
+<!-- <span id="errorMessage"></span> -->
+<h4 id="anchorPost" class="anchor">Ajouter un commentaire</h4>
 
 <form method="post" action="<?= HOST; ?>add-comment">
 
@@ -61,9 +62,9 @@ if (isset($isSessionValid)) {
 
 <?php
 if (isset($errorMessage)) {
-    echo '<p class="errorMessage">' . $errorMessage . '</p>';
+    echo '<p class="errorMessage bg-danger text-white">' . $errorMessage . '</p>';
 } else if (isset($actionDone)) {
-    echo '<p class="actionDone">' . $actionDone . '</p>';
+    echo '<p id="actionDone" class="actionDone bg-success text-white">' . $actionDone . '</p>';
 }
 ?>
 

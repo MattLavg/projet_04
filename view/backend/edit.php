@@ -62,7 +62,7 @@ if (isset($post)) {
     }
 
     if (isset($errorMessage)) {
-        echo '<p class="errorMessage">' . $errorMessage . '</p>';
+        echo '<p class="errorMessage bg-danger text-white">' . $errorMessage . '</p>';
     }
 
     ?>

@@ -8,6 +8,10 @@ $title = 'Le blog de Jean Forteroche';
 //     exit('la session est valide.');
 // }
 
+if (isset($actionDone)) {
+    echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
+}
+
 $elementsOnPage = false;
 
 foreach ($posts as $post) 
