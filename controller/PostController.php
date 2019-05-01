@@ -93,7 +93,7 @@ class PostController
 
             // redirect on the updated post
             $view = new View();
-            $view->redirect('post/id/' . $params['id'] . '#actionDone');
+            $view->redirect('post/id/' . $params['id'] . '#anchorPost');
 
         } else {
 
