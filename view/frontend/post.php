@@ -19,7 +19,7 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
 if (isset($isSessionValid)) {
 ?>
     <a href="<?= HOST; ?>edit/id/<?= $post->getid(); ?>">Modifier</a><br>
-    <a href="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal">Supprimer</a><br>
+    <a href="" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal" data-title="<?= htmlspecialchars($post->getTitle()); ?>" data-url="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>">Supprimer</a><br>
     <a href="<?= HOST; ?>post-management">Revenir à la gestion des articles</a>
 <?php
 }
@@ -119,9 +119,7 @@ foreach ($comments as $comment)
         
         if (isset($isSessionValid)) { // if author, comments can be deleted
 ?>
-            <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
-            </a>
+            <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteModal" data-author="<?= htmlspecialchars($comment->getAuthor()); ?>" data-url="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">Supprimer</button>
 <?php
         } 
 ?>

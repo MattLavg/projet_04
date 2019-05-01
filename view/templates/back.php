@@ -78,7 +78,7 @@
             </div>
 
             <!-- MODAL -->
-            <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+            <!-- <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -89,6 +89,29 @@
                         </div>
                         <div class="modal-body">
                             <p>Souhaitez-vous vraiment effacer <span id="modalText"></span> ?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <a id="modalConfirmBtn" href="">
+                                <button type="button" class="btn btn-primary">Effacer</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" ">Suppression</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Souhaitez-vous vraiment effacer <span class="modal-text"></span> ?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>

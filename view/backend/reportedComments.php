@@ -38,7 +38,8 @@ foreach ($reportedComments as $reportedComment) {
                     <button type="button" class="btn btn-success btn-sm">Publier</button>
                 </a>
 
-                <a class="deleteCommentBtn ml-2" href="<?= HOST; ?>delete-comment/id/<?= $reportedComment->getId(); ?>"><button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal">Supprimer</button></a>
+                <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteModal" data-author="<?= htmlspecialchars($reportedComment->getAuthor()); ?>" data-url="<?= HOST; ?>delete-comment/id/<?= $reportedComment->getId(); ?>">Supprimer</button>
+                
             </div>
         </div>
     </div>

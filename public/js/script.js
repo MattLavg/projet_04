@@ -1,38 +1,55 @@
 $(document).ready(function () {
 
-    // Suppression de post
-    $('.deletePostBtn').click(function(e) {
-        e.preventDefault();
+    // // Suppression de post
+    // $('.deletePostBtn').click(function(e) {
+    //     e.preventDefault();
 
-        // this vaut .deletePostBtn 'cliqué'
-        // .parent().parent() permet de remonter à partir du bouton
-        var postTitle = $(this).parent().parent().find('span[id^=postTitle]').html();
-        var postDeleteUrl = $(this).attr('href');
+    //     // this vaut .deletePostBtn 'cliqué'
+    //     // .parent().parent() permet de remonter à partir du bouton
+    //     var postTitle = $(this).parent().parent().find('span[id^=postTitle]').html();
+    //     var postDeleteUrl = $(this).attr('href');
         
 
-        $('#modalText').html('l\'article ' + postTitle);
-        $('#modalConfirmBtn').attr('href', postDeleteUrl);
+    //     $('#modalText').html('l\'article ' + postTitle);
+    //     $('#modalConfirmBtn').attr('href', postDeleteUrl);
         
         
-    });
+    // });
 
-    // Suppression de commentaire
-    $('.deleteCommentBtn').click(function(e) {
-        e.preventDefault();
+    // // Suppression de commentaire
+    // $('.deleteCommentBtn').click(function(e) {
+    //     e.preventDefault();
 
-        // this vaut .deletePostBtn 'cliqué'
-        // .parent().parent() permet de remonter à partir du bouton
-        var commentAuthor = $(this).parent().parent().find('span[id^=commentAuthor]').html();
+    //     // this vaut .deletePostBtn 'cliqué'
+    //     // .parent().parent() permet de remonter à partir du bouton
+    //     var commentAuthor = $(this).parent().parent().find('span[id^=commentAuthor]').html();
 
-        var commentDeleteUrl = $(this).attr('href');
+    //     var commentDeleteUrl = $(this).attr('href');
 
-        $('#modalText').html('le commentaire de ' + commentAuthor);
-        $('#modalConfirmBtn').attr('href', commentDeleteUrl);
+    //     $('#modalText').html('le commentaire de ' + commentAuthor);
+    //     $('#modalConfirmBtn').attr('href', commentDeleteUrl);
         
         
-    });
+    // });
 
+    // BOOTSTRAP MODAL
+    $('#deleteModal').on('shown.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var author = button.data('author'); // Extract info from data-* attributes
+        var title = button.data('title');
+        var url = button.data('url');
+        // console.log(recipient);
 
+        var modal = $(this);
+
+        if (author) {
+            modal.find('.modal-text').text('le commentaire de ' + author);
+        } else {
+            modal.find('.modal-text').text('l\'article ' + title);
+        }
+
+        modal.find('#modalConfirmBtn').attr('href', url);
+    })
 
     
     // function checkPostAffectedLines() {
@@ -46,10 +63,9 @@ $(document).ready(function () {
     function fadeOutMessages() {
         $('.errorMessage, .actionDone').fadeOut(4000);
     }
-    setInterval(fadeOutMessages(), 1000);
 
-    // // Colore les commentaires signalés
-    // $('.reported').parent().find('.authorCommentBloc').css('background-color', '#FF687D');
-    // $('.isAuthor').parent().find('.authorCommentBloc').css('background-color', '#9CFF94');
+    if ($('.errorMessage, .actionDone')) {
+        fadeOutMessages();
+    }
 
 });
