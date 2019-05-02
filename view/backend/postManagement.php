@@ -8,10 +8,6 @@ $title = 'Gestion d\'articles';
 
 <?php
 
-if (isset($actionDone)) {
-    echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
-}
-
 $nbPost = 1;
 $elementsOnPage = false;
 ?>
@@ -57,5 +53,16 @@ if (!$elementsOnPage) {
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
     $pagination->render();
+}
+
+if (isset($actionDone)) {
+?>
+    <div class="alert alert-success alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">
+        <?= $actionDone; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
 }
 ?>

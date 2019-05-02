@@ -57,14 +57,14 @@ class Routeur
         // var_dump($elements);
         // echo '<br>';
 
-        for ($i = 1; $i<count($elements); $i++) {
+        for ($i = 1; $i < count($elements); $i++) {
 
             $params[$elements[$i]] = $elements[$i + 1];
             $i++; // Ajoute encore un si autres à la suite
             // var_dump($i);exit;
         }
 
-        // var_dump($params);exit;
+        // var_dump($params);die;
 
         if (!isset($params)) {
             $params = [];

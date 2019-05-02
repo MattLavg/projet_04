@@ -60,12 +60,12 @@ $(document).ready(function () {
 
 
     // supprime les message d'erreurs ou d'actions réussies
-    function fadeOutMessages() {
-        $('.errorMessage, .actionDone').fadeOut(4000);
-    }
+    // function fadeOutMessages() {
+    //     $('.errorMessage, .actionDone').fadeOut(8000);
+    // }
 
-    if ($('.errorMessage, .actionDone')) {
-        fadeOutMessages();
-    }
+    // if ($('.errorMessage, .actionDone')) {
+    //     fadeOutMessages();
+    // }
 
 });

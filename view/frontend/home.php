@@ -8,10 +8,6 @@ $title = 'Le blog de Jean Forteroche';
 //     exit('la session est valide.');
 // }
 
-if (isset($actionDone)) {
-    echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
-}
-
 $elementsOnPage = false;
 
 foreach ($posts as $post) 
@@ -24,10 +20,10 @@ foreach ($posts as $post)
         <h3>
             <a href="<?= HOST; ?>post/id/<?= $post->getId(); ?>"><?= htmlspecialchars($post->getTitle()); ?></a>
         </h3>
-        <p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
+        <p class="italic">Publié le <?= $post->getCreationDate(); ?> par <strong><?= htmlspecialchars($post->getAuthor()); ?></strong>
         <?php
             if ($post->getUpdateDate() !== NULL) {
-                echo '(Dernière modification le ' . $post->getUpdateDate() . ')';
+                echo '<span class="modificationColor" >(Dernière modification le ' . $post->getUpdateDate() . ')</span>';
             }
         ?>
         </p>
@@ -50,5 +46,19 @@ if (!$elementsOnPage) {
 
 if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
     $pagination->render();
+}
+
+if (isset($actionDone)) {
+    // echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
+?>
+
+    <div class="alert alert-success alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">
+        <?= $actionDone; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+<?php
 }
 ?>

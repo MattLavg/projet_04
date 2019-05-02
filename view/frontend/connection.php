@@ -24,7 +24,14 @@
 <?php 
 
 if (isset($errorMessage)) {
-    echo '<p class="errorMessage">' . $errorMessage . '</p>';
+    ?>
+    <div class="alert alert-danger alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">
+        <?= $errorMessage; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
 }
 
 ?>

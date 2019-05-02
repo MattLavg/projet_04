@@ -3,6 +3,10 @@
     padding-bottom : 100px;
 }
 
+.italic {
+    font-style: italic;
+}
+
 /* ANCHORS */
 
 .anchor::before {
@@ -16,20 +20,17 @@
 
 /* ERRORS */
 
-.errorMessage {
-    /* background-color: #FF1301;
-    color : #FFFFFF; */
+/* .errorMessage {
+    background-color: #FF1301;
+    color : #FFFFFF;
     padding: 1.5em;
     margin-top: 15px;
-}
+} */
 
 /* ACTIONS */
 
-.actionDone {
-    /* background-color: #0026FF;
-    color : #FFFFFF; */
-    padding: 1.5em;
-    margin-top: 15px;
+.actionErrorMessage {
+    bottom: 24px;  
 }
 
 /* POSTS */
@@ -41,6 +42,10 @@
 
 .listPosts:hover {
     background-color: #F0F0F0;
+}
+
+.modificationColor {
+    color: rgb(141, 141, 141);
 }
 
 /* COMMENTS */

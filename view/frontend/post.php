@@ -2,7 +2,6 @@
 
 $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle());
 
-
 ?>
 
 <h1><span id="postTitle"><?= htmlspecialchars($post->getTitle()); ?></span></h1>
@@ -59,15 +58,6 @@ if (isset($isSessionValid)) {
     <input type="submit" value="Envoyer" class="btn btn-primary" />
 
 </form>
-
-<?php
-if (isset($errorMessage)) {
-    echo '<p class="errorMessage bg-danger text-white">' . $errorMessage . '</p>';
-} else if (isset($actionDone)) {
-    echo '<p id="actionDone" class="actionDone bg-success text-white">' . $actionDone . '</p>';
-}
-?>
-
 
 <hr>
 
@@ -140,4 +130,24 @@ if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) {
     $pagination->render();
 }
 
+
+if (isset($errorMessage)) {
+?>
+    <div class="alert alert-danger alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">
+        <?= $errorMessage; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+} else if (isset($actionDone)) {
+?>
+    <div class="alert alert-success alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">
+        <?= $actionDone; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+<?php
+}
 ?>
