@@ -9,7 +9,9 @@ if ($this->getCurrentUrl() == NULL) {
 <nav aria-label="Page navigation">
     <ul class="pagination justify-content-center">
         <li class="page-item">
-            <a class="page-link" href="<?= $this->getCurrentUrl(); ?>/pageNb/<?= $this->getPreviousPage(); ?>/">Précédent</a>
+            <a class="page-link" href="<?= $this->getCurrentUrl(); ?>/pageNb/<?= $this->getPreviousPage(); ?>/">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
         </li>
         <?php
 
@@ -22,6 +24,10 @@ if ($this->getCurrentUrl() == NULL) {
             } 
         }
         ?>
-        <li class="page-item"><a class="page-link" href="<?= $this->getCurrentUrl(); ?>/pageNb/<?= $this->getNextPage(); ?>/">Suivant</a></li>
+        <li class="page-item">
+            <a class="page-link" href="<?= $this->getCurrentUrl(); ?>/pageNb/<?= $this->getNextPage(); ?>/">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
     </ul>
 </nav>

@@ -1,10 +1,27 @@
+/* GENERAL */
+
 .mainContainer {
     padding-top : 100px;
     padding-bottom : 100px;
 }
 
+.mainContainerHome {
+    padding-top : 50px;
+    padding-bottom : 100px;
+}
+
 .italic {
     font-style: italic;
+}
+
+h1 {
+    font-size: 1.6em;
+}
+
+/* BACK OFFICE LEFT MENU */
+
+.leftMenu {
+    margin-bottom: 20px;
 }
 
 /* ANCHORS */
@@ -18,19 +35,49 @@
     pointer-events: none;
 }
 
-/* ERRORS */
-
-/* .errorMessage {
-    background-color: #FF1301;
-    color : #FFFFFF;
-    padding: 1.5em;
-    margin-top: 15px;
-} */
-
 /* ACTIONS */
 
 .actionErrorMessage {
     bottom: 24px;  
+}
+
+/* HOME */
+
+.homeImage {
+    margin-top: 56px;
+}
+
+.homeImageBloc {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(121, 121, 121, 0.5);
+}
+
+.caption {
+    position: absolute;
+    top: 45%;
+    left: 0;
+    width: 100%;
+    color: #ffffff;
+}
+
+.homeTitleImage {
+    font-size: 1.4em;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+.subtitle {
+    font-size: 0.8em;
+    font-family: 'Quicksand', sans-serif;
 }
 
 /* POSTS */
@@ -60,7 +107,6 @@
 }
 
 .authorCommentBloc {
-    /* background-color: rgb(158, 199, 253); */
     margin-bottom: 0;
 }
 
@@ -143,6 +189,13 @@ div#overlayDeleteComment {
             transform: rotate(-45deg);
   }
 
+
+/* POST MANAGEMENT */
+
+.tableMargin {
+    margin-top: 20px;
+}
+
 /* FOOTER */
 
 footer p {
@@ -152,4 +205,92 @@ footer p {
 
 footer a:hover {
     color: #FFFFFF;
+}
+
+
+/* MEDIA QUERIES */
+
+@media all and (min-width: 420px) {
+
+    .homeTitleImage {
+        font-size: 1.7em;
+    }
+
+    .subtitle {
+        font-size: 1.1em;
+    }
+
+}
+
+@media all and (min-width: 600px) {
+
+    .homeTitleImage {
+        font-size: 2em;
+    }
+
+    .subtitle {
+        font-size: 1.3em;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+}
+
+@media all and (min-width: 768px) {
+
+    .homeTitleImage {
+        font-size: 2.3em;
+    }
+
+    .subtitle {
+        font-size: 1.5em;
+    }
+
+    h1 {
+        font-size: 2.4em;
+    }
+
+}
+
+@media all and (min-width: 992px) {
+
+    .homeTitleImage {
+        font-size: 2.6em;
+    }
+
+    .subtitle {
+        font-size: 1.7em;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Bootstrap default size */
+    }
+
+}
+
+@media all and (min-width: 1280px) {
+
+    .homeTitleImage {
+        font-size: 2.9em;
+    }
+
+    .subtitle {
+        font-size: 1.9em;
+    }
+
+}
+
+
+@media all and (min-width: 1400px) {
+
+    .homeTitleImage {
+        font-size: 3.5em;
+    }
+
+    .subtitle {
+        font-size: 2em;
+    }
+
 }

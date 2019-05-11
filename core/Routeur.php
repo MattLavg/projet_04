@@ -2,6 +2,8 @@
 
 namespace Blog\Core;
 
+use Blog\Core\View;
+
 /**
  *  Classe Routeur
  * 
@@ -31,7 +33,8 @@ class Routeur
         'add-comment'        => ['controller' => 'Blog\Controller\CommentController',    'method' => 'addComment'],
         'delete-comment'     => ['controller' => 'Blog\Controller\CommentController',    'method' => 'deleteComment'],
         'report-comment'     => ['controller' => 'Blog\Controller\CommentController',    'method' => 'reportComment'],
-        'valid-comment'      => ['controller' => 'Blog\Controller\CommentController',    'method' => 'validComment']
+        'valid-comment'      => ['controller' => 'Blog\Controller\CommentController',    'method' => 'validComment'],
+        'error'              => ['controller' => 'Blog\Controller\ErrorController',      'method' => 'showError']
     ];
 
     public function __construct($request)
@@ -87,8 +90,6 @@ class Routeur
         $route = $this->getRoute();
         $params = $this->getParams();
 
-        // $request = $this->_request;
-
         if (key_exists($route, $this->_routes)) {
 
             $controller = $this->_routes[$route]['controller'];
@@ -100,7 +101,7 @@ class Routeur
             $currentController->$method($params);
 
         } else {
-            echo '404';
+            throw new \Exception('404 : Cette page n\'existe pas.');
         }
     }
 }

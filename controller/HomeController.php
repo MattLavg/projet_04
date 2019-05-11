@@ -30,6 +30,8 @@ class HomeController
             $actionDone = $_SESSION['actionDone'];
         }
 
+        $homeImage = true;
+
         $postManager = new PostManager();
 
         $totalNbRows = $postManager->count();
@@ -44,7 +46,8 @@ class HomeController
             'posts' => $posts, 
             'pagination' => $pagination, 
             'isSessionValid' => ConnectionController::isSessionValid(),
-            'actionDone' => $actionDone));
+            'actionDone' => $actionDone,
+            'homeImage' => $homeImage));
 
         unset($_SESSION['actionDone']);
     }

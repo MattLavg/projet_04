@@ -25,6 +25,8 @@ class PostManager extends Manager
     
             }
 
+        } else {
+            throw new \Exception('Impossible d\'afficher la liste des postes');
         }
 
         return $posts;
@@ -47,6 +49,10 @@ class PostManager extends Manager
 
         $data = $req->fetch(\PDO::FETCH_ASSOC);
 
+        if (!$data) {
+            throw new \Exception('Impossible d\'afficher l\'article');
+        }
+
         $post = new Post();
         $post->hydrate($data);
 
@@ -61,7 +67,11 @@ class PostManager extends Manager
 
         $req->execute(array($values['title'], $values['author'], $content, NULL));
 
-        // return $count = $req->rowCount();
+        $count = $req->rowCount();
+        
+        if (!$count) {
+            throw new \Exception('Impossible d\'ajouter l\'article');
+        }
     }
 
     public function updatePost($values)
@@ -72,6 +82,12 @@ class PostManager extends Manager
         $content = strip_tags($values['content']);
 
         $req->execute(array($values['title'],$values['author'], $content, $values['id']));
+
+        $count = $req->rowCount();
+        
+        if (!$count) {
+            throw new \Exception('Impossible de modifier l\'article');
+        }
     }
 
     public function deletePostAndComments($id)
@@ -85,6 +101,13 @@ class PostManager extends Manager
         WHERE P.id = ?
         ');
         $req->execute(array($id));
+
+        $count = $req->rowCount();
+
+        if (!$count) {
+            throw new \Exception('Impossible de supprimer l\'article et ses commentaires');
+        }
+        
     }
 
 }

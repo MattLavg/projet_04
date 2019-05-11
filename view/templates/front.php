@@ -13,6 +13,9 @@
         <!-- CSS -->
         <link href="<?php echo ASSETS; ?>/css/style.css" rel="stylesheet">
 
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400i|Quicksand" rel="stylesheet">
+
         <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -60,36 +63,26 @@
                 </ul>
             </div>
         </nav>
-
-        <main role="main" class="mainContainer container">
+        
+        <?php
+            if (isset($homeImage)) {
+        ?>
+            <div class="homeImageBloc text-center">
+                <div class="overlay"></div>
+                <img src="<?php echo ASSETS; ?>/images/alaska05.jpg" class="img-fluid homeImage" alt="Responsive image">
+                <div class="caption">
+                    <p class="homeTitleImage">Billet simple pour l'alaska</p>
+                    <p class="subtitle">Un roman de Jean Forteroche</p>
+                </div>
+            </div>
+            
+        <?php
+            }
+        ?>
+        <!-- condition permettant de modifier le padding-top en fonction de la présence de l'image -->
+        <main role="main" class="<?php if (isset($homeImage)) { echo 'mainContainerHome'; } else { echo 'mainContainer'; } ?> container">
 
             <?= $content ?>
-
-            <!-- MODAL -->
-            <!-- <div id="deleteModal" class="modal" tabindex="-1" role="dialog">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Suppression</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Souhaitez-vous vraiment effacer <span id="modalText"></span> ?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
-                            <a id="modalConfirmBtn" href="">
-                                <button type="button" class="btn btn-primary">Effacer</button>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
-
 
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
