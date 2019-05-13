@@ -68,10 +68,7 @@ try {
 
 } catch (\Exception $e) {
 
-    $_SESSION['errorMessage'] = '<strong>Erreur !</strong><br>'
-                                . '<strong>Message :</strong> ' . $e->getMessage() . '<br>' 
-                                . '<strong>Fichier :</strong> ' . $e->getFile() . '<br>'
-                                . '<strong>Ligne :</strong> ' . $e->getLine() . '<br>';
+    $_SESSION['errorMessage'] = '<strong>Erreur !</strong><br>' . '<strong>Message :</strong> ' . $e->getMessage() . '<br>';
 
     $routeur = new Routeur('error');
     $routeur->renderController();

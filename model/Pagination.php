@@ -23,7 +23,6 @@ class Pagination
         $this->firstEntry($elementNbByPages);
         $this->setCurrentUrl($url);
         $this->notEnoughEntries($totalNbRows, $elementNbByPages);
-        // $this->elementsToDisplay();
     }
 
     protected function totalPages($totalNbRows, $elementNbByPages)
@@ -42,65 +41,10 @@ class Pagination
         $this->_firstEntry = $firstEntry;
     }
 
-    // protected function currentUrl($url)
-    // { 
-    //     // récupère l'url en cours et place la route principale dans un tableau
-    //     preg_match('#/[a-zA-Z0-9_-]+/([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*([a-zA-Z0-9_-]+)*/*#', $_SERVER['REQUEST_URI'], $matches);
-
-    //     if (!isset($matches[1])) {
-    //         $matches[1] = 'home';
-    //     }
-
-    //     $currentUrl = $matches[1];
-        
-    //     if ($currentUrl == 'post') {
-    //         $post = $matches[1];
-    //         $id = $matches[2];
-    //         $nb =$matches[3];
-    //         return $this->_currentUrl = $post . '/' . $id . '/' . $nb;
-    //     }
-
-    //     $this->_currentUrl = $currentUrl;
-        
-    // }
-
     public function render()
     {      
         require(TEMPLATE . 'pagination.php');
     }
-
-    // protected function elementsToDisplay()
-    // {
-    //     // $nbElementsToDisplay = 5;
-    //     // $nbElementsBeforeCurrent = floor(5 / 2);  
-
-    //     $i = $this->getCurrentPage() - 2;
-
-    //     if ($i < 3) {
-    //         if ($i == 2) {
-    //             $i = $this->getCurrentPage() - 1;
-    //         } elseif ($i == 1) {
-    //             $i = $this->getCurrentPage() - 2;
-    //         }
-    //     }
-
-    //     // $array[] = 
-
-    //     for ($i; $i <= $this->getTotalPages(); $i++) {
-
-    //         if ($i == $this->getCurrentPage()) {
-
-    //             $array[] = '<li class="page-item active"><a class="page-link" href="#">'. $i .'</a></li>';
-
-    //         } else {
-
-    //             $array[] = '<li class="page-item"><a class="page-link" href="' . $this->getCurrentUrl() . '&pageNb=' . $i . '">'. $i .'</a></li>';
-
-    //         } 
-    //     }
-
-    //     $this->_elementsToDisplay = $array;
-    // }
 
     protected function notEnoughEntries($totalNbRows, $elementNbByPages)
     {

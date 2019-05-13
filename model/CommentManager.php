@@ -11,6 +11,7 @@ class CommentManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('SELECT id, post_id, author, content, reported, isAdmin, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDate FROM comments WHERE post_id = ? ORDER BY comments.creationDate DESC LIMIT ' . $firstEntry . ',' . $nbElementsByPage);
+
         $req->execute([$post_id]);
 
         $comments = [];
@@ -65,6 +66,8 @@ class CommentManager extends Manager
                 
             }
 
+        } else {
+            throw new \Exception('Impossible d\'afficher les commentaires signalés');
         }
 
         return $comments;
@@ -83,6 +86,12 @@ class CommentManager extends Manager
             $req->execute(array($values['post-id'], $values['author'], $content, 0));
         }
 
+        $count = $req->rowCount();
+        
+        if (!$count) {
+            throw new \Exception('Impossible d\'ajouter le commentaire');
+        }
+
         return $db->lastInsertId();
     }
 
@@ -91,6 +100,12 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('DELETE FROM comments WHERE id = ?');
         $req->execute(array($id));
+
+        $count = $req->rowCount();
+
+        if (!$count) {
+            throw new \Exception('Impossible de supprimer le commentaire');
+        }
     }
 
     public function reportComment($id)
@@ -98,6 +113,12 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comments SET reported = 1 WHERE id = ?');
         $reportedComment = $req->execute(array($id));
+
+        $count = $req->rowCount();
+
+        if (!$count) {
+            throw new \Exception('Impossible de signaler le commentaire');
+        }
 
         return $reportedComment;
     }
@@ -107,14 +128,21 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE comments SET reported = 0 WHERE id = ?');
         $req->execute(array($id));
+
+        $count = $req->rowCount();
+
+        if (!$count) {
+            throw new \Exception('Impossible de valider le commentaire');
+        }
     }
 
-    public function isAdmin($id) // voir si toujours utile
-    {
-        $db = $this->dbConnect();
-        $req = $db->prepare('UPDATE comments SET isAdmin = 1 WHERE id = ?');
-        $req->execute(array($id));
-    }
+    // voir si toujours utile
+    // public function isAdmin($id) 
+    // {
+    //     $db = $this->dbConnect();
+    //     $req = $db->prepare('UPDATE comments SET isAdmin = 1 WHERE id = ?');
+    //     $req->execute(array($id));
+    // }
 
     public function isReportedComment($id)
     {
