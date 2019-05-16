@@ -5,8 +5,19 @@ namespace Blog\Controller;
 use Blog\Core\View;
 use Blog\Model\CommentManager;
 
+/**
+ *  CommentController
+ * 
+ *  Allows to add, delete, report and validate comments
+ */
+
 class CommentController
 {
+    /**
+     * Allows to add comment
+     * 
+     * @param array $params
+     */
     public function addComment($params)
     {
         if (!empty($params['author']) && !empty($params['content'])) {
@@ -35,6 +46,11 @@ class CommentController
         }
     }
 
+    /**
+     * Allows to delete comment
+     * 
+     * @param array $params
+     */
     public function deleteComment($params)
     { 
         $commentManager = new CommentManager();
@@ -51,6 +67,11 @@ class CommentController
         }
     }
 
+    /**
+     * Allows to report comment
+     * 
+     * @param array $params
+     */
     public function reportComment($params)
     {
         $commentManager = new CommentManager();
@@ -74,6 +95,11 @@ class CommentController
         $view->redirect('post/id/' . $params['post-id'] . '#anchorPost');
     }
 
+    /**
+     * Allows to validate comment
+     * 
+     * @param array $params
+     */
     public function validComment($params)
     {
         $commentManager = new CommentManager();

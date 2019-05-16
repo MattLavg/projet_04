@@ -5,18 +5,22 @@ namespace Blog\Core;
 use Blog\Core\View;
 
 /**
- *  Classe Routeur
+ *  Routeur
  * 
  *  Create routes and find controller
  */
 
 class Routeur
 {
+    /**
+     * @var string the user request
+     */
     protected $_request;
 
     /**
-     * @var array déclaration des routes
-     * précision sur la clé controller : utilisation du namespace complet puisque PHP ne trouve pas le fichier en écriture dynamique
+     * @var array routes declaration
+     * 
+     * Use of full namespace because php does not find the file with dynamic writing
      */
     protected $_routes = [ 
         'home'               => ['controller' => 'Blog\Controller\HomeController',       'method' => 'showHome'],
@@ -37,18 +41,32 @@ class Routeur
         'error'              => ['controller' => 'Blog\Controller\ErrorController',      'method' => 'showError']
     ];
 
+    /**
+     * Get user request
+     * 
+     * @param string $request, the user request
+     */
     public function __construct($request)
     {
         $this->_request = $request;
-        // echo $request; exit;
     }
 
+    /**
+     * Get route
+     * 
+     * @return string the first element of the array
+     */
     public function getRoute()
     {
         $elements = explode('/', $this->_request);
         return $elements[0];
     }
 
+    /**
+     * Get "get" or "post" parameters
+     * 
+     * @return array with get or post parameters
+     */
     public function getParams()
     {
         $params = null;
@@ -63,8 +81,7 @@ class Routeur
         for ($i = 1; $i < count($elements); $i++) {
 
             $params[$elements[$i]] = $elements[$i + 1];
-            $i++; // Ajoute encore un si autres à la suite
-            // var_dump($i);exit;
+            $i++; // Add another one if more
         }
 
         // var_dump($params);die;
@@ -85,6 +102,9 @@ class Routeur
         return $params;
     }
 
+    /**
+     * Get the controller defined by the route with the method defined by the params
+     */
     public function renderController()
     {
         $route = $this->getRoute();
@@ -94,9 +114,7 @@ class Routeur
 
             $controller = $this->_routes[$route]['controller'];
             $method = $this->_routes[$route]['method'];
-            // new PostManager();die;
-            // new HomeController();die;
-            // var_dump($controller);die;
+
             $currentController = new $controller();
             $currentController->$method($params);
 

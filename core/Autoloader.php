@@ -2,13 +2,27 @@
 
 namespace Blog\Core;
 
+/**
+ *  Manager
+ * 
+ *  Allows classes to load automatically without using require or include in other files
+ */
+
 class Autoloader
 {
+    /**
+     * Catch the class and launch the load function
+     */
     public static function start()
     {
         spl_autoload_register(__CLASS__ . '::load');
     }
 
+    /**
+     * Load the class
+     * 
+     * @param string $class
+     */
     public static function load($class)
     {
         // $class = path of the class with namespace

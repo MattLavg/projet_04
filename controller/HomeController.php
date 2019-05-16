@@ -8,13 +8,18 @@ use Blog\Core\View;
 use Blog\Controller\ConnectionController;
 
 /**
- * Class Home
+ * HomeController
  * 
- * Use to show the home
+ * Allows to show the home
  */
 
 class HomeController
 {
+    /**
+     * Allows to show the home
+     * 
+     * @param array $params optionnal
+     */
     public function showHome($params = [])
     {   
         $pageNb = 1;

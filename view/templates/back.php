@@ -43,8 +43,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= HOST; ?>">Accueil<span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= HOST; ?>post-management">Administration</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="<?= HOST; ?>post-management" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a href="<?= HOST; ?>edit" class="dropdown-item">Ajouter un article</a>
+                            <a href="<?= HOST; ?>post-management" class="dropdown-item">Gérer les articles</a>
+                            <a href="<?= HOST; ?>reported-comments" class="dropdown-item">Modérer les commentaires</a>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= HOST; ?>logout">Déconnexion</a>

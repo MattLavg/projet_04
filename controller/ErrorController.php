@@ -5,8 +5,17 @@ namespace Blog\controller;
 use Blog\Core\View;
 use Blog\Controller\ConnectionController;
 
-class ErrorController {
+/**
+ *  ErrorController
+ * 
+ *  Allows to display errors
+ */
 
+class ErrorController 
+{
+    /**
+     * Allows to show the error page
+     */
     public function showError() {
 
         // when error

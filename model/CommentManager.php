@@ -5,8 +5,25 @@ namespace Blog\Model;
 use Blog\Model\Comment;
 use Blog\Core\Manager;
 
+/**
+ * CommentManager
+ * 
+ * Allows to list, count, add, update, delete, report and validate comments
+ * Allows to list and count reported comments
+ * Allows to check if a comment is reported
+ */
+
 class CommentManager extends Manager
 {
+    /**
+     * Allows to list the comments
+     * 
+     * @param int $post_id
+     * @param int $firstEntry optionnal
+     * @param int $nbElementsByPage
+     * 
+     * @return array $comments
+     */
     public function listComments($post_id, $firstEntry = 0, $nbElementsByPage)
     {
         $db = $this->dbConnect();
@@ -28,6 +45,13 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    /**
+     * Allows to count comments of a post
+     * 
+     * @param int $post_id
+     * 
+     * @return int $totalNbRows
+     */
     public function count($post_id)
     {
         $db = $this->dbConnect();
@@ -38,6 +62,11 @@ class CommentManager extends Manager
         return $totalNbRows = $result['nbRows'];
     }
 
+    /**
+     * Allows to count the reported comments
+     * 
+     * @return int $result['nbReportedComments']
+     */
     public function countReportedComments()
     {
         $db = $this->dbConnect();
@@ -48,6 +77,14 @@ class CommentManager extends Manager
         return $result['nbReportedComments'];
     }
 
+    /**
+     * Allows to list the reported comments
+     * 
+     * @param int $firstEntry optionnal
+     * @param int $nbElementsByPage
+     * 
+     * @return array $comments
+     */
     public function listReportedComments($firstEntry = 0, $nbElementsByPage)
     {
         $db = $this->dbConnect();
@@ -73,6 +110,14 @@ class CommentManager extends Manager
         return $comments;
     }
 
+    /**
+     * Allows to add a comment
+     * 
+     * @param array $values
+     * @param bool $admin optionnal
+     * 
+     * @return int the last insert id
+     */
     public function addComment($values, $admin = null)
     {
         $db = $this->dbConnect();
@@ -95,6 +140,11 @@ class CommentManager extends Manager
         return $db->lastInsertId();
     }
 
+    /**
+     * Allows to delete a comment
+     * 
+     * @param int $id
+     */
     public function deleteComment($id)
     {
         $db = $this->dbConnect();
@@ -108,6 +158,13 @@ class CommentManager extends Manager
         }
     }
 
+    /**
+     * Allows to report a comment
+     * 
+     * @param int $id
+     * 
+     * @return bool $reportedComment
+     */
     public function reportComment($id)
     {
         $db = $this->dbConnect();
@@ -123,6 +180,11 @@ class CommentManager extends Manager
         return $reportedComment;
     }
 
+    /**
+     * Allows to validate a comment
+     * 
+     * @param int $id
+     */
     public function validComment($id)
     {
         $db = $this->dbConnect();
@@ -136,14 +198,13 @@ class CommentManager extends Manager
         }
     }
 
-    // voir si toujours utile
-    // public function isAdmin($id) 
-    // {
-    //     $db = $this->dbConnect();
-    //     $req = $db->prepare('UPDATE comments SET isAdmin = 1 WHERE id = ?');
-    //     $req->execute(array($id));
-    // }
-
+    /**
+     * Allows to check if a comment is reported
+     * 
+     * @param int $id
+     * 
+     * @return array $data
+     */
     public function isReportedComment($id)
     {
         $db = $this->dbConnect();

@@ -14,15 +14,12 @@ Autoloader::start();
 
 try {
 
-    // try {
-    //     $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
-    //     // $db = new \PDO('mysql:host=boudin.o2switch.net;dbname=mathiasla_projet04;charset=utf8', 'mathiasla_p4', 'A_e409-lrd91_hcol');
-    // } catch (\Exception $e) {
-    //     throw new \Exception('Impossible de se connecter à la base de donnée.');
-    // }
-
-    $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
-    
+    try {
+        $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
+        // $db = new \PDO('mysql:host=boudin.o2switch.net;dbname=mathiasla_projet04;charset=utf8', 'mathiasla_p4', 'A_e409-lrd91_hcol');
+    } catch (\Exception $e) {
+        throw new \Exception('Impossible de se connecter à la base de donnée.');
+    }
 
     session_start();
 

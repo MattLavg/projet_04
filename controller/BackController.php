@@ -8,8 +8,19 @@ use Blog\Model\CommentManager;
 use Blog\Model\Pagination;
 use Blog\Core\View;
 
+/**
+ *  BackController
+ * 
+ *  Allows to show the edit, the post-management and the reported comments pages
+ */
+
 class BackController
 {
+    /**
+     * Allows to show the edit page
+     * 
+     * @param array $params
+     */
     public function showEdit($params)
     {
         if (ConnectionController::isSessionValid()) {
@@ -56,6 +67,11 @@ class BackController
         }
     }
 
+    /**
+     * Allows to show the posts management page
+     * 
+     * @param array $params optionnal
+     */
     public function showPostsManagement($params = [])
     {
         if (ConnectionController::isSessionValid()) {
@@ -100,6 +116,11 @@ class BackController
         }
     }
     
+    /**
+     * Allows to show the reported comments page
+     * 
+     * @param array $params optionnal
+     */
     public function showReportedComments($params = [])
     {
         if (ConnectionController::isSessionValid()) {

@@ -5,8 +5,17 @@ namespace Blog\Controller;
 use Blog\Core\View;
 use Blog\Model\Authentication;
 
+/**
+ *  ConnectionController
+ * 
+ *  Allows to show the connection page, to check the login, to log out and to check if the connection is valid
+ */
+
 class ConnectionController
 {
+    /**
+     * Allows to show the connection page
+     */
     public function showConnection()
     {
         if ($this->isSessionValid()) {
@@ -30,6 +39,11 @@ class ConnectionController
         }
     }
 
+    /**
+     * Allows to check the login in the database
+     * 
+     * @param array $params
+     */
     public function loginCheck($params)
     {
         $authentication = new Authentication();
@@ -62,6 +76,9 @@ class ConnectionController
         }
     }
 
+    /**
+     * Allows to log out
+     */
     public function logOut()
     {
         session_destroy();
@@ -70,6 +87,11 @@ class ConnectionController
         $view->redirect('home');
     }
 
+    /**
+     * Allows to check if the connection is valid
+     * 
+     * @return true|null
+     */
     public static function isSessionValid()
     {
         if (isset($_SESSION['valid']) && $_SESSION['valid'] == true) {

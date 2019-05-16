@@ -8,20 +8,31 @@ use Blog\Model\Pagination;
 use Blog\Controller\ConnectionController;
 use Blog\Core\View;
 
+/**
+ *  PostController
+ * 
+ *  Allows to show, add, update and delete posts with linked comments
+ */
+
 class PostController 
 {
+    /**
+     *  Allows to show post
+     * 
+     *  @param array $params optionnal 
+     */
     public function showPost($params = [])
     {
-        // pour la pagination
+        // Default parameter for the pagination
         $pageNb = 1;
 
         if (isset($params['pageNb'])) {
             $pageNb = $params['pageNb'];
         } 
 
-        // pour les erreurs
+        // In case of errors
         $errorMessage = null;
-        // en cas de réussite
+        // In case of success
         $actionDone = null;
 
         if (isset($_SESSION['errorMessage'])) {
@@ -32,7 +43,7 @@ class PostController
             $actionDone = $_SESSION['actionDone'];
         }
 
-        extract($params); // permet d'extraire la variable $id
+        extract($params); // Allows to extract the $id variable
 
         $postId = $id;
 
@@ -60,6 +71,11 @@ class PostController
         unset($_SESSION['errorMessage'], $_SESSION['actionDone']);
     }
 
+    /**
+     *  Allows to add post
+     * 
+     *  @param array $params 
+     */
     public function addPost($params)
     {
         if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
@@ -82,6 +98,11 @@ class PostController
         }
     }
 
+    /**
+     *  Allows to update post
+     * 
+     *  @param array $params 
+     */
     public function updatePost($params)
     {
         if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
@@ -105,6 +126,11 @@ class PostController
         }
     }
 
+    /**
+     *  Allows to delete post with linked comments
+     * 
+     *  @param array $params 
+     */
     public function deletePostAndComments($params)
     { 
         $postManager = new PostManager();

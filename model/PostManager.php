@@ -5,8 +5,22 @@ namespace Blog\Model;
 use Blog\Core\Manager;
 use Blog\Model\Post;
 
+/**
+ *  PostManager
+ * 
+ *  Allows to list, count, get, add, update and delete posts
+ */
+
 class PostManager extends Manager
 {
+    /**
+     * Allows to list the posts
+     * 
+     * @param int $firstEntry optionnal
+     * @param int $nbElementsByPage
+     * 
+     * @return array $posts
+     */
     public function listPosts($firstEntry = 0, $nbElementsByPage)
     {
         $db = $this->dbConnect();
@@ -32,6 +46,11 @@ class PostManager extends Manager
         return $posts;
     }
 
+    /**
+     * Allows to count posts
+     * 
+     * @return int $totalNbRows
+     */
     public function count()
     {
         $db = $this->dbConnect();
@@ -41,6 +60,12 @@ class PostManager extends Manager
         return $totalNbRows = $result['nbRows'];
     }
 
+    /**
+     * Allows to get a post
+     * 
+     * @param int $id
+     * @return object PDOStatement
+     */
     public function getPost($id)
     { 
         $db = $this->dbConnect();
@@ -59,6 +84,11 @@ class PostManager extends Manager
         return $post;
     }
 
+    /**
+     * Allows to add a post
+     * 
+     * @param array $values
+     */
     public function addPost($values)
     {
         $db = $this->dbConnect();
@@ -74,6 +104,11 @@ class PostManager extends Manager
         }
     }
 
+    /**
+     * Allows to update a post
+     * 
+     * @param array $values
+     */
     public function updatePost($values)
     {
         $db = $this->dbConnect();
@@ -90,6 +125,11 @@ class PostManager extends Manager
         }
     }
 
+    /**
+     * Allows to delete a post with linked comments
+     * 
+     * @param int $id
+     */
     public function deletePostAndComments($id)
     {
         $db = $this->dbConnect();
