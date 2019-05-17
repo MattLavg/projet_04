@@ -25,7 +25,7 @@ if (isset($post)) {
         </div>
         
         <div class="form-group">
-            <textarea id="tinymcetextarea" name="content"><?= nl2br(htmlspecialchars($post->getContent())); ?></textarea>
+            <textarea id="tinymcetextarea" name="content"><?= $post->getContent(); ?></textarea>
         </div>
 
         <input type="submit" value="Envoyer" class="btn btn-primary" />

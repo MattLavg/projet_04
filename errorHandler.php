@@ -7,8 +7,9 @@
 //     throw new MyException($message, 0, $code, $fichier, $ligne);
 // }
 
-function errorToException($message)
+function errorToException($code, $message, $file, $line)
 {
+    // var_dump($code, $message, $file, $line);die;
     throw new \Exception($message);
 }
 

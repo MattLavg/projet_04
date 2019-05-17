@@ -24,7 +24,7 @@ foreach ($posts as $post)
         </p>
 
         <p>
-            <?= substr(htmlspecialchars($post->getContent()), 0, 350) . '... '; ?><br>
+            <?= substr($post->getContent(), 0, 350) . '... '; ?><br>
             <a href="<?= HOST; ?>post/id/<?= $post->getId(); ?>">Voir la suite</a>
         </p>
 

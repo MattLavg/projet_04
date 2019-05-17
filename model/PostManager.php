@@ -93,9 +93,8 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO posts (title, author, content, creationDate, updateDate) VALUES(?, ?, ?, NOW(), ?)');
-        $content = strip_tags($values['content']);
 
-        $req->execute(array($values['title'], $values['author'], $content, NULL));
+        $req->execute(array($values['title'], $values['author'], $values['content'], NULL));
 
         $count = $req->rowCount();
         
@@ -114,9 +113,7 @@ class PostManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('UPDATE posts SET title = ?, author = ?, content = ?, updateDate = NOW() WHERE id = ?');
 
-        $content = strip_tags($values['content']);
-
-        $req->execute(array($values['title'],$values['author'], $content, $values['id']));
+        $req->execute(array($values['title'],$values['author'], $values['content'], $values['id']));
 
         $count = $req->rowCount();
         

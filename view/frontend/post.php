@@ -12,7 +12,7 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
     }
 ?>
 </p>
-<p><?= nl2br(htmlspecialchars($post->getContent())); ?></p>
+<p><?= $post->getContent(); ?></p>
 
 <?php
 if (isset($isSessionValid)) {
@@ -26,7 +26,6 @@ if (isset($isSessionValid)) {
 
 <hr>
 
-<!-- <span id="errorMessage"></span> -->
 <h4 id="anchorPost" class="anchor">Ajouter un commentaire</h4>
 
 <form method="post" action="<?= HOST; ?>add-comment">
@@ -65,8 +64,6 @@ if (isset($isSessionValid)) {
 
 $elementsOnPage = false;
 $commentsOnPage = false;
-
-
 
 foreach ($comments as $comment)
 {

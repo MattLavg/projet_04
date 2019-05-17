@@ -78,6 +78,9 @@ class PostController
      */
     public function addPost($params)
     {
+        $params['title'] = trim(strip_tags($params['title']));
+        $params['author'] = trim(strip_tags($params['author']));
+
         if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
 
             $manager = new PostManager();
@@ -105,6 +108,9 @@ class PostController
      */
     public function updatePost($params)
     {
+        $params['title'] = trim(strip_tags($params['title']));
+        $params['author'] = trim(strip_tags($params['author']));
+
         if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
 
             $manager = new PostManager();

@@ -123,12 +123,10 @@ class CommentManager extends Manager
         $db = $this->dbConnect();
         $req = $db->prepare('INSERT INTO comments (post_id, author, content, isAdmin, creationDate) VALUES(?, ?, ?, ?, NOW())');
 
-        $content = strip_tags($values['content']);
-
         if ($admin) {
-            $req->execute(array($values['post-id'], $values['author'], $content, 1));
+            $req->execute(array($values['post-id'], $values['author'], $values['content'], 1));
         } else {
-            $req->execute(array($values['post-id'], $values['author'], $content, 0));
+            $req->execute(array($values['post-id'], $values['author'], $values['content'], 0));
         }
 
         $count = $req->rowCount();

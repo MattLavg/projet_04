@@ -20,6 +20,9 @@ class CommentController
      */
     public function addComment($params)
     {
+        $params['author'] = trim(strip_tags($params['author']));
+        $params['content'] = trim(strip_tags($params['content']));
+
         if (!empty($params['author']) && !empty($params['content'])) {
 
             $commentManager = new CommentManager();

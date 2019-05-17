@@ -10,7 +10,6 @@ require_once(CORE . 'Autoloader.php');
 
 Autoloader::start();
 
-
 try {
 
     try {
