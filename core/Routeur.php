@@ -69,7 +69,7 @@ class Routeur
      */
     public function getParams()
     {
-        $params = null;
+        $params = [];
         
         // GET 
         $elements = explode('/', $this->_request); 
@@ -85,10 +85,6 @@ class Routeur
         }
 
         // var_dump($params);die;
-
-        if (!isset($params)) {
-            $params = [];
-        }
 
         // POST
         if ($_POST) {

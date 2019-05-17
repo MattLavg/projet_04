@@ -1,14 +1,13 @@
 <?php
 
 use Blog\Core\Autoloader;
-use Blog\Core\MyException;
 use Blog\Core\Routeur;
 use Blog\Core\Registry;
 
 require_once('config.php');
 require_once('errorHandler.php');
 require_once(CORE . 'Autoloader.php');
-require_once(CORE . 'MyException.php');
+
 Autoloader::start();
 
 

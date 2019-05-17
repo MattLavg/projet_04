@@ -6,7 +6,7 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
     define('HOST', 'http://' . $_SERVER['HTTP_HOST'] . '/projet_04/');
 }
 
-define('ROOT', __DIR__ . DIRECTORY_SEPARATOR); // DIR is the folder where is the file calling the constant
+define('ROOT', __DIR__ . DIRECTORY_SEPARATOR); // DIR is the folder where we can find the file calling the constant
 
 define('CORE', ROOT . 'core' . DIRECTORY_SEPARATOR);
 
