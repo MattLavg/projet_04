@@ -132,20 +132,7 @@
     <!-- SCRIPTS JS -->
     <script src="<?php echo ASSETS; ?>/js/script.js"></script>
 
-    <!-- TINYMCE -->
-    <script src="<?php echo ASSETS; ?>/tinymce/js/tinymce.min.js"></script>
-    <script type="text/javascript">
-        tinymce.init({
-        selector: '#tinymcetextarea',  // change this value according to your HTML
-        plugins: [
-            'advlist autolink autoresize link image lists charmap print preview hr anchor pagebreak spellchecker',
-            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-            'save table contextmenu directionality emoticons template paste textcolor'
-        ],
-        toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
-        entity_encoding : "raw"
-        });
-    </script>
+
 
 </html>
 

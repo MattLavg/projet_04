@@ -36,6 +36,7 @@ try {
 } catch (\Exception $e) {
 
     $_SESSION['errorMessage'] = '<strong>Erreur !</strong><br>' . '<strong>Message :</strong> ' . $e->getMessage() . '<br>';
+    writeLogs($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
 
     $routeur = new Routeur('error');
     $routeur->renderController();
