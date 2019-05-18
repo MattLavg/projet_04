@@ -4,6 +4,7 @@ namespace Blog\Model;
 
 use Blog\Model\Comment;
 use Blog\Core\Manager;
+use Blog\Core\MyException;
 
 /**
  * CommentManager
@@ -104,7 +105,7 @@ class CommentManager extends Manager
             }
 
         } else {
-            throw new \Exception('Impossible d\'afficher les commentaires signalés');
+            throw new MyException('Impossible d\'afficher les commentaires signalés');
         }
 
         return $comments;
@@ -132,7 +133,7 @@ class CommentManager extends Manager
         $count = $req->rowCount();
         
         if (!$count) {
-            throw new \Exception('Impossible d\'ajouter le commentaire');
+            throw new MyException('Impossible d\'ajouter le commentaire');
         }
 
         return $db->lastInsertId();
@@ -152,7 +153,7 @@ class CommentManager extends Manager
         $count = $req->rowCount();
 
         if (!$count) {
-            throw new \Exception('Impossible de supprimer le commentaire');
+            throw new MyException('Impossible de supprimer le commentaire');
         }
     }
 
@@ -172,7 +173,7 @@ class CommentManager extends Manager
         $count = $req->rowCount();
 
         if (!$count) {
-            throw new \Exception('Impossible de signaler le commentaire');
+            throw new MyException('Impossible de signaler le commentaire');
         }
 
         return $reportedComment;
@@ -192,7 +193,7 @@ class CommentManager extends Manager
         $count = $req->rowCount();
 
         if (!$count) {
-            throw new \Exception('Impossible de valider le commentaire');
+            throw new MyException('Impossible de valider le commentaire');
         }
     }
 

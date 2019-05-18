@@ -3,6 +3,7 @@
 namespace Blog\Core;
 
 use Blog\Core\View;
+use Blog\Core\MyException;
 
 /**
  *  Routeur
@@ -115,7 +116,7 @@ class Routeur
             $currentController->$method($params);
 
         } else {
-            throw new \Exception('404 : Cette page n\'existe pas.');
+            throw new MyException('404 : Cette page n\'existe pas.');
         }
     }
 }

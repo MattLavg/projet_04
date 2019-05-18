@@ -3,20 +3,23 @@
 use Blog\Core\Autoloader;
 use Blog\Core\Routeur;
 use Blog\Core\Registry;
+use Blog\Core\MyException;
 
 require_once('config.php');
 require_once('errorHandler.php');
 require_once(CORE . 'Autoloader.php');
+require_once(CORE . 'MyException.php');
 
 Autoloader::start();
 
 try {
-
+    // $db = new \PDO('mysql:host=localhost;dbname=prjet04;charset=utf8', 'root', 'root');
     try {
         $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
         // $db = new \PDO('mysql:host=boudin.o2switch.net;dbname=mathiasla_projet04;charset=utf8', 'mathiasla_p4', 'A_e409-lrd91_hcol');
     } catch (\Exception $e) {
-        throw new \Exception('Impossible de se connecter à la base de donnée.');
+        // throw new MyException('Impossible de se connecter à la base de donnée.');
+        throw new MyException('Impossible de se connecter à la base de donnée.');
     }
 
     session_start();
@@ -36,7 +39,6 @@ try {
 } catch (\Exception $e) {
 
     $_SESSION['errorMessage'] = '<strong>Erreur !</strong><br>' . '<strong>Message :</strong> ' . $e->getMessage() . '<br>';
-    writeLogs($e->getCode(), $e->getMessage(), $e->getFile(), $e->getLine());
 
     $routeur = new Routeur('error');
     $routeur->renderController();

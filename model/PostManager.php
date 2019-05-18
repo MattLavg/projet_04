@@ -4,6 +4,7 @@ namespace Blog\Model;
 
 use Blog\Core\Manager;
 use Blog\Model\Post;
+use Blog\Core\MyException;
 
 /**
  *  PostManager
@@ -40,7 +41,7 @@ class PostManager extends Manager
             }
 
         } else {
-            throw new \Exception('Impossible d\'afficher la liste des postes');
+            throw new MyException('Impossible d\'afficher la liste des postes');
         }
 
         return $posts;
@@ -75,7 +76,7 @@ class PostManager extends Manager
         $data = $req->fetch(\PDO::FETCH_ASSOC);
 
         if (!$data) {
-            throw new \Exception('Impossible d\'afficher l\'article');
+            throw new MyException('Impossible d\'afficher l\'article');
         }
 
         $post = new Post();
@@ -99,7 +100,7 @@ class PostManager extends Manager
         $count = $req->rowCount();
         
         if (!$count) {
-            throw new \Exception('Impossible d\'ajouter l\'article');
+            throw new MyException('Impossible d\'ajouter l\'article');
         }
     }
 
@@ -118,7 +119,7 @@ class PostManager extends Manager
         $count = $req->rowCount();
         
         if (!$count) {
-            throw new \Exception('Impossible de modifier l\'article');
+            throw new MyException('Impossible de modifier l\'article');
         }
     }
 
@@ -142,7 +143,7 @@ class PostManager extends Manager
         $count = $req->rowCount();
 
         if (!$count) {
-            throw new \Exception('Impossible de supprimer l\'article et ses commentaires');
+            throw new MyException('Impossible de supprimer l\'article et ses commentaires');
         }
         
     }

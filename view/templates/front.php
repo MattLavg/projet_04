@@ -132,8 +132,6 @@
     <!-- SCRIPTS JS -->
     <script src="<?php echo ASSETS; ?>/js/script.js"></script>
 
-
-
 </html>
 
 
