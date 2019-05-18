@@ -1,0 +1,4 @@
+2019-05-17 22:07:45 - Error code : 2, message : require_once(/Users/mathias/Sites/projet_04/core/Autooader.php): failed to open stream: No such file or directory, in file : /Users/mathias/Sites/projet_04/index.php, line : 9
+2019-05-17 22:07:59 - Error code : 2, message : require_once(/Users/mathias/Sites/projet_04/core/Autooader.php): failed to open stream: No such file or directory, in file : /Users/mathias/Sites/projet_04/index.php, line : 9
+2019-05-17 22:07:59 - Error code : 2, message : require_once(/Users/mathias/Sites/projet_04/core/Autooader.php): failed to open stream: No such file or directory, in file : /Users/mathias/Sites/projet_04/index.php, line : 9
+2019-05-17 22:16:44 - Error code : 0, message : Impossible de se connecter à la base de donnée., in file : /Users/mathias/Sites/projet_04/index.php, line : 19
