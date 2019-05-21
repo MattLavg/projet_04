@@ -1,0 +1,7 @@
+2019-05-21 16:56:37 - Unknown error : [0], message : "Impossible d'afficher la liste des postes", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 44
+2019-05-21 17:06:09 - Unknown error : [0], message : "Impossible d'afficher la liste des postes", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 45
+2019-05-21 17:10:03 - Unknown error : [0], message : "Impossible d'afficher l'article", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 76
+2019-05-21 17:20:59 - Notice : [0], message : "Undefined variable: comentsOnPage", in file : /Users/mathias/Sites/projet_04/view/frontend/post.php line : 127
+2019-05-21 17:21:25 - Notice : [0], message : "Undefined variable: comùentsOnPage", in file : /Users/mathias/Sites/projet_04/view/frontend/post.php line : 127
+2019-05-21 21:21:20 - Unknown error : [0], message : "Impossible d'afficher les commentaires signalés", in file : /Users/mathias/Sites/projet_04/model/CommentManager.php line : 108
+2019-05-21 22:10:19 - Unknown error : [0], message : "404 : Cette page n'existe pas.", in file : /Users/mathias/Sites/projet_04/core/Routeur.php line : 113

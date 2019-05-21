@@ -1,0 +1,12 @@
+2019-05-20 15:55:08 - Unknown error : [0], message : "Impossible de se connecter à la base de donnée.", in file : /Users/mathias/Sites/projet_04/index.php line : 21
+2019-05-20 15:57:54 - Unknown error : [0], message : "", in file : /Users/mathias/Sites/projet_04/index.php line : 21
+2019-05-20 19:53:05 - Unknown error : [0], message : "Impossible de se connecter à la base de donnée.", in file : /Users/mathias/Sites/projet_04/index.php line : 21
+2019-05-20 21:55:00 - Unknown error : [0], message : "Impossible de se connecter à la base de donnée.", in file : /Users/mathias/Sites/projet_04/index.php line : 23
+2019-05-20 21:56:51 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 21:56:51 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 21:57:26 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 21:57:26 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 21:59:40 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 21:59:51 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 22:07:46 - Notice : [0], message : "Undefined index: nbRows", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 61
+2019-05-20 22:08:13 - Unknown error : [0], message : "Impossible d'afficher la liste des postes", in file : /Users/mathias/Sites/projet_04/model/PostManager.php line : 44
