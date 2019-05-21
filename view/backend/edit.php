@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Le blog de Jean Forteroche ' . '|' . ' Ajout d\'article';
+$title = ' Ajout et modification d\'article | Le blog de Jean Forteroche ';
 
 if (isset($post)) {
 

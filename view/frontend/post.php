@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle());
+$title = htmlspecialchars($post->getTitle()) . '|' . 'Le blog de Jean Forteroche ';
 
 ?>
 
@@ -15,7 +15,7 @@ $title = 'Le blog de Jean Forteroche ' . '| ' . htmlspecialchars($post->getTitle
 <p><?= $post->getContent(); ?></p>
 
 <?php
-if (isset($isSessionValid)) {
+if (isset($isSessionValid)) { // if admin, add links
 ?>
     <a href="<?= HOST; ?>edit/id/<?= $post->getid(); ?>">Modifier</a><br>
     <a href="" class="deletePostBtn" data-toggle="modal" data-target="#deleteModal" data-title="<?= htmlspecialchars($post->getTitle()); ?>" data-url="<?= HOST; ?>delete-post/id/<?= $post->getid(); ?>">Supprimer</a><br>
@@ -43,16 +43,6 @@ if (isset($isSessionValid)) {
     <div class="form-group">
         <input id="post_id" type="hidden" name="post-id" value="<?= $post->getId(); ?>" />
     </div>
-
-<?php
-if (isset($isSessionValid)) {
-?>
-    <div class="form-group">
-        <input id="post_id" type="hidden" name="main-author" value="sessionValid" />
-    </div>
-<?php
-}
-?>
   
     <input type="submit" value="Envoyer" class="btn btn-primary" />
 
@@ -62,12 +52,10 @@ if (isset($isSessionValid)) {
 
 <?php
 
-$elementsOnPage = false;
 $commentsOnPage = false;
 
 foreach ($comments as $comment)
 {
-    $elementsOnPage = true;
     $commentsOnPage = true;
 
     $backgroundComment = 'bg-secondary text-white';
@@ -95,7 +83,7 @@ foreach ($comments as $comment)
         </a>
 
 <?php
-        if ($comment->getReported() && isset($isSessionValid)) { // if author, comments can be approved
+        if ($comment->getReported() && isset($isSessionValid)) { // if admin, comments can be approved
 ?>
             <a class="ml-2" href="<?= HOST; ?>valid-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">
                 <button type="button" class="btn btn-success btn-sm">Publier</button>
@@ -104,13 +92,12 @@ foreach ($comments as $comment)
 <?php
         }
         
-        if (isset($isSessionValid)) { // if author, comments can be deleted
+        if (isset($isSessionValid)) { // if admin, comments can be deleted
 ?>
             <button type="button" class="btn btn-danger btn-sm ml-2" data-toggle="modal" data-target="#deleteModal" data-author="<?= htmlspecialchars($comment->getAuthor()); ?>" data-url="<?= HOST; ?>delete-comment/id/<?= $comment->getId(); ?>/post-id/<?= $post->getId(); ?>">Supprimer</button>
 <?php
         } 
 ?>
-
         </div>
     </div>
 </div>
@@ -118,13 +105,14 @@ foreach ($comments as $comment)
 <?php
 }
 
-if (!$commentsOnPage) {
-    echo 'Il n\'y a actuellement aucun commentaire';
-}
 
+if ($commentsOnPage && $pagination->getNotEnoughEntries()) { 
 
-if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) { 
     $pagination->render();
+
+} elseif (!$commentsOnPage) {
+
+    echo 'Il n\'y a actuellement aucun commentaire';
 }
 
 

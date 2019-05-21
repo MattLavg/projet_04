@@ -127,69 +127,6 @@ h1 {
     padding: 0.5em;
 }
 
-/* DELETE COMMENT - POST */
-
-div#overlayDelete, 
-div#overlayDeleteComment {
-    display: none;
-    z-index: 1;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100vh;
-    background: rgba(199, 199, 199, 0.5);
-}
-
-.crossArea {
-    background: rgb(255, 0, 0);
-    width: 100%;
-    height: 36px;
-}
-
-.deleteQuestion {
-    margin: auto;
-    width: 300px;
-    top: 200px;
-    background: rgb(255, 255, 255);
-}
-
-.closeDelete, 
-.closeDeleteComment {
-    position: relative;
-    right: 5px;
-    top: 0px;
-    width: 32px;
-    height: 32px;
-    opacity: 0.3;
-  }
-  .closeDelete:hover, 
-  .closeDeleteComment:hover {
-    opacity: 1;
-  }
-  .closeDelete:after,
-  .closeDelete:before, 
-  .closeDeleteComment:before, 
-  .closeDeleteComment:after {
-    position: absolute;
-    left: 15px;
-    content: ' ';
-    height: 33px;
-    width: 2px;
-    background-color: #333;
-  }
-  .closeDelete:before,
-  .closeDeleteComment:before {
-    -webkit-transform: rotate(45deg);
-            transform: rotate(45deg);
-  }
-  
-  .closeDelete:after,
-  .closeDeleteComment:after {
-    -webkit-transform: rotate(-45deg);
-            transform: rotate(-45deg);
-  }
-
-
 /* POST MANAGEMENT */
 
 .tableMargin {

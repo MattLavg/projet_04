@@ -34,15 +34,17 @@ class CommentManager extends Manager
 
         $comments = [];
 
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
+        if ($req) {
+
+            while ($data = $req->fetch(\PDO::FETCH_ASSOC)) {
   
-            $comment = new Comment();
-            $comment->hydrate($data);
-
-            $comments[] = $comment;
-            
+                $comment = new Comment();
+                $comment->hydrate($data);
+    
+                $comments[] = $comment;
+            }
         }
-
+        
         return $comments;
     }
 
@@ -100,13 +102,9 @@ class CommentManager extends Manager
                 $comment = new Comment();
                 $comment->hydrate($data);
     
-                $comments[] = $comment;
-                
+                $comments[] = $comment; 
             }
-
-        } else {
-            throw new MyException('Impossible d\'afficher les commentaires signalés');
-        }
+        } 
 
         return $comments;
     }

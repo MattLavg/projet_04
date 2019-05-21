@@ -1,6 +1,6 @@
 <?php 
 
-$title = 'Gestion d\'articles'; 
+$title = 'Gestion d\'articles | Le blog de Jean Forteroche '; 
 
 ?>
 

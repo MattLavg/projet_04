@@ -36,13 +36,15 @@ class View
      * @param string $template
      * @param array $params
      */
-    public function render($template, $params = array())
+    public function render($template, $params = [])
     {
         // foreach ($params as $name => $value) {
         //     ${name} = $value;
         // }
 
-        extract($params);
+        extract($params); 
+        // Allows to extract variables from array's keys
+        // Ex : from HomeController, allows to extract variables $posts, $pagination, $isSessionValid, $actionDone, $homeImage 
 
         $this->_template = $template;
 
@@ -50,9 +52,9 @@ class View
 
         ob_start();
         if ($template == 'front') {
-            require(VIEWFRONT . $view . '.php');
+            require(VIEWFRONT . $view . '.php'); // search the view in frontend
         } else {
-            require(VIEWBACK . $view . '.php');
+            require(VIEWBACK . $view . '.php'); // search the view in backend
         }
         
         $content = ob_get_clean();

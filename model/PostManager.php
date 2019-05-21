@@ -39,10 +39,7 @@ class PostManager extends Manager
                 $posts[] = $post;
     
             }
-
-        } else {
-            throw new MyException('Impossible d\'afficher la liste des postes');
-        }
+        } 
 
         return $posts;
     }

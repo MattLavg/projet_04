@@ -1,17 +1,12 @@
 <?php 
 
-// namespace Math\projet04;
+$title = 'Modération des commentaires | Le blog de Jean Forteroche ';
 
-// use Math\projet04\Model\CommentManager;
-
-// require_once(dirname(dirname(__DIR__)) . '/model/CommentManager.php');
 ?>
 
 <h1>Modérer les commentaires</h1>
 
 <?php
-
-$title = 'Modération des commentaires';
 
 $commentsOnPage = false;
 
@@ -43,13 +38,16 @@ foreach ($reportedComments as $reportedComment) {
 <?php
 } // fin du foreach
 
-if (!$commentsOnPage) {
+
+if (isset($commentsOnPage) && $pagination->getNotEnoughEntries()) { 
+
+    $pagination->render();
+
+} elseif (!$commentsOnPage) {
+
     echo 'Il n\'y a actuellement aucun commentaire signalé.';
 }
 
-if (isset($commentsOnPage) && $pagination->getNotEnoughEntries()) { 
-    $pagination->render();
-}
 
 if (isset($actionDone)) {
 ?>

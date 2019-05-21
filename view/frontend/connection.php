@@ -1,11 +1,8 @@
 <?php 
 
-// namespace Math\projet04;
-// var_dump($errorMessage);
+$title = 'Connexion | Le blog de Jean Forteroche '; 
+
 ?>
-
-<?php $title = 'Se connecter'; ?>
-
 
 <h1>Connexion</h1>
 

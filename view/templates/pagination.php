@@ -19,7 +19,7 @@ if ($this->getCurrentUrl() == NULL) {
 
             if ($i == $this->getCurrentPage()) {
                 echo '<li class="page-item active"><span class="page-link">'. $i .'<span class="sr-only">(current)</span></span></li>';
-            } elseif ($this->getCurrentPage() - $i <= 2 && $this->getCurrentPage() - $i >= -2) {
+            } elseif ($i >= $this->getCurrentPage() - 2 && $i <= $this->getCurrentPage() + 2) {
                 echo '<li class="page-item"><a class="page-link" href="' . $this->getCurrentUrl() . '/pageNb/' . $i . '/">'. $i .'</a></li>';
             } 
         }

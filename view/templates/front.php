@@ -48,7 +48,7 @@
                 </li>
 
             <?php
-                if (isset($isSessionValid)) {
+                if (isset($isSessionValid)) { // if admin, add links
             ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="<?= HOST; ?>post-management" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administration</a>
@@ -84,7 +84,8 @@
         <?php
             }
         ?>
-        <!-- condition permettant de modifier le padding-top en fonction de la présence de l'image -->
+
+        <!-- condition allows to modify padding-top if the image is on the page or not -->
         <main role="main" class="<?php if (isset($homeImage)) { echo 'mainContainerHome'; } else { echo 'mainContainer'; } ?> container">
 
             <?= $content ?>
@@ -110,9 +111,6 @@
                     </div>
                 </div>
             </div>
-
-
-
 
             <footer class="container-fluid fixed-bottom d-flex justify-content-center align-items-center bg-dark p-2">
                 <p><span class="text-light">Jean Forteroche - </span><a href="<?= HOST; ?>connection">Connexion</a></p>

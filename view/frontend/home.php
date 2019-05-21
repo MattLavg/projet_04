@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Le blog de Jean Forteroche';
+$title = 'Accueil | Le blog de Jean Forteroche';
 
 
 $elementsOnPage = false;
