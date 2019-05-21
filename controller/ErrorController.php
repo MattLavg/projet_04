@@ -18,7 +18,7 @@ class ErrorController
      */
     public function showError() {
 
-        // when error
+        // Default error message to null
         $errorMessage = null;
 
         if (isset($_SESSION['errorMessage'])) {

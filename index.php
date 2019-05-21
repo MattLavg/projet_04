@@ -13,12 +13,11 @@ require_once(CORE . 'MyException.php');
 Autoloader::start();
 
 try {
-    // $db = new \PDO('mysql:host=localhost;dbname=prjet04;charset=utf8', 'root', 'root');
+    
     try {
         $db = new \PDO('mysql:host=localhost;dbname=projet04;charset=utf8', 'root', 'root');
         // $db = new \PDO('mysql:host=boudin.o2switch.net;dbname=mathiasla_projet04;charset=utf8', 'mathiasla_p4', 'A_e409-lrd91_hcol');
     } catch (\Exception $e) {
-        // throw new MyException('Impossible de se connecter à la base de donnée.');
         throw new MyException('Impossible de se connecter à la base de donnée.');
     }
 
@@ -36,9 +35,12 @@ try {
     $routeur = new Routeur($request);
     $routeur->renderController();
 
-} catch (\Exception $e) {
+} catch (MyException $e) {
 
     $_SESSION['errorMessage'] = '<strong>Erreur !</strong><br>' . '<strong>Message :</strong> ' . $e->getMessage() . '<br>';
+
+    $myException = new MyException($e->getMessage(), $e->getCode(), $e->getSeverity(), $e->getFile(), $e->getLine());
+    $myException->writeLogs();
 
     $routeur = new Routeur('error');
     $routeur->renderController();

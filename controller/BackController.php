@@ -21,19 +21,21 @@ class BackController
      * 
      * @param array $params
      */
-    public function showEdit($params)
+    public function showEdit($params = [])
     {
         if (ConnectionController::isSessionValid()) {
 
+            // Default error message to null
+            $errorMessage = null;
+
+            // if user try to post empty fields
+            if (isset($_SESSION['errorMessage'])) {
+                $errorMessage = $_SESSION['errorMessage'];
+            }
+
             if (isset($params['id'])) {
 
-                $errorMessage = null;
-
-                if (isset($_SESSION['errorMessage'])) {
-                    $errorMessage = $_SESSION['errorMessage'];
-                }
-
-                extract($params);
+                extract($params); // Allows to extract the $id variable
 
                 $postManager = new PostManager();
                 $post = $postManager->getPost($id);
@@ -44,12 +46,6 @@ class BackController
                 unset($_SESSION['errorMessage']);
 
             } else {
-
-                $errorMessage = null;
-
-                if (isset($_SESSION['errorMessage'])) {
-                    $errorMessage = $_SESSION['errorMessage'];
-                }
 
                 $view = new View('edit');
                 $view->render('back', array('errorMessage' => $errorMessage));
@@ -82,9 +78,10 @@ class BackController
                 $pageNb = $params['pageNb'];
             } 
 
-            // when publish or delete a comment
+            // Default action message to null
             $actionDone = null;
 
+            // if user delete a post
             if (isset($_SESSION['actionDone'])) {
                 $actionDone = $_SESSION['actionDone'];
             }
@@ -131,9 +128,10 @@ class BackController
                 $pageNb = $params['pageNb'];
             } 
 
-            // when publish or delete a comment
+            // Default action message to null
             $actionDone = null;
 
+            // if user publish or delete a comment
             if (isset($_SESSION['actionDone'])) {
                 $actionDone = $_SESSION['actionDone'];
             }

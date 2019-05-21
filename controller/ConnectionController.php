@@ -25,9 +25,10 @@ class ConnectionController
 
         } else {
 
-            // pour les erreurs
+            // Default error message to null
             $errorMessage = null;
 
+            // if user try to connect with empty fields or wrong name and password
             if (isset($_SESSION['errorMessage'])) {
                 $errorMessage = $_SESSION['errorMessage'];
             }
@@ -48,11 +49,10 @@ class ConnectionController
     {
         $authentication = new Authentication();
         $authentication = $authentication->checkLogin();
-        // var_dump($params);
-        // var_dump($authentication);exit;
 
+        // Default SESSION['valid'] to false
         $_SESSION['valid'] = false;
-        // var_dump($params);exit;
+
         if ($params['name'] == $authentication['name'] && password_verify($params['password'], $authentication['password'])) {
             
             $_SESSION['valid'] = true;

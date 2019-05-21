@@ -11,18 +11,6 @@ namespace Blog\Core;
  class MyException extends \ErrorException
  {
     /**
-     * Allows to launch writeLogs function
-     * 
-     * @param 
-    */
-    public function __construct($message)
-    {
-        // var_dump($this->message, $this->code, $this->file, $this->line);die;
-        parent::__construct($message);
-        $this->writeLogs($this->__toString());
-    }
-
-    /**
      * Allows to convert exception into a string
      * 
      * @return string
@@ -56,11 +44,11 @@ namespace Blog\Core;
     /**
      * Allows to write in log file
      */
-    public function writeLogs($text)
+    public function writeLogs()
     {
-        $logFile = fopen(LOG . 'logs.txt', 'a+');
+        $logFile = fopen(LOG . date('Ymd-') . 'logs.log', 'a+');
         $logLine = fgets($logFile);
-        fputs($logFile, $text);
+        fputs($logFile, $this->__toString());
         fclose($logFile);
     }
   }

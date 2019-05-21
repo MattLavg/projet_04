@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Paris');
+
 if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
     define('HOST', 'https://' . $_SERVER['HTTP_HOST'] . '/projet_04/');
 } else {

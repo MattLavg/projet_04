@@ -76,16 +76,10 @@ class Routeur
         $elements = explode('/', $this->_request); 
         unset($elements[0]);
 
-        // var_dump($elements);
-        // echo '<br>';
-
         for ($i = 1; $i < count($elements); $i++) {
-
             $params[$elements[$i]] = $elements[$i + 1];
             $i++; // Add another one if more
         }
-
-        // var_dump($params);die;
 
         // POST
         if ($_POST) {

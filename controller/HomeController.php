@@ -28,9 +28,10 @@ class HomeController
             $pageNb = $params['pageNb'];
         } 
 
-        // when add a post
+        // Default action message to null
         $actionDone = null;
 
+        // if user add or delete a post
         if (isset($_SESSION['actionDone'])) {
             $actionDone = $_SESSION['actionDone'];
         }

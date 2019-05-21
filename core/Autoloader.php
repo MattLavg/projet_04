@@ -27,10 +27,9 @@ class Autoloader
     {
         // $class = path of the class with namespace
         $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
-// var_dump($class);
         $class = substr_replace($class, "", 0, 5); // delete "Blog/" namespace part
-        $class = lcfirst($class);
-// var_dump($class);die;
+        $class = lcfirst($class); // Make the string's first character lowercase
+
         require_once ROOT . $class . '.php';
     }
 }

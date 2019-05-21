@@ -30,22 +30,23 @@ class PostController
             $pageNb = $params['pageNb'];
         } 
 
-        // In case of errors
+        // Default action and error message to null
         $errorMessage = null;
-        // In case of success
         $actionDone = null;
 
+        // if user try to post empty fields in comments section
         if (isset($_SESSION['errorMessage'])) {
             $errorMessage = $_SESSION['errorMessage'];
         }
 
+        // if user add, report, publish or delete a comment
         if (isset($_SESSION['actionDone'])) {
             $actionDone = $_SESSION['actionDone'];
         }
 
         extract($params); // Allows to extract the $id variable
 
-        $postId = $id;
+        $postId = $id; // rename the variable for better identification
 
         $postManager = new PostManager();
         $post = $postManager->getPost($postId);
@@ -114,7 +115,7 @@ class PostController
         if (!empty($params['title']) && !empty($params['author']) && !empty($params['content'])) {
 
             $manager = new PostManager();
-            $post = $manager->updatePost($params);
+            $manager->updatePost($params);
 
             $_SESSION['actionDone'] = 'L\'article a été modifié.';
 
