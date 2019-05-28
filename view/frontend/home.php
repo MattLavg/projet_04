@@ -44,7 +44,6 @@ if (isset($elementsOnPage) && $pagination->getNotEnoughEntries()) {
 }
 
 if (isset($actionDone)) {
-    // echo '<p class="actionDone bg-success text-white">' . $actionDone . '</p>';
 ?>
 
     <div class="alert alert-success alert-dismissible fade show actionErrorMessage fixed-bottom" role="alert">

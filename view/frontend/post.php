@@ -8,7 +8,7 @@ $title = htmlspecialchars($post->getTitle()) . '|' . 'Le blog de Jean Forteroche
 <p>Publié le <?= $post->getCreationDate(); ?> par <?= htmlspecialchars($post->getAuthor()); ?>
 <?php
     if ($post->getUpdateDate() !== NULL) {
-        echo '(Dernière modification le ' . $post->getUpdateDate() . ')';
+        echo ' (Dernière modification le ' . $post->getUpdateDate() . ')';
     }
 ?>
 </p>
